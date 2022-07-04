@@ -6,8 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 import { WagmiConfig, createClient } from 'wagmi';
 import { getDefaultProvider } from 'ethers';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-const client = createClient({
+const subgraphUri =
+  'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
+
+const apolloClient = new ApolloClient({
+  uri: subgraphUri,
+  cache: new InMemoryCache(),
+});
+
+const wagmiClient = createClient({
   autoConnect: true,
   provider: getDefaultProvider(),
 });
@@ -17,11 +26,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={client}>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </WagmiConfig>
+    <ApolloProvider client={apolloClient}>
+      <WagmiConfig client={wagmiClient}>
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </WagmiConfig>
+    </ApolloProvider>
   </React.StrictMode>
 );
 
