@@ -4,6 +4,7 @@ import { useFriendInfo } from '../views/subgraph';
 import { useSubgraph } from '../views/subgraph';
 import { useAccount } from 'wagmi';
 import NewAccount from './NewAccount';
+import NewSignal from './NewSignal';
 
 const Body = () => {
   const { friends, signals } = useSubgraph();
@@ -11,7 +12,7 @@ const Body = () => {
   const friend = useFriendInfo(address);
 
   return (
-    <Box  display={'flex'} flexDirection={'row'} h={'100%'} w={'100%'} bg={'blackAlpha.800'}>
+    <Box  display={'flex'} flexDirection={'row'} h={'100%'} w={'100%'} bg={'blackAlpha.500'}>
       <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'200px'} p={50} maxWidth={'600px'} alignItems={'start'}>
         { !friend ? (
           <NewAccount />
@@ -26,6 +27,9 @@ const Body = () => {
             <p>Update your Signals to reflect the current state of your interests, for the benefit of your friends!</p>
           </Box>
         )}
+      </Box>
+      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'200px'} p={50} maxWidth={'600px'} alignItems={'start'}>
+        <NewSignal />
       </Box>
     </Box>
   );
