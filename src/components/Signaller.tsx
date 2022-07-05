@@ -42,7 +42,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 		<Box className="Signaller">
 			<Popover>
 				<PopoverTrigger>
-					<Button>-</Button>
+					<Button marginRight={1}>-</Button>
 				</PopoverTrigger>
 				<PopoverContent>
 					<PopoverArrow />
