@@ -1,9 +1,10 @@
 export const calcTVS = (
-  lastUpdatedTime: number,
-  currentTime: number,
-  currentWeight: number,
-  loggedTVS: number
+	lastUpdatedTime: number,
+	currentTime: number,
+	currentWeight: number,
+	loggedTVS: number
 ) => {
-  let currentTVS = loggedTVS + (currentTime - lastUpdatedTime) * currentWeight;
-  return currentTVS;
+	console.log(lastUpdatedTime, currentTime, currentWeight, loggedTVS);
+	let currentTVS = loggedTVS + (currentTime - lastUpdatedTime) * currentWeight;
+	return currentTVS;
 };
