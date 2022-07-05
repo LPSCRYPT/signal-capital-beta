@@ -15,23 +15,38 @@ const Headbar = () => {
   const friend = useFriendInfo(address);
 
   return (
-    <Box h={'60px'} borderBottom="1px " borderColor="gray.200">
+    <Box
+      display={'flex'}
+      w="100%"
+      justifyContent={'space-between'}
+      p={25}
+      borderBottom={'1px solid'}
+      borderBottomColor={'whiteAlpha.500'}
+      bg={'blackAlpha.700'}
+    >
+      <Box w="150px">
+        <b>SigCap</b>
+      </Box>
       {address ? (
-        <Box>
+        <Box display={'flex'} w="100%" justifyContent={'space-evenly'}>
+          {/* <Box w="auto" marginLeft="auto">
+            {address}
+          </Box> */}
+
           <Box>
-            Welcome,{' '}
-            {friend
-              ? friend['name'] +
-                `. You have ${friend['points']} of 1000 points available to Signal.`
-              : address}
+            <Box>
+              Welcome,{' '}
+              {friend
+                ? friend['name'] +
+                  `. You have ${friend['points']} of 1000 points available to Signal.`
+                : address}
+            </Box>
+            <Box>
+              {!friend
+                ? 'Please register a name so that we know who you are!'
+                : 'Please update your Signals to reflect the current state of your interests, for the benefit of your friends!'}
+            </Box>
           </Box>
-          <Box>
-            {!friend
-              ? 'Please register a name so that we know who you are!'
-              : 'Please update your Signals to reflect the current state of your interests, for the benefit of your friends!'}
-          </Box>
-          {/* <button onClick={() => disconnect()}>Disconnect</button>{' '} */}
-          {/* <input type="text"></input> */}
         </Box>
       ) : (
         <button onClick={() => connect()}>Connect Wallet</button>
