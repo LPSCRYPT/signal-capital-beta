@@ -1,5 +1,10 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, 
+  Table,
+  Thead,
+  Tr,
+  Th,
+  TableContainer, } from '@chakra-ui/react';
 import SignalItem from '../components/SignalItem';
 import { useSubgraph } from '../views/subgraph';
 import '../App.css';
@@ -8,18 +13,19 @@ const SignalList = () => {
   const { friends, signals } = useSubgraph();
 
   return (
-    <Box className="Row" w="100%">
-      <Box className="Row" w="75%">
-        <Box>
-          <Box w="100%">name</Box>
-          <Box w="100%">tvs</Box>
-        </Box>
-        <Box w="25%">signal</Box>
-      </Box>
-      <Box>
-        <SignalItem />
-      </Box>
-    </Box>
+    <TableContainer>
+    <Table colorScheme='teal'>
+      <Thead>
+        <Tr>
+          <Th>Name</Th>
+          <Th isNumeric>TVS</Th>
+          <Th isNumeric>Allocated</Th>
+          <Th>Signal</Th>
+        </Tr>
+      </Thead>
+      <SignalItem />
+    </Table>
+  </TableContainer>
   );
 };
 

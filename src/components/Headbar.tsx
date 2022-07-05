@@ -12,11 +12,11 @@ const Headbar = () => {
   const { disconnect } = useDisconnect();
 
   return (
-    <Box h={'60px'} borderBottom="1px " borderColor="gray.200">
+    <Box display={'flex'} w='100%' justifyContent={'space-between'} p={25} borderBottom={'1px solid'} borderBottomColor={'whiteAlpha.500'} bg={'blackAlpha.700'}>
+      <Box w="150px"><b>SigCap</b></Box>
       {address ? (
-        <Box flex="row" w='100%'>
-          <Box>SigCap</Box>
-          <Box>Welcome, {address}</Box>
+        <Box display={'flex'} w='100%' justifyContent={'space-evenly'} >
+          <Box w="auto" marginLeft="auto">{address}</Box>
           {/* <button onClick={() => disconnect()}>Disconnect</button>{' '} */}
           {/* <input type="text"></input> */}
         </Box>

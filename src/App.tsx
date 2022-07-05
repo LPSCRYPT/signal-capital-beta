@@ -18,7 +18,7 @@ function App() {
       flexDirection={'column'}
     >
       <Headbar />
-      {/* <Body /> */}
+      <Body />
       <TestingFunctions />
     </Box>
   );
