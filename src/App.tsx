@@ -21,6 +21,7 @@ function App() {
       flexDirection={'column'}
     >
       <Headbar />
+      <Body />
       <Box flex="row" p={25}>
         <Tabs>
           <TabList>

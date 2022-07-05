@@ -28,22 +28,11 @@ const Headbar = () => {
         <b>SigCap</b>
       </Box>
       {address ? (
-        <Box display={'flex'} w="100%" justifyContent={'space-evenly'}>
-          {/* <Box w="auto" marginLeft="auto">
-            {address}
-          </Box> */}
-          <Box>
+        <Box display={'flex'} w="100%" justifyContent={'flex-end'}>
+          <Box maxWidth="600px">
             <Box>
               Welcome,{' '}
-              {friend
-                ? friend['name'] +
-                  `. You have ${friend['points']} of 1000 points available to Signal.`
-                : address}
-            </Box>
-            <Box>
-              {!friend
-                ? 'Please register a name so that we know who you are!'
-                : 'Please update your Signals to reflect the current state of your interests, for the benefit of your friends!'}
+              {friend ? friend['name'] : address}
             </Box>
           </Box>
         </Box>
