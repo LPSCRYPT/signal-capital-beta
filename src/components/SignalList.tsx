@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Box, Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
+import { Box, Button, Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
 import SignalItem from "../components/SignalItem";
 import { useSubgraph } from "../views/subgraph";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
+import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 
 let _ = require("lodash");
 
@@ -87,11 +88,7 @@ const SignalList = () => {
 			<Table colorScheme="teal">
 				<Thead>
 					<Tr>
-						<Th>
-							<Box className="SortGroup" marginLeft={2} display={'flex'} flexDirection={'column'} h={'p'}>
-								<Button size={'xs'} variant={'ghost'} border="none"><TiArrowSortedUp /></Button>
-								<Button size={'xs'} variant={'ghost'}><TiArrowSortedDown /></Button>
-							</Box>
+						<Th>Name
 						</Th>
 						<Th isNumeric>TVS</Th>
 						<Th isNumeric>Allocated</Th>

@@ -6,7 +6,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Headbar from './components/Headbar';
 import Body from './components/Body';
 import TestingFunctions from './components/TestingFunctions';
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 function App() {
   return (
