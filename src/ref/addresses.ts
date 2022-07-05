@@ -1,1 +1,1 @@
-export const sigcapAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+export const sigcapAddress = "0x0bE718F6a4F2377F3Fc8d73609AF15B440c90128";

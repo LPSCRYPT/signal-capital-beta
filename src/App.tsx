@@ -19,7 +19,9 @@ function App() {
       flexDirection={'column'}
     >
       <Headbar />
+
       <Body />
+      {/* <SubgraphWrapper /> */}
       <TestingFunctions />
     </Box>
   );
