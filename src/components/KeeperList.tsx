@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
-import SignalItem from "../components/SignalItem";
+import KeeperItem from "../components/KeeperItem";
 import { useSubgraph } from "../views/subgraph";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
@@ -8,7 +8,7 @@ import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 
 let _ = require("lodash");
 
-const SignalList = () => {
+const KeeperList = () => {
 	const { friends, signals } = useSubgraph();
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
@@ -92,13 +92,12 @@ const SignalList = () => {
 						</Th>
 						<Th isNumeric>TVS <Button variant="ghost"><TiArrowSortedUp/></Button><Button variant="ghost"><TiArrowSortedDown /></Button></Th>
 						<Th isNumeric>Allocated <Button variant="ghost"><TiArrowSortedUp /></Button><Button variant="ghost"><TiArrowSortedDown /></Button></Th>
-						<Th>Signal</Th>
 					</Tr>
 				</Thead>
 				{signalsList && signalsList.length
 					? signalsList.map((signal) => {
 							return (
-								<SignalItem
+								<KeeperItem
 									name={signal["meme"]}
 									tvs={calcTVS(
 										Number(signal["lastUpdatedTime"]),
@@ -116,4 +115,4 @@ const SignalList = () => {
 	);
 };
 
-export default SignalList;
+export default KeeperList;

@@ -4,13 +4,13 @@ import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import "../App.css";
 
-interface SignalInterface {
+interface KeeperInterface {
 	name: string;
 	tvs: string;
 	balance: string;
 }
 
-const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
+const KeeperItem: React.FC<KeeperInterface> = ({ name, tvs, balance }) => {
 	const { friends, signals } = useSubgraph();
 
 	return (
@@ -19,12 +19,9 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 				<Td>{name}</Td>
 				<Td isNumeric>{tvs}</Td>
 				<Td isNumeric>{balance}</Td>
-				<Td>
-					<Signaller />
-				</Td>
 			</Tr>
 		</Tbody>
 	);
 };
 
-export default SignalItem;
+export default KeeperItem;

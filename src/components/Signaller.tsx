@@ -17,7 +17,7 @@ const Signaller = () => {
       <Box className="Signaller">
         <Popover>
           <PopoverTrigger>
-            <Button>-</Button>
+            <Button marginRight={2}>-</Button>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
