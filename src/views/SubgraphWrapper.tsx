@@ -6,7 +6,7 @@ import { gql, useQuery } from '@apollo/client';
 // import fetch from "isomorphic-fetch";
 import React, { useState, useEffect } from 'react';
 
-export const useSubgraph = () => {
+const SubgraphWrapper = () => {
   const FRIENDS_QUERY = `
   {
     friends {
@@ -77,6 +77,7 @@ export const useSubgraph = () => {
       signalsStop();
     };
   }, [signalsPoll, signalsStop]);
+
   const [friends, setFriends] = useState([]);
   const [signals, setSignals] = useState([]);
   //   const [tokens, setTokens] = useState([]);
@@ -102,57 +103,52 @@ export const useSubgraph = () => {
     }
   }, [dataSignals]);
 
-  return { friends, signals };
+  return dataFriends && dataSignals ? (
+    <div>
+      {dataFriends ? <div> {JSON.stringify(dataFriends)} </div> : null}
+      {dataSignals ? <div> {JSON.stringify(dataSignals)} </div> : null}
+    </div>
+  ) : (
+    <div>Loading ...</div>
+  );
+
+  //   const FRIEND_QUERY = `
+  //     {
+  //       friends(where: {id: "${address?.toLowerCase()}"}) {
+  //         id
+  //         name
+  //         points
+  //           holdings {
+  //           id
+  //           friend {
+  //             id
+  //           }
+  //           amount
+  //           timeValueSignal
+  //           lastUpdatedTime
+  //         }
+  //       }
+  //     }
+
+  //     `;
+
+  //   const FRIEND_GQL = gql(FRIEND_QUERY);
+
+  //   const { loading: loadingFriend, data: dataFriend } = useQuery(FRIEND_GQL, {
+  //     pollInterval: 2500,
+  //   });
+
+  //   const [friend, setFriend] = useState();
+
+  //   useEffect(() => {
+  //     if (dataFriend && dataFriend.friends && dataFriend.friends.length > 0) {
+  //       // let tempArr = dataFriend.owners.map(owner => ({
+  //       //   id: owner.id,
+  //       // }));
+  //       setFriend(dataFriend.friends[0]);
+  //     }
+  //   }, [dataFriend]);
+  //   return friend;
 };
 
-export const useFriendInfo = (address: string | undefined) => {
-  const FRIEND_QUERY = `
-    {
-      friends(where: {id: "${address?.toLowerCase()}"}) {
-        id
-        name
-        points
-          holdings {
-          id
-          friend {
-            id
-          }
-          amount
-          timeValueSignal
-          lastUpdatedTime
-        }
-      }
-    }
-      
-    `;
-
-  const FRIEND_GQL = gql(FRIEND_QUERY);
-
-  const {
-    loading: loadingFriend,
-    data: dataFriend,
-    startPolling: friendPoll,
-    stopPolling: friendStop,
-  } = useQuery(FRIEND_GQL, {
-    pollInterval: 2500,
-  });
-
-  useEffect(() => {
-    friendPoll(5000);
-    return () => {
-      friendStop();
-    };
-  }, [friendPoll, friendStop]);
-
-  const [friend, setFriend] = useState();
-
-  useEffect(() => {
-    if (dataFriend && dataFriend.friends && dataFriend.friends.length > 0) {
-      // let tempArr = dataFriend.owners.map(owner => ({
-      //   id: owner.id,
-      // }));
-      setFriend(dataFriend.friends[0]);
-    }
-  }, [dataFriend]);
-  return friend;
-};
+export default SubgraphWrapper;

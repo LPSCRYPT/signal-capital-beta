@@ -11,9 +11,16 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 const subgraphUri =
   'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
 
+const defaultOptions: any = {
+  query: {
+    fetchPolicy: 'no-cache',
+  },
+};
+
 const apolloClient = new ApolloClient({
   uri: subgraphUri,
   cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });
 
 const wagmiClient = createClient({

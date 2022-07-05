@@ -7,6 +7,7 @@ import Headbar from './components/Headbar';
 import Body from './components/Body';
 import TestingFunctions from './components/TestingFunctions';
 import { Box } from '@chakra-ui/react';
+import SubgraphWrapper from './views/SubgraphWrapper';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
     >
       <Headbar />
       {/* <Body /> */}
+      {/* <SubgraphWrapper /> */}
       <TestingFunctions />
     </Box>
   );
