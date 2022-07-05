@@ -19,8 +19,8 @@ function App() {
     >
       <Headbar />
       <Body />
-      <Box flex="row" p={25}>
-        <Tabs>
+      <Box flex="row" padding={25} paddingBottom={500}>
+        <Tabs align='center'>
           <TabList>
             <Tab>Signals</Tab>
             <Tab>Keepers</Tab>
@@ -28,13 +28,11 @@ function App() {
           <TabPanels>
             <TabPanel>
               <Box flex="row">
-                <h3>Signals</h3>
               </Box>
               <SignalList />
             </TabPanel>
             <TabPanel>
               <Box flex="row">
-                <h3>Keepers</h3>
               </Box>
              <SignalList />
             </TabPanel>

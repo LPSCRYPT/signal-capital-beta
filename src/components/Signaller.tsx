@@ -6,7 +6,7 @@ import { Box,
   PopoverHeader,
   PopoverBody,
   PopoverArrow,
-  PopoverCloseButton, } from '@chakra-ui/react';
+  PopoverCloseButton, Input } from '@chakra-ui/react';
 import { useSubgraph } from '../views/subgraph';
 import '../App.css';
 
@@ -24,14 +24,16 @@ const Signaller = () => {
             <PopoverCloseButton />
             <PopoverHeader>Withdraw Signal</PopoverHeader>
             <PopoverBody>
-              <input
-              placeholder="text"
-              type="text"
-              style={{ border: '1px black solid' }}
-              value={'existingSignalText'}
-            />
-              <Button>Submit</Button>
-              </PopoverBody>
+              <Box flexDirection="column" display="flex">
+                <Input
+                placeholder="text"
+                type="text"
+                style={{ border: '1px black solid' }}
+                value={'existingSignalText'}
+                />
+                <Button>Submit</Button>
+              </Box>
+            </PopoverBody>
           </PopoverContent>
         </Popover>
         <Popover>
@@ -43,13 +45,15 @@ const Signaller = () => {
             <PopoverCloseButton />
             <PopoverHeader>Add Signal</PopoverHeader>
             <PopoverBody>
-              <input
-              placeholder="text"
-              type="text"
-              style={{ border: '1px black solid' }}
-              value={'existingSignalText'}
-            />
+              <Box flexDirection="column" display="flex">
+                <Input
+                placeholder="text"
+                type="text"
+                style={{ border: '1px black solid' }}
+                value={'existingSignalText'}
+              />
               <Button>Submit</Button>
+              </Box>
             </PopoverBody>
           </PopoverContent>
         </Popover>

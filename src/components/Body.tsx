@@ -21,8 +21,8 @@ const Body = () => {
         </Box>
         <Box>
           {!friend
-            ? 'Please register a name so that we know who you are!'
-            : 'Please update your Signals to reflect the current state of your interests, for the benefit of your friends!'}
+            ? 'Register a name so that we know who you are!'
+            : 'Update your Signals to reflect the current state of your interests, for the benefit of your friends!'}
         </Box>
       </Box>
     </Box>
