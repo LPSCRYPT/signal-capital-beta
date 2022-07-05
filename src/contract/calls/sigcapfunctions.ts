@@ -13,7 +13,7 @@ const enum callSignature {
 export const useAddAccount = (name: string) => {
   const args = useMemo(() => [name], [name]);
 
-  const writeAddAccount = useContractWrite({
+  const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
     contractInterface: sigcapABI,
     functionName: callSignature.addAccount,
@@ -25,12 +25,22 @@ export const useAddAccount = (name: string) => {
       console.log('Success', data);
     },
   });
+
+  const fireAddAccount = useCallback(async () => {
+    try {
+      await writeAsync();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [writeAsync]);
+
+  return fireAddAccount;
 };
 
 export const useAddNewSignal = (name: string, points: number) => {
   const args = useMemo(() => [name, points], [name, points]);
 
-  const writeAddNewSignal = useContractWrite({
+  const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
     contractInterface: sigcapABI,
     functionName: callSignature.addNewSignal,
@@ -42,12 +52,22 @@ export const useAddNewSignal = (name: string, points: number) => {
       console.log('Success', data);
     },
   });
+
+  const fireAddNewSignal = useCallback(async () => {
+    try {
+      await writeAsync();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [writeAsync]);
+
+  return fireAddNewSignal;
 };
 
 export const useSignalExisting = (name: string, points: number) => {
   const args = useMemo(() => [name, points], [name, points]);
 
-  const writeSignalExisting = useContractWrite({
+  const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
     contractInterface: sigcapABI,
     functionName: callSignature.signalExisting,
@@ -59,12 +79,22 @@ export const useSignalExisting = (name: string, points: number) => {
       console.log('Success', data);
     },
   });
+
+  const fireAddSignalExisting = useCallback(async () => {
+    try {
+      await writeAsync();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [writeAsync]);
+
+  return fireAddSignalExisting;
 };
 
 export const useWithdrawPoints = (name: string, points: number) => {
   const args = useMemo(() => [name, points], [name, points]);
 
-  const writeWithdrawPoints = useContractWrite({
+  const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
     contractInterface: sigcapABI,
     functionName: callSignature.withdrawPoints,
@@ -76,4 +106,14 @@ export const useWithdrawPoints = (name: string, points: number) => {
       console.log('Success', data);
     },
   });
+
+  const fireWithdrawPoints = useCallback(async () => {
+    try {
+      await writeAsync();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [writeAsync]);
+
+  return fireWithdrawPoints;
 };

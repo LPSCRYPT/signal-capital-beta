@@ -5,6 +5,7 @@ import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import Headbar from './components/Headbar';
 import Body from './components/Body';
+import TestingFunctions from './components/TestingFunctions';
 import { Box } from '@chakra-ui/react';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       flexDirection={'column'}
     >
       <Headbar />
-      <Body />
+      {/* <Body /> */}
+      <TestingFunctions />
     </Box>
   );
 }

@@ -18,7 +18,7 @@ const Headbar = () => {
           <Box>SigCap</Box>
           <Box>Welcome, {address}</Box>
           {/* <button onClick={() => disconnect()}>Disconnect</button>{' '} */}
-          <input type="text"></input>
+          {/* <input type="text"></input> */}
         </Box>
       ) : (
         <button onClick={() => connect()}>Connect Wallet</button>
