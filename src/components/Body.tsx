@@ -11,7 +11,7 @@ const Body = () => {
 
   return (
     <Box  display={'flex'} flexDirection={'row'} h={'100%'} w={'100%'} bg={'blackAlpha.800'}>
-      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'20px'} p={50} maxWidth={'800px'} alignItems={'start'}>
+      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'20px'} p={50} maxWidth={'600px'} alignItems={'start'}>
         <Box>
           <p>Welkommen, <strong>{' '}{friend ? friend['name'] : address}</strong></p>
           <p>

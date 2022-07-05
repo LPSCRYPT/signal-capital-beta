@@ -29,9 +29,10 @@ const Headbar = () => {
         <b><Avatar src={Logo} name="logo" size={'sm'} marginRight={3} />SigCap</b>
       </Box>
       {address ? (
-        <Box display={'flex'} w="100%" justifyContent={'flex-end'}>
-          <Box>
-            {friend ? friend['balance'] : address}
+        <Box display={'flex'} w="100%" alignItems={'center'} justifyContent={'flex-end'}>
+          <Box className="Points" marginRight={2}>
+            {friend ? `${friend['points']}` 
+            : null}<br /><small>/1000</small>
           </Box>
           <Box>
             {friend ? friend['name'] : address}
