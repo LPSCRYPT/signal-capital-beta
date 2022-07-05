@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Tbody, Tr, Td } from "@chakra-ui/react";
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
+import { useAccount } from "wagmi";
 import "../App.css";
 
 interface SignalInterface {
@@ -12,6 +13,7 @@ interface SignalInterface {
 
 const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 	const { friends, signals } = useSubgraph();
+	const { address } = useAccount();
 
 	return (
 		<Tbody>
@@ -20,7 +22,7 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 				<Td isNumeric>{tvs}</Td>
 				<Td isNumeric>{balance}</Td>
 				<Td>
-					<Signaller />
+					<Signaller meme={name} />
 				</Td>
 			</Tr>
 		</Tbody>
