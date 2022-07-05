@@ -1,3 +1,7 @@
+body, p, h1, h2, h3, h4, h5, h6 {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .App {
   text-align: center;
 }
@@ -46,7 +50,3 @@
   justify-content: center;
 }
 
-button {
-  border: 1px solid #000;
-  padding: 10px;
-}

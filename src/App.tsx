@@ -1,15 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
 import SignalList from './components/SignalList';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Headbar from './components/Headbar';
 import Body from './components/Body';
 import TestingFunctions from './components/TestingFunctions';
 import { Box } from '@chakra-ui/react';
-import SubgraphWrapper from './views/SubgraphWrapper';
 
 function App() {
   return (

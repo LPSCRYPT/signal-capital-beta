@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import SignalList from '../components/SignalList';
 import { useFriendInfo } from '../views/subgraph';
 import { useSubgraph } from '../views/subgraph';
 import { useAccount } from 'wagmi';
@@ -11,13 +10,13 @@ const Body = () => {
   const friend = useFriendInfo(address);
 
   return (
-    <Box  display={'flex'} flexDirection={'row'} h={'100%'} w={'100%'} bg={'gray.200'}>
-      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'240px'} p={50} maxWidth={'650px'} alignItems={'start'}>
+    <Box  display={'flex'} flexDirection={'row'} h={'100%'} w={'100%'} bg={'blackAlpha.800'}>
+      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} minHeight={'20px'} p={50} maxWidth={'800px'} alignItems={'start'}>
         <Box>
-          <p>Welkommen, <strong>{' '}{friend ? friend['name']:address}</strong></p>
+          <p>Welkommen, <strong>{' '}{friend ? friend['name'] : address}</strong></p>
           <p>
           {friend ? `You have ${friend['points']} of 1000 points available to Signal.`
-          : address}
+          : null}
           </p>
         </Box>
         <Box>
