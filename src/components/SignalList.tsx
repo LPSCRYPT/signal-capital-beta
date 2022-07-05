@@ -77,22 +77,22 @@ const SignalList = () => {
 		if (signals && signals.length > 0) {
 			let tempArr = [];
 			if (
-				ButtonPress.ascTVS == currentButton ||
-				ButtonPress.descTVS == currentButton
+				ButtonPress.ascBal == currentButton ||
+				ButtonPress.descBal == currentButton
 			) {
 				// sort by TVS
-				let tempSwitch = ButtonPress.ascTVS == currentButton ? 1 : -1;
+				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
 					return tempSwitch * Number(e.balance);
 				});
 				console.log("tempArr", tempArr);
 			}
 			if (
-				ButtonPress.ascBal == currentButton ||
-				ButtonPress.descBal == currentButton
+				ButtonPress.ascTVS == currentButton ||
+				ButtonPress.descTVS == currentButton
 			) {
 				// sort by balance
-				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
+				let tempSwitch = ButtonPress.ascTVS == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
 					return (
 						tempSwitch *
