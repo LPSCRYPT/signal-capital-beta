@@ -23,7 +23,8 @@ const Signaller = () => {
             <PopoverArrow />
             <PopoverCloseButton />
             <PopoverHeader>Withdraw Signal</PopoverHeader>
-            <PopoverBody><input
+            <PopoverBody>
+              <input
               placeholder="text"
               type="text"
               style={{ border: '1px black solid' }}

@@ -8,12 +8,7 @@ const Body = () => {
 
   return (
     <Box h={'100%'} w={'100%'} bg={'gray.200'}>
-      <Box flex="row" p={25}>
-        Signals
-      </Box>
-      <Box p={25} w='100%'>
-        <SignalList />
-      </Box>
+      
     </Box>
   );
 };

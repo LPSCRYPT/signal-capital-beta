@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
+import SignalList from './components/SignalList';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Headbar from './components/Headbar';
 import Body from './components/Body';
 import TestingFunctions from './components/TestingFunctions';
@@ -19,10 +21,30 @@ function App() {
       flexDirection={'column'}
     >
       <Headbar />
-
-      <Body />
-      {/* <SubgraphWrapper /> */}
-      <TestingFunctions />
+      <Box flex="row" p={25}>
+        <Tabs>
+          <TabList>
+            <Tab>Signals</Tab>
+            <Tab>Keepers</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Box flex="row">
+                <h3>Signals</h3>
+              </Box>
+              <SignalList />
+            </TabPanel>
+            <TabPanel>
+              <Box flex="row">
+                <h3>Keepers</h3>
+              </Box>
+             <SignalList />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+        {/* <SubgraphWrapper /> */}
+        <TestingFunctions />
     </Box>
   );
 }
