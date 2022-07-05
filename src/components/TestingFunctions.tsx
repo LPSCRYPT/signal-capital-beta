@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { Box, Input, Button } from '@chakra-ui/react';
@@ -8,6 +8,8 @@ import {
   useSignalExisting,
   useWithdrawPoints,
 } from '../contract/calls/sigcapfunctions';
+import { useFriendInfo } from '../views/subgraph';
+import { gql, useQuery } from '@apollo/client';
 
 const TestingFunctions = () => {
   const { address } = useAccount();
@@ -34,6 +36,56 @@ const TestingFunctions = () => {
     withdrawPointsText,
     withdrawPointsAmount
   );
+
+  const friend = useFriendInfo(address);
+
+  // testing state loop
+
+  const [counter, setCounter] = useState(0);
+  const [currentTime, setCurrentTime] = useState(
+    Math.floor(new Date().getTime() / 1000)
+  );
+  // Call setTimout after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => setCounter(counter + 1), 10000);
+    return () => clearTimeout(timer);
+  }, [counter]);
+
+  useEffect(() => {
+    console.log('counter ', counter);
+    setCurrentTime(Math.floor(new Date().getTime() / 1000));
+    console.log(currentTime);
+  }, [counter]);
+
+  //
+  const FRIEND_QUERY = `
+  {
+    friends(where: {id: "${address?.toLowerCase()}"}) {
+      id
+      name
+      points
+        holdings {
+        id
+        friend {
+          id
+        }
+        amount
+        timeValueSignal
+        lastUpdatedTime
+      }
+    }
+  }
+    
+  `;
+
+  const FRIEND_GQL = gql(FRIEND_QUERY);
+
+  const { loading: loadingFriend, data: dataFriend } = useQuery(FRIEND_GQL, {
+    pollInterval: 2500,
+  });
+  //
+
+  //
 
   return (
     <Box h={'60px'} borderBottom="1px " borderColor="gray.200">
@@ -122,6 +174,13 @@ const TestingFunctions = () => {
       ) : (
         <div>Please Connect</div>
       )}
+      <Box>
+        <Box>Your Signals</Box>
+        {dataFriend ? JSON.stringify(dataFriend) : null}
+        {/* {friend ? friend.map(f => {
+
+        })} */}
+      </Box>
     </Box>
   );
 };

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useContract, useContractWrite, useProvider, useSigner } from 'wagmi';
 import sigcapABI from '../abis/SignalCapital.json';
 import { sigcapAddress } from '../../ref/addresses';
+import { BigNumber } from 'ethers';
 
 const enum callSignature {
   addAccount = 'addAccount',
@@ -38,7 +39,7 @@ export const useAddAccount = (name: string) => {
 };
 
 export const useAddNewSignal = (name: string, points: number) => {
-  const args = useMemo(() => [name, points], [name, points]);
+  const args = useMemo(() => [name, BigNumber.from(points)], [name, points]);
 
   const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
@@ -65,7 +66,7 @@ export const useAddNewSignal = (name: string, points: number) => {
 };
 
 export const useSignalExisting = (name: string, points: number) => {
-  const args = useMemo(() => [name, points], [name, points]);
+  const args = useMemo(() => [name, BigNumber.from(points)], [name, points]);
 
   const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
@@ -92,7 +93,7 @@ export const useSignalExisting = (name: string, points: number) => {
 };
 
 export const useWithdrawPoints = (name: string, points: number) => {
-  const args = useMemo(() => [name, points], [name, points]);
+  const args = useMemo(() => [name, BigNumber.from(points)], [name, points]);
 
   const { data, isError, isLoading, writeAsync } = useContractWrite({
     addressOrName: sigcapAddress,
