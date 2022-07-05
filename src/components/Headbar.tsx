@@ -14,7 +14,8 @@ const Headbar = () => {
   return (
     <Box h={'60px'} borderBottom="1px " borderColor="gray.200">
       {address ? (
-        <Box>
+        <Box flex="row" w='100%'>
+          <Box>SigCap</Box>
           <Box>Welcome, {address}</Box>
           {/* <button onClick={() => disconnect()}>Disconnect</button>{' '} */}
           <input type="text"></input>
