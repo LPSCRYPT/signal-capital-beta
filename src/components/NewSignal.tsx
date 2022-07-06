@@ -27,13 +27,14 @@ const NewSignal = () => {
 			border="1px solid #5d5FEF"
 			boxShadow="0px 0px 35px rgba(93, 95, 239, .5)"
 		>
-			<h4>New Signal</h4>
+			<Box mb={3}>New Signal</Box>
 			<Input
 				placeholder="Signal Name"
 				type="text"
 				style={{ border: "1px black solid" }}
 				value={addNewSignalText}
 				onChange={(e) => setaddNewSignalText(e.target.value)}
+				mb={3}
 			></Input>
 			<Input
 				placeholder="amount"
@@ -41,6 +42,7 @@ const NewSignal = () => {
 				style={{ border: "1px black solid" }}
 				value={addNewSignalAmount}
 				onChange={(e) => setaddNewSignalAmount(Number(e.target.value))}
+				mb={3}
 			></Input>
 			<Button onClick={() => fireAddNewSignal()} border={"1px black solid"}>
 				Add new signal

@@ -5,6 +5,7 @@ import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
 import NewAccount from "./NewAccount";
 import NewSignal from "./NewSignal";
+import signalBg from "../assets/signal_bg_trans.png";
 
 const Body = () => {
 	const { friends, signals } = useSubgraph();
@@ -18,6 +19,8 @@ const Body = () => {
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.500"}
+			backgroundImage={signalBg}
+			backgroundSize={'cover'}
 		>
 			<Box
 				display={"flex"}
@@ -27,6 +30,7 @@ const Body = () => {
 				p={50}
 				maxWidth={"600px"}
 				alignItems={"start"}
+				
 			>
 				{friend.length == 0 ? (
 					<NewAccount />
