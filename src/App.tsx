@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SignalList from './components/SignalList';
-import KeeperList from './components/KeeperList';
+import Keepers from './components/Keepers';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Headbar from './components/Headbar';
 import Body from './components/Body';
@@ -35,7 +35,7 @@ function App() {
             <TabPanel>
               <Box flex="row">
               </Box>
-             <KeeperList />
+             <Keepers />
             </TabPanel>
           </TabPanels>
         </Tabs>
