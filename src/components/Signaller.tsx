@@ -59,7 +59,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 									setwithdrawPointsAmount(Number(e.target.value))
 								}
 							/>
-							<Button onClick={() => fireWithdrawPoints()}>Fire</Button>
+							<Button onClick={() => fireWithdrawPoints()}>🔥</Button>
 						</Box>
 					</PopoverBody>
 				</PopoverContent>
@@ -83,7 +83,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 									setexistingSignalAmount(Number(e.target.value))
 								}
 							/>
-							<Button onClick={() => fireSignalExising()}>fire</Button>
+							<Button onClick={() => fireSignalExising()}>🔥</Button>
 						</Box>
 					</PopoverBody>
 				</PopoverContent>

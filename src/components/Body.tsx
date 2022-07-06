@@ -28,30 +28,31 @@ const Body = () => {
 				maxWidth={"600px"}
 				alignItems={"start"}
 			>
-				{!friend ? (
+				{friend.length == 0 ? (
 					<NewAccount />
 				) : (
 					<Box>
 						<p>
-							Welkommen, <strong> {friend ? friend["name"] : address}</strong>
+							Welkommen,{" "}
+							<strong>
+								{" "}
+								{friend && friend.length > 0 ? friend[0]["name"] : address}
+							</strong>
 						</p>
 						<p>
-							{friend
-								? `You have ${friend["points"]} of 1000 points available to Signal.`
+							{friend && friend.length > 0
+								? `You have ${friend[0]["points"]} of 1000 points available to Signal.`
 								: null}
 						</p>
 						<p>
 							Update your Signals to reflect the current state of your
 							interests, for the benefit of your friends!
 						</p>
-						<p>
-							TVS = Time Value Signal - a function of the relative weights of
-							signals as a function of time
-						</p>
+						<p>TVS = Time Value Signal - weighted measure of signal * time</p>
 					</Box>
 				)}
 			</Box>
-			{friend ? (
+			{friend.length > 0 ? (
 				<Box
 					display={"flex"}
 					flexDirection={"column"}

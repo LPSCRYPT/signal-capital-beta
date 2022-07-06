@@ -146,14 +146,14 @@ export const useFriendInfo = (address: string | undefined) => {
 		};
 	}, [friendPoll, friendStop]);
 
-	const [friend, setFriend] = useState();
+	const [friend, setFriend] = useState([]);
 
 	useEffect(() => {
 		if (dataFriend && dataFriend.friends && dataFriend.friends.length > 0) {
 			// let tempArr = dataFriend.owners.map(owner => ({
 			//   id: owner.id,
 			// }));
-			setFriend(dataFriend.friends[0]);
+			setFriend(dataFriend.friends);
 		}
 	}, [dataFriend]);
 	return friend;
