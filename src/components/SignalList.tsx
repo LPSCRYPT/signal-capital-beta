@@ -117,36 +117,45 @@ const SignalList = () => {
 					<Tr>
 						<Th>Name</Th>
 						<Th isNumeric>
-							TVS{" "}
-							<Button
-								variant="ghost"
-								color={currentButton == 1 ? "limegreen" : ""}
-								border={
-									currentButton == 1
-										? "limegreen 1px solid"
-										: "rgba(255,255,255,0) 1px solid"
-								}
-								onClick={() => setCurrentButton(ButtonPress.ascTVS)}
-							>
-								<TiArrowSortedUp />
-							</Button>
-							<Button
-								variant="ghost"
-								onClick={() => setCurrentButton(ButtonPress.descTVS)}
-								color={currentButton == 2 ? "limegreen" : ""}
-								border={
-									currentButton == 2
-										? "limegreen 1px solid"
-										: "rgba(255,255,255,0) 1px solid"
-								}
-							>
-								<TiArrowSortedDown />
-							</Button>
+							<Box display={'flex'} alignItems={'center'} justifyContent={'end'}>
+								<Box>TVS</Box>
+								<Box display={'flex'} flexDirection={'column'} alignItems={'center'} pl={2}>
+								<Button
+									variant="ghost"
+									size="xs"
+									color={currentButton == 1 ? "limegreen" : ""}
+									border={
+										currentButton == 1
+											? "limegreen 1px solid"
+											: "rgba(255,255,255,0) 1px solid"
+									}
+									onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+								>
+									<TiArrowSortedUp />
+								</Button>
+								<Button
+									variant="ghost"
+									size="xs"
+									onClick={() => setCurrentButton(ButtonPress.descTVS)}
+									color={currentButton == 2 ? "limegreen" : ""}
+									border={
+										currentButton == 2
+											? "limegreen 1px solid"
+											: "rgba(255,255,255,0) 1px solid"
+									}
+								>
+									<TiArrowSortedDown />
+								</Button>
+								</Box>
+							</Box>
 						</Th>
 						<Th isNumeric>
-							Allocated{" "}
+						<Box display={'flex'} alignItems={'center'} justifyContent={'end'}>
+							<Box>Allocated{" "}</Box>
+							<Box display={'flex'} flexDirection={'column'} pl={2}>
 							<Button
 								variant="ghost"
+								size="xs"
 								onClick={() => setCurrentButton(ButtonPress.ascBal)}
 								color={currentButton == 3 ? "limegreen" : ""}
 								border={
@@ -159,6 +168,7 @@ const SignalList = () => {
 							</Button>
 							<Button
 								variant="ghost"
+								size="xs"
 								onClick={() => setCurrentButton(ButtonPress.descBal)}
 								color={currentButton == 4 ? "limegreen" : ""}
 								border={
@@ -169,6 +179,8 @@ const SignalList = () => {
 							>
 								<TiArrowSortedDown />
 							</Button>
+							</Box>
+							</Box>
 						</Th>
 						<Th>Signal</Th>
 					</Tr>

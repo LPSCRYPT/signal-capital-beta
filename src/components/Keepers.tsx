@@ -12,55 +12,61 @@ import "../App.css";
 const Keepers = () => {
 
 	return (
-		<Accordion allowMultiple defaultIndex={[0]}>
-			<AccordionItem>
-				<h2>
-				<AccordionButton>
-					<Box flex='1' textAlign='left' display={'flex'} justifyContent={'space-between'}>
-						<Box>KeeperName</Box>
-						<Box>100</Box>
+		<Box w={'100%'}>
+			<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={3}>
+				<Box pl={4}>Keeper Name</Box>
+				<Box pr={10}>Allocated</Box>
+			</Box>
+			<Accordion allowMultiple defaultIndex={[0]}>
+				<AccordionItem py={5}>
+					<h2>
+					<AccordionButton>
+						<Box flex='1' textAlign='left' display={'flex'} justifyContent={'space-between'}>
+							<Box>KeeperName1</Box>
+							<Box>100</Box>
+						</Box>
+						<AccordionIcon />
+					</AccordionButton>
+					</h2>
+					<AccordionPanel pb={4}>
+					<Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
+							<Box>Signal Name</Box>
+							<Box>69</Box>
+						</Box>
+						<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
+							<Box>Signal Name1</Box>
+							<Box>69</Box>
+						</Box>
 					</Box>
-					<AccordionIcon />
-				</AccordionButton>
-				</h2>
-				<AccordionPanel pb={4}>
-				<Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'}>
-					<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
-						<Box>Signal Name</Box>
-						<Box>69</Box>
-					</Box>
-					<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
-						<Box>Signal Name</Box>
-						<Box>69</Box>
-					</Box>
-				</Box>
-				</AccordionPanel>
-			</AccordionItem>
+					</AccordionPanel>
+				</AccordionItem>
 
-			<AccordionItem>
-				<h2>
-				<AccordionButton>
-					<Box flex='1' textAlign='left' display={'flex'} justifyContent={'space-between'}>
-						<Box>KeeperName2</Box>
-						<Box>138</Box>
+				<AccordionItem py={5}>
+					<h2>
+					<AccordionButton>
+						<Box flex='1' textAlign='left' display={'flex'} justifyContent={'space-between'}>
+							<Box>KeeperName2</Box>
+							<Box>138</Box>
+						</Box>
+						<AccordionIcon />
+					</AccordionButton>
+					</h2>
+					<AccordionPanel pb={4}>
+					<Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
+							<Box>Signal Name</Box>
+							<Box>69</Box>
+						</Box>
+						<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
+							<Box>Signal Name1</Box>
+							<Box>69</Box>
+						</Box>
 					</Box>
-					<AccordionIcon />
-				</AccordionButton>
-				</h2>
-				<AccordionPanel pb={4}>
-				<Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'}>
-					<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
-						<Box>Signal Name</Box>
-						<Box>69</Box>
-					</Box>
-					<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
-						<Box>Signal Name1</Box>
-						<Box>69</Box>
-					</Box>
-				</Box>
-				</AccordionPanel>
-			</AccordionItem>
-		</Accordion>
+					</AccordionPanel>
+				</AccordionItem>
+			</Accordion>
+		</Box>
 	);
 };
 
