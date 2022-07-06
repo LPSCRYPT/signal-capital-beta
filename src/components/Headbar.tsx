@@ -43,7 +43,7 @@ const Headbar = () => {
 					<Box className="Points" marginRight={2}>
 						{friend.length > 0 ? `${friend[0]["points"]}` : null}
 						<br />
-						<small>/1000</small>
+						<span><small>/1000</small></span>
 					</Box>
 					<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
 				</Box>
