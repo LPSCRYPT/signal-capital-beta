@@ -12,6 +12,7 @@ export const useSubgraph = () => {
     friends {
       id
       name
+	  points
         holdings {
         id
         friend {

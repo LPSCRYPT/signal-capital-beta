@@ -2,13 +2,14 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import SignalList from "./components/SignalList";
-import KeeperList from "./components/KeeperList";
+import KeeperList from "./components/Keepers";
 import YourList from "./components/YourList";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Headbar from "./components/Headbar";
 import Body from "./components/Body";
 import TestingFunctions from "./components/TestingFunctions";
 import { Box, Button } from "@chakra-ui/react";
+import Keepers from "./components/Keepers";
 
 function App() {
 	return (
@@ -35,7 +36,7 @@ function App() {
 						</TabPanel>
 						<TabPanel>
 							<Box flex="row"></Box>
-							<KeeperList />
+							<Keepers />
 						</TabPanel>
 						<TabPanel>
 							<Box flex="row"></Box>
