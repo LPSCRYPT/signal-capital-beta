@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Table,
+	Thead,
+	Tr,
+	Th,
+	TableContainer
+} from "@chakra-ui/react";
 import SignalItem from "../components/SignalItem";
 import { useSubgraph } from "../views/subgraph";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
-import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 let _ = require("lodash");
+
+enum ButtonPress {
+	ascTVS = 1,
+	descTVS = 2,
+	ascBal = 3,
+	descBal = 4
+}
 
 const SignalList = () => {
 	const { friends, signals } = useSubgraph();
@@ -18,21 +33,25 @@ const SignalList = () => {
 	console.log("signals");
 	console.log(signals);
 
+	const [currentButton, setCurrentButton] = useState(ButtonPress.descBal);
+
 	const [signalsList, setSignalsList] = useState([]);
 
-	enum sortSwitch {
-		tvs = "tvs",
-		balance = "balance"
-	}
+	// enum sortSwitch {
+	// 	tvs = "tvs",
+	// 	balance = "balance"
+	// }
 
-	enum directionSwitch {
-		asc = 1,
-		desc = -1
-	}
+	// enum directionSwitch {
+	// 	asc = 1,
+	// 	desc = -1
+	// // }
 
-	const [direction, setDirection] = useState(directionSwitch.desc);
+	// useEffect(() => {}, [currentButton]);
 
-	const [sortField, setSortField] = useState(sortSwitch.tvs);
+	// const [direction, setDirection] = useState(directionSwitch.desc);
+
+	// const [sortField, setSortField] = useState(sortSwitch.tvs);
 
 	// Timer
 
@@ -57,18 +76,26 @@ const SignalList = () => {
 		let localTime = Math.floor(new Date().getTime() / 1000);
 		if (signals && signals.length > 0) {
 			let tempArr = [];
-			if (sortField == sortSwitch.tvs) {
+			if (
+				ButtonPress.ascBal == currentButton ||
+				ButtonPress.descBal == currentButton
+			) {
 				// sort by TVS
+				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
-					return direction * Number(e.balance);
+					return tempSwitch * Number(e.balance);
 				});
 				console.log("tempArr", tempArr);
 			}
-			if (sortField == sortSwitch.balance) {
+			if (
+				ButtonPress.ascTVS == currentButton ||
+				ButtonPress.descTVS == currentButton
+			) {
 				// sort by balance
+				let tempSwitch = ButtonPress.ascTVS == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
 					return (
-						direction *
+						tempSwitch *
 						calcTVS(e.lastUpdatedTime, localTime, e.balance, e.timeValueSignal)
 					);
 				});
@@ -76,22 +103,73 @@ const SignalList = () => {
 			}
 			setSignalsList(tempArr);
 		}
-	}, [signals, direction, sortField]);
+	}, [signals, currentButton]);
 
-	useEffect(() => {
-		if (signalsList && signalsList.length > 0) {
-		}
-	}, [signalsList]);
+	// useEffect(() => {
+	// 	if (signalsList && signalsList.length > 0) {
+	// 	}
+	// }, [signalsList, currentButton]);
 
 	return (
 		<TableContainer>
 			<Table colorScheme="teal">
 				<Thead>
 					<Tr>
-						<Th>Name
+						<Th>Name</Th>
+						<Th isNumeric>
+							TVS{" "}
+							<Button
+								variant="ghost"
+								color={currentButton == 1 ? "limegreen" : ""}
+								border={
+									currentButton == 1
+										? "limegreen 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+								onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+							>
+								<TiArrowSortedUp />
+							</Button>
+							<Button
+								variant="ghost"
+								onClick={() => setCurrentButton(ButtonPress.descTVS)}
+								color={currentButton == 2 ? "limegreen" : ""}
+								border={
+									currentButton == 2
+										? "limegreen 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+							>
+								<TiArrowSortedDown />
+							</Button>
 						</Th>
-						<Th isNumeric>TVS <Button variant="ghost"><TiArrowSortedUp/></Button><Button variant="ghost"><TiArrowSortedDown /></Button></Th>
-						<Th isNumeric>Allocated <Button variant="ghost"><TiArrowSortedUp /></Button><Button variant="ghost"><TiArrowSortedDown /></Button></Th>
+						<Th isNumeric>
+							Allocated{" "}
+							<Button
+								variant="ghost"
+								onClick={() => setCurrentButton(ButtonPress.ascBal)}
+								color={currentButton == 3 ? "limegreen" : ""}
+								border={
+									currentButton == 3
+										? "limegreen 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+							>
+								<TiArrowSortedUp />
+							</Button>
+							<Button
+								variant="ghost"
+								onClick={() => setCurrentButton(ButtonPress.descBal)}
+								color={currentButton == 4 ? "limegreen" : ""}
+								border={
+									currentButton == 4
+										? "limegreen 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+							>
+								<TiArrowSortedDown />
+							</Button>
+						</Th>
 						<Th>Signal</Th>
 					</Tr>
 				</Thead>
@@ -105,8 +183,8 @@ const SignalList = () => {
 										currentTime,
 										Number(signal["balance"]),
 										Number(signal["timeValueSignal"])
-									).toString()}
-									balance={signal["balance"]}
+									).toLocaleString("en-US")}
+									balance={Number(signal["balance"]).toLocaleString("en-US")}
 								/>
 							);
 					  })
