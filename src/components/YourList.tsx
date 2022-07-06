@@ -127,9 +127,21 @@ const SignalList = () => {
 					<Tr>
 						<Th>Name</Th>
 						<Th isNumeric>
-							TVS{" "}
+							<Box
+								display={"flex"}
+								alignItems={"center"}
+								justifyContent={"end"}
+							>
+							<Box>TVS{" "}</Box>
+							<Box
+									display={"flex"}
+									flexDirection={"column"}
+									alignItems={"center"}
+									pl={2}
+								>
 							<Button
 								variant="ghost"
+								size="xs"
 								color={currentButton == 1 ? "limegreen" : ""}
 								border={
 									currentButton == 1
@@ -142,6 +154,7 @@ const SignalList = () => {
 							</Button>
 							<Button
 								variant="ghost"
+								size="xs"
 								onClick={() => setCurrentButton(ButtonPress.descTVS)}
 								color={currentButton == 2 ? "limegreen" : ""}
 								border={
@@ -151,12 +164,27 @@ const SignalList = () => {
 								}
 							>
 								<TiArrowSortedDown />
-							</Button>
+								</Button>
+								</Box>
+							</Box>
 						</Th>
 						<Th isNumeric>
-							Allocated{" "}
+						<Box
+								display={"flex"}
+								alignItems={"center"}
+								justifyContent={"end"}
+							>
+								
+								<Box>Allocated{" "}</Box>
+								<Box
+									display={"flex"}
+									flexDirection={"column"}
+									alignItems={"center"}
+									pl={2}
+								>
 							<Button
 								variant="ghost"
+								size="xs"
 								onClick={() => setCurrentButton(ButtonPress.ascBal)}
 								color={currentButton == 3 ? "limegreen" : ""}
 								border={
@@ -169,6 +197,7 @@ const SignalList = () => {
 							</Button>
 							<Button
 								variant="ghost"
+								size="xs"
 								onClick={() => setCurrentButton(ButtonPress.descBal)}
 								color={currentButton == 4 ? "limegreen" : ""}
 								border={
@@ -179,6 +208,8 @@ const SignalList = () => {
 							>
 								<TiArrowSortedDown />
 							</Button>
+							</Box>
+							</Box>
 						</Th>
 						<Th>Signal</Th>
 					</Tr>

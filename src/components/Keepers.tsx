@@ -22,7 +22,7 @@ const Keepers = () => {
 				<Box pl={4}>Friend Name</Box>
 				<Box pr={10}>Allocated</Box>
 			</Box>
-			<Accordion allowMultiple defaultIndex={[0]}>
+			<Accordion allowToggle>
 				{friends && friends.length > 0
 					? _.sortBy(friends, (e) => {
 							return Math.random();
