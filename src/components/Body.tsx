@@ -18,7 +18,7 @@ const Body = () => {
 			flexDirection={"row"}
 			h={"100%"}
 			w={"100%"}
-			bg={"blackAlpha.500"}
+			bg={"blackAlpha.100"}
 			backgroundImage={signalBg}
 			backgroundSize={'cover'}
 		>
