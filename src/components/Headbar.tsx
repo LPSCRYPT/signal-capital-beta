@@ -33,7 +33,6 @@ const Headbar = () => {
 			p={25}
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
-			bg={"blackAlpha.700"}
 		>
 			<Box w="150px" display={"flex"} alignItems={"center"}>
 				<b
@@ -48,24 +47,29 @@ const Headbar = () => {
 						<span style={{ fontSize: "32px" }}>📡 </span>
 						<span style={{ fontSize: "18px" }}>SigCap</span>
 					</span>
-
-					<span style={{ display: "flex", flexDirection: "row" }}>
-						<Stack direction="row">
-							<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
-						</Stack>
-						<span style={{ fontSize: "18px" }}>
-							{colorMode === "light" ? " 🌙" : "🌞"}
-						</span>
-					</span>
 				</b>
 			</Box>
-			{address ? (
+			
 				<Box
 					display={"flex"}
-					w="100%"
 					alignItems={"center"}
 					justifyContent={"flex-end"}
 				>
+					<span style={{ display: "flex", flexDirection: "row", paddingRight: 10 }} >
+						<Stack direction="row">
+							<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
+						</Stack>
+						<span style={{ fontSize: "18px", marginLeft: "5px" }}>
+							{colorMode === "light" ? " 🌙" : "🌞"}
+						</span>
+					</span>
+					{address ? (
+						<Box
+						display={"flex"}
+						w="100%"
+						alignItems={"center"}
+						justifyContent={"flex-end"}
+					>
 					<Box className="Points" marginRight={2}>
 						{friend.length > 0 ? `${friend[0]["points"]}` : null}
 						<br />
@@ -74,10 +78,11 @@ const Headbar = () => {
 						</span>
 					</Box>
 					<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
+					</Box>
+					) : (
+						<button onClick={() => connect()}>Connect Wallet</button>
+					)}
 				</Box>
-			) : (
-				<button onClick={() => connect()}>Connect Wallet</button>
-			)}
 		</Box>
 	);
 };
