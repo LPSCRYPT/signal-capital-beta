@@ -80,26 +80,34 @@ const SignalList = () => {
 				ButtonPress.ascBal == currentButton ||
 				ButtonPress.descBal == currentButton
 			) {
-				// sort by TVS
+				// sort by balance
 				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
 					return tempSwitch * Number(e.balance);
 				});
 				console.log("tempArr", tempArr);
+				console.log("bal fire");
 			}
 			if (
 				ButtonPress.ascTVS == currentButton ||
 				ButtonPress.descTVS == currentButton
 			) {
-				// sort by balance
+				// sort by TVS
 				let tempSwitch = ButtonPress.ascTVS == currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
-					return (
+					console.log(e.timeValueSignal, "LOG 1");
+					let tempThing =
 						tempSwitch *
-						calcTVS(e.lastUpdatedTime, localTime, e.balance, e.timeValueSignal)
-					);
+						calcTVS(
+							Number(e.lastUpdatedTime),
+							Number(localTime),
+							Number(e.balance),
+							Number(e.timeValueSignal)
+						);
+					console.log(e.timeValueSignal, "LOG 2");
+					return tempThing;
 				});
-				console.log("tempArr", tempArr);
+				console.log("TVStempArr", tempArr);
 			}
 			setSignalsList(tempArr);
 		}

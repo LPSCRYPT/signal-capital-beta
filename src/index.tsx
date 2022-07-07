@@ -3,11 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, ThemeProvider, ColorModeScript } from "@chakra-ui/react";
+import {
+	ChakraProvider,
+	ThemeProvider,
+	ColorModeScript
+} from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 import { getDefaultProvider } from "ethers";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import theme from './theme';
+import theme from "./theme";
 
 const subgraphUri =
 	"https://api.thegraph.com/subgraphs/name/lpscrypt/sigcaprinkeby2";
