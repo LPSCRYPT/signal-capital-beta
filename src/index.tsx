@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, ThemeProvider, ColorModeScript } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 import { getDefaultProvider } from "ethers";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
@@ -36,10 +36,8 @@ root.render(
 	<React.StrictMode>
 		<ApolloProvider client={apolloClient}>
 			<WagmiConfig client={wagmiClient}>
-				<ChakraProvider>
-					<ThemeProvider theme={theme}>
-						<App />
-					</ThemeProvider>
+				<ChakraProvider theme={theme}>
+					<App />
 				</ChakraProvider>
 			</WagmiConfig>
 		</ApolloProvider>
