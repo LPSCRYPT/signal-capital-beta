@@ -10,7 +10,10 @@ import {
 	TabPanels,
 	Tab,
 	TabPanel,
-	Image
+	Image,
+	Stack,
+	Switch,
+	flexbox
 } from "@chakra-ui/react";
 import Headbar from "./components/Headbar";
 import Body from "./components/Body";
@@ -21,6 +24,7 @@ import vitalyk1 from "./assets/vitalyk1.png";
 
 function App() {
 	const [shake, setShake] = useState(false);
+
 	useEffect(() => {
 		if (shake) {
 			var e = document.getElementById("dolphintext");
