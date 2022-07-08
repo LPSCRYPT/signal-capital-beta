@@ -126,12 +126,13 @@ const SignalList = () => {
 	// }, [friendList, currentButton]);
 
 	return (
-		<TableContainer>
-			<Table colorScheme="teal">
-				<Thead>
-					<Tr>
-						<Th>Name</Th>
-						<Th isNumeric>
+		<Box w={'100%'}>
+			<Box>
+				<Box>
+					<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
+					<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
+						<Box>Name</Box>
+						<Box>
 							<Box
 								display={"flex"}
 								alignItems={"center"}
@@ -172,8 +173,9 @@ const SignalList = () => {
 									</Button>
 								</Box>
 							</Box>
-						</Th>
-						<Th isNumeric>
+						</Box>
+						</Box>
+						<Box>
 							<Box
 								display={"flex"}
 								alignItems={"center"}
@@ -214,10 +216,10 @@ const SignalList = () => {
 									</Button>
 								</Box>
 							</Box>
-						</Th>
-						<Th>Signal</Th>
-					</Tr>
-				</Thead>
+						</Box>
+						<Box>Signal</Box>
+					</Box>
+				</Box>
 				{
 					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 					// @ts-ignore
@@ -249,8 +251,8 @@ const SignalList = () => {
 						  })
 						: null
 				}
-			</Table>
-		</TableContainer>
+			</Box>
+		</Box>
 	);
 };
 

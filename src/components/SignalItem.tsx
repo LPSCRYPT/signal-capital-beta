@@ -34,16 +34,28 @@ const SignalItem: React.FC<SignalInterface> = ({
 	return (
 		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
 			<Accordion allowToggle w={"90%"}>
-				<AccordionItem>
-					<AccordionButton>
+				<AccordionItem display={"flex"}>
+					<AccordionButton
+						_expanded={{
+							border: "1px solid #5d5fef",
+							boxShadow: "0px 0px 35px rgba(93, 95, 239, 0.75)"
+						}}
+					>
 						<Box
 							display={"flex"}
 							w={"100%"}
 							justifyContent={"space-between"}
 							py={5}
 						>
-							<Box>{name}</Box>
-							<Box>{tvs}</Box>
+							<Box
+								display={"flex"}
+								justifyContent={"space-between"}
+								alignItems={"center"}
+								w={"80%"}
+							>
+								<Box>{name}</Box>
+								<Box>{tvs}</Box>
+							</Box>
 							<Box>{balance}</Box>
 						</Box>
 					</AccordionButton>
@@ -66,7 +78,12 @@ const SignalItem: React.FC<SignalInterface> = ({
 						: null}
 				</AccordionItem>
 			</Accordion>
-			<Box w={"100px"}>
+			<Box
+				w={"100px"}
+				display={"flex"}
+				flexDirection={"column"}
+				justifyContent={"center"}
+			>
 				<Signaller meme={name} />
 			</Box>
 		</Box>

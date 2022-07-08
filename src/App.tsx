@@ -73,7 +73,7 @@ function App() {
 							<Keepers />
 						</TabPanel>
 						<TabPanel>
-							<Box flex="row"></Box>
+							<Box flex="row" w={'100%'}></Box>
 							<YourList />
 						</TabPanel>
 					</TabPanels>
