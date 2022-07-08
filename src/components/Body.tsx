@@ -64,7 +64,7 @@ const Body = () => {
 					minHeight={"200px"}
 					p={50}
 					maxWidth={"600px"}
-					alignItems={"start"}
+					alignItems={"end"}
 				>
 					<NewSignal />
 				</Box>

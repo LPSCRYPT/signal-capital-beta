@@ -1,5 +1,10 @@
 import React, { FC } from "react";
-import { Tbody, Tr, Td } from "@chakra-ui/react";
+import { Tbody, Tr, Td, Accordion,
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+	AccordionIcon,
+	Box } from "@chakra-ui/react";
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
@@ -16,16 +21,29 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 	const { address } = useAccount();
 
 	return (
-		<Tbody>
-			<Tr>
-				<Td>{name}</Td>
-				<Td isNumeric>{tvs}</Td>
-				<Td isNumeric>{balance}</Td>
-				<Td>
+		<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
+				<Accordion allowToggle w={'90%'}>
+					<AccordionItem>
+						<AccordionButton>
+						<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
+							<Box>{name}</Box>
+							<Box>{tvs}</Box>
+							<Box>{balance}</Box>
+						</Box>
+					</AccordionButton>
+						<AccordionPanel>
+							<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
+								<Box>KeeperName</Box>
+								<Box alignSelf={'flex-end'}>42</Box>
+							</Box>
+						</AccordionPanel>
+					</AccordionItem>
+				</Accordion>
+				<Box w={'100px'}>
 					<Signaller meme={name} />
-				</Td>
-			</Tr>
-		</Tbody>
+				</Box>
+			
+		</Box>
 	);
 };
 
