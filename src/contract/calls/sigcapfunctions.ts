@@ -18,7 +18,7 @@ export const useAddAccount = (name: string) => {
 		addressOrName: sigcapAddress,
 		contractInterface: sigcapABI,
 		functionName: callSignature.addAccount,
-		overrides: { gasLimit: 1e7 },
+		// overrides: { gasLimit: 1e7 },
 		args: args,
 		onError(error) {
 			console.log("Error", error);
@@ -46,7 +46,7 @@ export const useAddNewSignal = (name: string, points: number) => {
 		addressOrName: sigcapAddress,
 		contractInterface: sigcapABI,
 		functionName: callSignature.addNewSignal,
-		overrides: { gasLimit: 1e7 },
+		// overrides: { gasLimit: 1e7 },
 		args: args,
 		onError(error) {
 			console.log("Error", error);
@@ -74,7 +74,7 @@ export const useSignalExisting = (name: string, points: number) => {
 		addressOrName: sigcapAddress,
 		contractInterface: sigcapABI,
 		functionName: callSignature.signalExisting,
-		overrides: { gasLimit: 1e7 },
+		// overrides: { gasLimit: 1e7 },
 		args: args,
 		onError(error) {
 			console.log("Error", error);
@@ -102,7 +102,7 @@ export const useWithdrawPoints = (name: string, points: number) => {
 		addressOrName: sigcapAddress,
 		contractInterface: sigcapABI,
 		functionName: callSignature.withdrawPoints,
-		overrides: { gasLimit: 1e7 },
+		// overrides: { gasLimit: 1e7 },
 		args: args,
 		onError(error) {
 			console.log("Error", error);

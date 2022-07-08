@@ -24,10 +24,7 @@ const Keepers = () => {
 			</Box>
 			<Accordion allowToggle>
 				{friends && friends.length > 0
-					? _.sortBy(friends, (e) => {
-							return Math.random();
-					  })
-					  .map((friend) => {
+					? friends.map((friend) => {
 							return (
 								<AccordionItem py={5}>
 									<h2>

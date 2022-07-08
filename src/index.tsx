@@ -11,7 +11,7 @@ import theme from "./theme";
 import { FlashlessScript } from "chakra-ui-flashless";
 
 const subgraphUri =
-	"https://api.thegraph.com/subgraphs/name/lpscrypt/sigcapxdai2";
+	"https://api.thegraph.com/subgraphs/name/lpscrypt/sigcapxdai3";
 
 const defaultOptions: any = {
 	query: {
