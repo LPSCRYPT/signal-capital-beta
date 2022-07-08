@@ -129,6 +129,7 @@ const SignalList = () => {
 		>
 			<Box
 				display={"flex"}
+				flexDirection={"column"}
 				justifyContent={"space-between"}
 				alignItems={"center"}
 				w={"72%"}

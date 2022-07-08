@@ -14,6 +14,8 @@ import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
 import "../App.css";
+import { calcTVS } from "../lib/calcTVS";
+import _ from "lodash";
 
 interface SignalInterface {
 	name: string;
@@ -34,7 +36,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 	return (
 		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
 			<Accordion allowToggle w={"90%"}>
-				<AccordionItem display={"flex"}>
+				<AccordionItem display={"flex"} flexDirection={"column"}>
 					<AccordionButton
 						_expanded={{
 							border: "1px solid #5d5fef",
@@ -60,16 +62,24 @@ const SignalItem: React.FC<SignalInterface> = ({
 						</Box>
 					</AccordionButton>
 					{holders && holders.length > 0
-						? holders.map((holder) => {
+						? _.sortBy(holders, (e) => {
+								return -1 * Number(e.amount);
+						  }).map((holder) => {
 								return (
 									<AccordionPanel>
 										<Box
 											display={"flex"}
+											// flexDirection={"row"}
 											w={"100%"}
 											justifyContent={"space-between"}
 											py={5}
 										>
 											<Box>{holder.friend.name}</Box>
+											{/* <Box>{{calcTVS(
+										Number(holder["lastUpdatedTime"]),
+										currentTime,
+										Number(holder["amount"]),
+										Number(holder["timeValueSignal"])}</Box> */}
 											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
 										</Box>
 									</AccordionPanel>
