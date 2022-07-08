@@ -119,7 +119,7 @@ const SignalList = () => {
 	// }, [signalsList, currentButton]);
 
 	return (
-		<Box display={'flex'} w={'100%'} flexWrap={'wrap'} justifyContent={'space-between'}>
+		<Box display={'flex'} w={'calc(100% - 100px)'} flexWrap={'wrap'} justifyContent={'space-between'} alignItems="center">
 			<Box>Name</Box>
 				<Box
 					display={"flex"}
@@ -165,6 +165,8 @@ const SignalList = () => {
 					display={"flex"}
 					alignItems={"center"}
 					justifyContent={"end"}
+					ml={'auto'}
+					pr={'45px'}
 				>
 							<Box>Allocated </Box>
 							<Box display={"flex"} flexDirection={"column"} pl={2}>
