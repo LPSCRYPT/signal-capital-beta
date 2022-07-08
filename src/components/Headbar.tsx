@@ -3,6 +3,7 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import {
 	Box,
+	Button,
 	Input,
 	Avatar,
 	AvatarBadge,
@@ -80,7 +81,7 @@ const Headbar = () => {
 					<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
 					</Box>
 					) : (
-						<button onClick={() => connect()}>Connect Wallet</button>
+						<Button onClick={() => connect()}>Connect Wallet</Button>
 					)}
 				</Box>
 		</Box>
