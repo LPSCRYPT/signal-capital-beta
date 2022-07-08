@@ -24,7 +24,8 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 		<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
 				<Accordion allowToggle w={'90%'}>
 					<AccordionItem>
-						<AccordionButton>
+						<AccordionButton _expanded={{ border: '1px solid #5d5fef',
+	boxShadow: '0px 0px 35px rgba(93, 95, 239, 0.75)'}}>
 						<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
 							<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'80%'}>
 								<Box>{name}</Box>
