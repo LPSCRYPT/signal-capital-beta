@@ -243,6 +243,7 @@ const SignalList = () => {
 											Number(holding["timeValueSignal"])
 										).toLocaleString("en-US")}
 										balance={Number(holding["amount"]).toLocaleString("en-US")}
+										holders={[]}
 									/>
 								);
 						  })

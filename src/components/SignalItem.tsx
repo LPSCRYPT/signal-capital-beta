@@ -1,10 +1,15 @@
 import React, { FC } from "react";
-import { Tbody, Tr, Td, Accordion,
+import {
+	Tbody,
+	Tr,
+	Td,
+	Accordion,
 	AccordionItem,
 	AccordionButton,
 	AccordionPanel,
 	AccordionIcon,
-	Box } from "@chakra-ui/react";
+	Box
+} from "@chakra-ui/react";
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
@@ -14,35 +19,56 @@ interface SignalInterface {
 	name: string;
 	tvs: string;
 	balance: string;
+	holders: any[];
 }
 
-const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
+const SignalItem: React.FC<SignalInterface> = ({
+	name,
+	tvs,
+	balance,
+	holders
+}) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 
 	return (
-		<Box display={'flex'} w={'100%'} justifyContent={'space-between'}>
-				<Accordion allowToggle w={'90%'}>
-					<AccordionItem>
-						<AccordionButton>
-						<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
+		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
+			<Accordion allowToggle w={"90%"}>
+				<AccordionItem>
+					<AccordionButton>
+						<Box
+							display={"flex"}
+							w={"100%"}
+							justifyContent={"space-between"}
+							py={5}
+						>
 							<Box>{name}</Box>
 							<Box>{tvs}</Box>
 							<Box>{balance}</Box>
 						</Box>
 					</AccordionButton>
-						<AccordionPanel>
-							<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
-								<Box>KeeperName</Box>
-								<Box alignSelf={'flex-end'}>42</Box>
-							</Box>
-						</AccordionPanel>
-					</AccordionItem>
-				</Accordion>
-				<Box w={'100px'}>
-					<Signaller meme={name} />
-				</Box>
-			
+					{holders && holders.length > 0
+						? holders.map((holder) => {
+								return (
+									<AccordionPanel>
+										<Box
+											display={"flex"}
+											w={"100%"}
+											justifyContent={"space-between"}
+											py={5}
+										>
+											<Box>{holder.friend.name}</Box>
+											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
+										</Box>
+									</AccordionPanel>
+								);
+						  })
+						: null}
+				</AccordionItem>
+			</Accordion>
+			<Box w={"100px"}>
+				<Signaller meme={name} />
+			</Box>
 		</Box>
 	);
 };

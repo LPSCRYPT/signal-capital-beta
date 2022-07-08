@@ -38,6 +38,7 @@ export const useSubgraph = () => {
           id
           friend {
             id
+			name
           }
           amount
           timeValueSignal
