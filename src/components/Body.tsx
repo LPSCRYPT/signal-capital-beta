@@ -26,7 +26,7 @@ const Body = () => {
 				display={"flex"}
 				flexDirection={"column"}
 				justifyContent={"center"}
-				minHeight={"200px"}
+				minHeight={"400px"}
 				p={50}
 				maxWidth={"600px"}
 				alignItems={"start"}
