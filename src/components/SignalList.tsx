@@ -119,7 +119,8 @@ const SignalList = () => {
 	// }, [signalsList, currentButton]);
 
 	return (
-		<Box display={'flex'} w={'calc(100% - 100px)'} flexWrap={'wrap'} justifyContent={'space-between'} alignItems="center">
+		<Box display={'flex'} w={'calc(100% - 100px)'} flexWrap={'wrap'} justifyContent={'space-between'} alignItems="center" my={10}>
+			<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
 			<Box>Name</Box>
 				<Box
 					display={"flex"}
@@ -160,6 +161,7 @@ const SignalList = () => {
 							<TiArrowSortedDown />
 						</Button>
 					</Box>
+				</Box>
 				</Box>
 				<Box
 					display={"flex"}

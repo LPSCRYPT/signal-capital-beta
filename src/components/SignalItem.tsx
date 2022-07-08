@@ -26,8 +26,10 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 					<AccordionItem>
 						<AccordionButton>
 						<Box display={'flex'} w={'100%'} justifyContent={'space-between'} py={5}>
-							<Box>{name}</Box>
-							<Box>{tvs}</Box>
+							<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'80%'}>
+								<Box>{name}</Box>
+								<Box>{tvs}</Box>
+							</Box>
 							<Box>{balance}</Box>
 						</Box>
 					</AccordionButton>
@@ -39,7 +41,7 @@ const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
 						</AccordionPanel>
 					</AccordionItem>
 				</Accordion>
-				<Box w={'100px'}>
+				<Box w={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'}>
 					<Signaller meme={name} />
 				</Box>
 			
