@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import {
 	Box,
 	Button,
@@ -23,7 +23,11 @@ enum ButtonPress {
 	descBal = 4
 }
 
-const SignalList = () => {
+interface SignalListProps {
+	currentTime: number;
+}
+
+const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
@@ -55,21 +59,21 @@ const SignalList = () => {
 
 	// Timer
 
-	const [counter, setCounter] = useState(0);
-	const [currentTime, setCurrentTime] = useState(
-		Math.floor(new Date().getTime() / 1000)
-	);
-	// Call setTimout after component mounts
-	useEffect(() => {
-		const timer = setTimeout(() => setCounter(counter + 1), 10000);
-		return () => clearTimeout(timer);
-	}, [counter]);
+	// const [counter, setCounter] = useState(0);
+	// const [currentTime, setCurrentTime] = useState(
+	// 	Math.floor(new Date().getTime() / 1000)
+	// );
+	// // Call setTimout after component mounts
+	// useEffect(() => {
+	// 	const timer = setTimeout(() => setCounter(counter + 1), 10000);
+	// 	return () => clearTimeout(timer);
+	// }, [counter]);
 
-	useEffect(() => {
-		console.log("counter ", counter);
-		setCurrentTime(Math.floor(new Date().getTime() / 1000));
-		console.log(currentTime);
-	}, [counter]);
+	// useEffect(() => {
+	// 	console.log("counter ", counter);
+	// 	setCurrentTime(Math.floor(new Date().getTime() / 1000));
+	// 	console.log(currentTime);
+	// }, [counter]);
 
 	// Signal Sort
 	useEffect(() => {
@@ -120,7 +124,7 @@ const SignalList = () => {
 
 	return (
 		<Box w={"100%"}>
-			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'} my={3}>
+			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'} py={3}>
 				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
 					<Box>Name</Box>
 					<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
@@ -164,8 +168,6 @@ const SignalList = () => {
 					display={"flex"}
 					alignItems={"center"}
 					justifyContent={"end"}
-					ml={"auto"}
-					pr={"45px"}
 				>
 					<Box>Allocated </Box>
 					<Box display={"flex"} flexDirection={"column"} pl={2}>
@@ -196,8 +198,9 @@ const SignalList = () => {
 							<TiArrowSortedDown />
 						</Button>
 					</Box>
-					<Box>Signal</Box>
-				</Box>
+					</Box>
+					<Box ml={45}>Signal</Box>
+				
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal) => {
@@ -212,6 +215,7 @@ const SignalList = () => {
 									).toLocaleString("en-US")}
 									balance={Number(signal["balance"]).toLocaleString("en-US")}
 									holders={signal["holders"]}
+									currentTime={currentTime}
 								/>
 							);
 					  })

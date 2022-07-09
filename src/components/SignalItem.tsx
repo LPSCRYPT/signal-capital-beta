@@ -22,13 +22,15 @@ interface SignalInterface {
 	tvs: string;
 	balance: string;
 	holders: any[];
+	currentTime: number;
 }
 
 const SignalItem: React.FC<SignalInterface> = ({
 	name,
 	tvs,
 	balance,
-	holders
+	holders,
+	currentTime
 }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
@@ -75,11 +77,14 @@ const SignalItem: React.FC<SignalInterface> = ({
 											py={5}
 										>
 											<Box>{holder.friend.name}</Box>
-											{/* <Box>{{calcTVS(
-										Number(holder["lastUpdatedTime"]),
-										currentTime,
-										Number(holder["amount"]),
-										Number(holder["timeValueSignal"])}</Box> */}
+											<Box>
+												{calcTVS(
+													Number(holder["lastUpdatedTime"]),
+													Number(currentTime),
+													Number(holder["amount"]),
+													Number(holder["timeValueSignal"])
+												).toLocaleString("en-US")}
+											</Box>
 											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
 										</Box>
 									</AccordionPanel>
