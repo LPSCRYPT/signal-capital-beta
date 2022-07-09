@@ -119,41 +119,29 @@ const SignalList = () => {
 	// }, [signalsList, currentButton]);
 
 	return (
-		<Box
-			display={"flex"}
-			w={"calc(100% - 100px)"}
-			flexWrap={"wrap"}
-			justifyContent={"space-between"}
-			alignItems="center"
-			my={10}
-		>
-			<Box
-				display={"flex"}
-				flexDirection={"column"}
-				justifyContent={"space-between"}
-				alignItems={"center"}
-				w={"72%"}
-			>
-				<Box>Name</Box>
-				<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
-					<Box>TVS</Box>
-					<Box
-						display={"flex"}
-						flexDirection={"column"}
-						alignItems={"center"}
-						pl={2}
-					>
-						<Button
-							variant="ghost"
-							size="xs"
-							color={currentButton == 1 ? "limegreen" : ""}
-							border={
-								currentButton == 1
-									? "limegreen 1px solid"
-									: "rgba(255,255,255,0) 1px solid"
-							}
-							onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+		<Box w={"100%"}>
+			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'} my={3}>
+				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
+					<Box>Name</Box>
+					<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
+						<Box>TVS</Box>
+						<Box
+							display={"flex"}
+							flexDirection={"column"}
+							alignItems={"center"}
+							pl={2}
 						>
+							<Button
+								variant="ghost"
+								size="xs"
+								color={currentButton == 1 ? "limegreen" : ""}
+								border={
+									currentButton == 1
+										? "limegreen 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+								onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+							>
 							<TiArrowSortedUp />
 						</Button>
 						<Button
@@ -169,6 +157,7 @@ const SignalList = () => {
 						>
 							<TiArrowSortedDown />
 						</Button>
+						</Box>
 					</Box>
 				</Box>
 				<Box
@@ -207,8 +196,8 @@ const SignalList = () => {
 							<TiArrowSortedDown />
 						</Button>
 					</Box>
+					<Box>Signal</Box>
 				</Box>
-				<Box w={"100px"}>Signal</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal) => {

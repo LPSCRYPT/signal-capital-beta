@@ -65,15 +65,12 @@ function App() {
 					</TabList>
 					<TabPanels>
 						<TabPanel>
-							<Box flex="row"></Box>
 							<SignalList />
 						</TabPanel>
 						<TabPanel>
-							<Box flex="row"></Box>
 							<Keepers />
 						</TabPanel>
 						<TabPanel>
-							<Box flex="row" w={'100%'}></Box>
 							<YourList />
 						</TabPanel>
 					</TabPanels>
