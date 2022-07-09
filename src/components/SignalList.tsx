@@ -199,7 +199,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						</Button>
 					</Box>
 					</Box>
-					<Box ml={45}>Signal</Box>
+					<Box>Signal</Box>
 				
 
 				{signalsList && signalsList.length > 0

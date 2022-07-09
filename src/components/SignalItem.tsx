@@ -71,11 +71,16 @@ const SignalItem: React.FC<SignalInterface> = ({
 									<AccordionPanel>
 										<Box
 											display={"flex"}
-											// flexDirection={"row"}
 											w={"100%"}
 											justifyContent={"space-between"}
 											py={5}
 										>
+											<Box
+												display={"flex"}
+												justifyContent={"space-between"}
+												alignItems={"center"}
+												w={"80%"}
+											>
 											<Box>{holder.friend.name}</Box>
 											<Box>
 												{calcTVS(
@@ -84,6 +89,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 													Number(holder["amount"]),
 													Number(holder["timeValueSignal"])
 												).toLocaleString("en-US")}
+											</Box>
 											</Box>
 											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
 										</Box>
