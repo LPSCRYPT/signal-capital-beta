@@ -143,6 +143,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							justifyContent={"space-between"}
 							alignItems={"center"}
 							w={"72%"}
+							pb={5}
 						>
 							<Box>Name</Box>
 							<Box>
@@ -188,7 +189,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 								</Box>
 							</Box>
 						</Box>
-						<Box>
+						<Box pb={5}
+							>
 							<Box
 								display={"flex"}
 								alignItems={"center"}
@@ -230,7 +232,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 								</Box>
 							</Box>
 						</Box>
-						<Box>Signal</Box>
+						<Box pb={5}>Signal</Box>
 					</Box>
 				</Box>
 				{

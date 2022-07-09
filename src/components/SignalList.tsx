@@ -124,8 +124,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 
 	return (
 		<Box w={"100%"}>
-			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'} py={3}>
-				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
+			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'}>
+				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'} pb={5}>
 					<Box>Name</Box>
 					<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
 						<Box>TVS</Box>
@@ -168,6 +168,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 					display={"flex"}
 					alignItems={"center"}
 					justifyContent={"end"}
+					pb={5}
 				>
 					<Box>Allocated </Box>
 					<Box display={"flex"} flexDirection={"column"} pl={2}>
@@ -198,8 +199,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							<TiArrowSortedDown />
 						</Button>
 					</Box>
-					</Box>
-					<Box>Signal</Box>
+					</Box >
+					<Box pb={5}>Signal</Box>
 				
 
 				{signalsList && signalsList.length > 0
