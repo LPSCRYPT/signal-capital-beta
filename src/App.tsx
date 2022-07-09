@@ -25,6 +25,22 @@ import vitalyk1 from "./assets/vitalyk1.png";
 function App() {
 	const [shake, setShake] = useState(false);
 
+	const [counter, setCounter] = useState(0);
+	const [currentTime, setCurrentTime] = useState(
+		Math.floor(new Date().getTime() / 1000)
+	);
+	// Call setTimout after component mounts
+	useEffect(() => {
+		const timer = setTimeout(() => setCounter(counter + 1), 10000);
+		return () => clearTimeout(timer);
+	}, [counter]);
+
+	useEffect(() => {
+		console.log("counter ", counter);
+		setCurrentTime(Math.floor(new Date().getTime() / 1000));
+		console.log(currentTime);
+	}, [counter]);
+
 	useEffect(() => {
 		if (shake) {
 			var e = document.getElementById("dolphintext");
@@ -66,15 +82,15 @@ function App() {
 					<TabPanels>
 						<TabPanel>
 							<Box flex="row"></Box>
-							<SignalList />
+							<SignalList currentTime={currentTime} />
 						</TabPanel>
 						<TabPanel>
 							<Box flex="row"></Box>
 							<Keepers />
 						</TabPanel>
 						<TabPanel>
-							<Box flex="row" w={'100%'}></Box>
-							<YourList />
+							<Box flex="row" w={"100%"}></Box>
+							<YourList currentTime={currentTime} />
 						</TabPanel>
 					</TabPanels>
 				</Tabs>

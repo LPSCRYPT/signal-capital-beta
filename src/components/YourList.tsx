@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import {
 	Box,
 	Button,
@@ -24,7 +24,11 @@ enum ButtonPress {
 	descBal = 4
 }
 
-const SignalList = () => {
+interface SignalListProps {
+	currentTime: number;
+}
+
+const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 	const friend = useFriendInfo(address);
@@ -57,21 +61,21 @@ const SignalList = () => {
 
 	// Timer
 
-	const [counter, setCounter] = useState(0);
-	const [currentTime, setCurrentTime] = useState(
-		Math.floor(new Date().getTime() / 1000)
-	);
-	// Call setTimout after component mounts
-	useEffect(() => {
-		const timer = setTimeout(() => setCounter(counter + 1), 10000);
-		return () => clearTimeout(timer);
-	}, [counter]);
+	// const [counter, setCounter] = useState(0);
+	// const [currentTime, setCurrentTime] = useState(
+	// 	Math.floor(new Date().getTime() / 1000)
+	// );
+	// // Call setTimout after component mounts
+	// useEffect(() => {
+	// 	const timer = setTimeout(() => setCounter(counter + 1), 10000);
+	// 	return () => clearTimeout(timer);
+	// }, [counter]);
 
-	useEffect(() => {
-		console.log("counter ", counter);
-		setCurrentTime(Math.floor(new Date().getTime() / 1000));
-		console.log(currentTime);
-	}, [counter]);
+	// useEffect(() => {
+	// 	console.log("counter ", counter);
+	// 	setCurrentTime(Math.floor(new Date().getTime() / 1000));
+	// 	console.log(currentTime);
+	// }, [counter]);
 
 	// Signal Sort
 	useEffect(() => {
@@ -126,54 +130,63 @@ const SignalList = () => {
 	// }, [friendList, currentButton]);
 
 	return (
-		<Box w={'100%'}>
+		<Box w={"100%"}>
 			<Box>
 				<Box>
-					<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-					<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'}>
-						<Box>Name</Box>
-						<Box>
-							<Box
-								display={"flex"}
-								alignItems={"center"}
-								justifyContent={"end"}
-							>
-								<Box>TVS </Box>
+					<Box
+						display={"flex"}
+						alignItems={"center"}
+						justifyContent={"space-between"}
+					>
+						<Box
+							display={"flex"}
+							justifyContent={"space-between"}
+							alignItems={"center"}
+							w={"72%"}
+						>
+							<Box>Name</Box>
+							<Box>
 								<Box
 									display={"flex"}
-									flexDirection={"column"}
 									alignItems={"center"}
-									pl={2}
+									justifyContent={"end"}
 								>
-									<Button
-										variant="ghost"
-										size="xs"
-										color={currentButton == 1 ? "limegreen" : ""}
-										border={
-											currentButton == 1
-												? "limegreen 1px solid"
-												: "rgba(255,255,255,0) 1px solid"
-										}
-										onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+									<Box>TVS </Box>
+									<Box
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"center"}
+										pl={2}
 									>
-										<TiArrowSortedUp />
-									</Button>
-									<Button
-										variant="ghost"
-										size="xs"
-										onClick={() => setCurrentButton(ButtonPress.descTVS)}
-										color={currentButton == 2 ? "limegreen" : ""}
-										border={
-											currentButton == 2
-												? "limegreen 1px solid"
-												: "rgba(255,255,255,0) 1px solid"
-										}
-									>
-										<TiArrowSortedDown />
-									</Button>
+										<Button
+											variant="ghost"
+											size="xs"
+											color={currentButton == 1 ? "limegreen" : ""}
+											border={
+												currentButton == 1
+													? "limegreen 1px solid"
+													: "rgba(255,255,255,0) 1px solid"
+											}
+											onClick={() => setCurrentButton(ButtonPress.ascTVS)}
+										>
+											<TiArrowSortedUp />
+										</Button>
+										<Button
+											variant="ghost"
+											size="xs"
+											onClick={() => setCurrentButton(ButtonPress.descTVS)}
+											color={currentButton == 2 ? "limegreen" : ""}
+											border={
+												currentButton == 2
+													? "limegreen 1px solid"
+													: "rgba(255,255,255,0) 1px solid"
+											}
+										>
+											<TiArrowSortedDown />
+										</Button>
+									</Box>
 								</Box>
 							</Box>
-						</Box>
 						</Box>
 						<Box>
 							<Box
@@ -246,6 +259,7 @@ const SignalList = () => {
 										).toLocaleString("en-US")}
 										balance={Number(holding["amount"]).toLocaleString("en-US")}
 										holders={[]}
+										currentTime={currentTime}
 									/>
 								);
 						  })
