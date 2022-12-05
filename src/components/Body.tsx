@@ -52,7 +52,7 @@ const Body = () => {
 								: null}
 						</Text>
 						<Text fontSize="sm" mt={3}>
-							Add your signal to existing signals or add your own.
+							Add your signal to existing signals or add a new signal of your own.
 						</Text>
 						<Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text>
 					</Box>
