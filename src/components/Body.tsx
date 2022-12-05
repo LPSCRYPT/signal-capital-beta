@@ -19,8 +19,8 @@ const Body = () => {
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.100"}
-			backgroundImage={signalBg}
-			backgroundSize={'cover'}
+			// backgroundImage={signalBg}
+			// backgroundSize={'cover'}
 		>
 			<Box
 				display={"flex"}

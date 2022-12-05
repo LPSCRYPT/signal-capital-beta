@@ -36,20 +36,14 @@ const Headbar = () => {
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box w="33%" display={"flex"} alignItems={"center"}>
-				<b
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center"
-					}}
-				>
-					{/* <Avatar src={Logo} name="logo" size={"sm"} marginRight={3} /> */}
-					<span>
-						<span style={{ fontSize: "32px" }}>📡 </span>
-						<span><Text fontSize="2xl">ESP</Text></span>
-					</span>
-				</b>
+			<Box w="500px" display={"flex"} alignItems={"center"}>
+				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
+				<Text ml={5} fontSize="48px">
+					<span style={{color: "yellow"}}>E</span>
+					<span style={{color: "orange"}}>S</span>
+					<span style={{color: "red"}}>P</span>
+				</Text>
+				<Text size="xs" color="rgba(255,255,255,0.5)">ALPHA</Text>
 			</Box>
 			
 				<Box

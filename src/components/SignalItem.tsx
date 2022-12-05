@@ -44,13 +44,13 @@ const SignalItem: React.FC<SignalInterface> = ({
 	const relativeColor: number = (balanceNumber / maxSignals) * 100
  
 	function getRelativeColor() {
-		if (relativeColor >= 80) {
+		if (relativeColor >= 90) {
 			return '#FF0000';
 		}
-		if (relativeColor < 80 && relativeColor >= 50) {
+		if (relativeColor < 90 && relativeColor >= 70) {
 			return '#FF7A00';
 		}
-		if (relativeColor < 50 && relativeColor >= 30) {
+		if (relativeColor < 70 && relativeColor >= 30) {
 			return '#F3BF06';
 		}
 		if (relativeColor < 30 && relativeColor >= 10) {
@@ -59,21 +59,21 @@ const SignalItem: React.FC<SignalInterface> = ({
 		if (relativeColor < 10 && relativeColor > 0) {
 			return '#68DDFD';
 		}
-		return '#bbb';
+		return '#ccc';
 	};
 
 
 	return (
 		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
 			<Accordion allowToggle w={"90%"}>
-				<AccordionItem display={"flex"} flexDirection={"column"}>
+				<AccordionItem display={"flex"} flexDirection={"column"} borderWidth="0px">
 					<AccordionButton
-						borderWidth="2px"
-						borderStyle="solid"
-						borderColor={ getRelativeColor()} 
+						borderTopWidth="2px"
+						borderTopStyle="solid"
+						borderTopColor={ getRelativeColor()} 
 						color={ getRelativeColor()} 					
 							_expanded={{
-								borderColor:"1px",
+								borderTopWidth:"1px",
 							}}
 					>
 						<Box
