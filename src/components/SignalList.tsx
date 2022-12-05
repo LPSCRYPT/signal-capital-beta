@@ -27,6 +27,11 @@ interface SignalListProps {
 	currentTime: number;
 }
 
+interface Signal {
+	balance: string
+}
+
+
 const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
 
@@ -37,6 +42,10 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	console.log("signals");
 	console.log(signals);
 
+	const sumSignals: number = signals.reduce((acc: number, next: Signal) => acc + parseInt(next.balance), 0)
+	const maxSignals: number = signals.reduce((acc: number, next: Signal) => acc > parseInt(next.balance) ? acc : parseInt(next.balance), 0)
+
+	console.log({maxSignals, sumSignals})
 	const [currentButton, setCurrentButton] = useState(ButtonPress.descBal);
 
 	const [signalsList, setSignalsList] = useState([]);
@@ -93,11 +102,11 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				console.log("bal fire");
 			}
 			if (
-				ButtonPress.ascTVS == currentButton ||
-				ButtonPress.descTVS == currentButton
+				ButtonPress.ascTVS === currentButton ||
+				ButtonPress.descTVS === currentButton
 			) {
 				// sort by TVS
-				let tempSwitch = ButtonPress.ascTVS == currentButton ? 1 : -1;
+				let tempSwitch = ButtonPress.ascTVS === currentButton ? 1 : -1;
 				tempArr = _.sortBy(signals, (e: any) => {
 					console.log(e.timeValueSignal, "LOG 1");
 					let tempThing =
@@ -176,7 +185,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							variant="ghost"
 							size="xs"
 							onClick={() => setCurrentButton(ButtonPress.ascBal)}
-							color={currentButton == 3 ? "limegreen" : ""}
+							color={currentButton === 3 ? "limegreen" : ""}
 							border={
 								currentButton == 3
 									? "limegreen 1px solid"
@@ -204,9 +213,10 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				
 
 				{signalsList && signalsList.length > 0
-					? signalsList.map((signal) => {
+					? signalsList.map((signal, index) => {
 							return (
 								<SignalItem
+									key={index}
 									name={signal["meme"]}
 									tvs={calcTVS(
 										Number(signal["lastUpdatedTime"]),
@@ -217,6 +227,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 									balance={Number(signal["balance"]).toLocaleString("en-US")}
 									holders={signal["holders"]}
 									currentTime={currentTime}
+									sumSignals={sumSignals}
+									maxSignals={maxSignals}
 								/>
 							);
 					  })

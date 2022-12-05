@@ -8,7 +8,8 @@ import {
 	Avatar,
 	AvatarBadge,
 	Stack,
-	Switch
+	Switch,
+	Text,
 } from "@chakra-ui/react";
 import { useAddAccount } from "../contract/calls/sigcapfunctions";
 import { useFriendInfo } from "../views/subgraph";
@@ -35,7 +36,7 @@ const Headbar = () => {
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box w="150px" display={"flex"} alignItems={"center"}>
+			<Box w="33%" display={"flex"} alignItems={"center"}>
 				<b
 					style={{
 						display: "flex",
@@ -46,7 +47,7 @@ const Headbar = () => {
 					{/* <Avatar src={Logo} name="logo" size={"sm"} marginRight={3} /> */}
 					<span>
 						<span style={{ fontSize: "32px" }}>📡 </span>
-						<span style={{ fontSize: "18px" }}>SigCap</span>
+						<span><Text fontSize="2xl">ESP</Text></span>
 					</span>
 				</b>
 			</Box>
