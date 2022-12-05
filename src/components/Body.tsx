@@ -16,6 +16,8 @@ const Body = () => {
 		<Box
 			display={"flex"}
 			flexDirection={"row"}
+			flexWrap={'wrap'}
+			justifyContent={'center'}
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.100"}
@@ -36,6 +38,7 @@ const Body = () => {
 					<NewAccount />
 				) : (
 					<Box>
+						<Text my={6} fontWeight="900" fontSize={"4xl"}>DAOCEMBER</Text>
 						<Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>
@@ -49,10 +52,9 @@ const Body = () => {
 								: null}
 						</Text>
 						<Text fontSize="sm" mt={3}>
-							Update your Signals to reflect the current state of your
-							interests, for the benefit of your friends!
+							Add your signal to existing signals or add your own.
 						</Text>
-						<Text fontSize="xs" mt={6}><pre>TVS = Time Value Signal - weighted measure of signal * time</pre></Text>
+						<Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text>
 					</Box>
 				)}
 			</Box>

@@ -26,7 +26,7 @@ const NewSignal = () => {
 			p={5}
 			border="2px solid #5d5FEF"
 		>
-			<Box mb={3}>New Signal</Box>
+			<Box mb={3}>+ New Signal</Box>
 			<Input
 				placeholder="Signal Name"
 				type="text"
@@ -44,7 +44,7 @@ const NewSignal = () => {
 				mb={3}
 			></Input>
 			<Button onClick={() => fireAddNewSignal()} border={"1px black solid"}>
-				Add new signal
+				Submit
 			</Button>{" "}
 		</Box>
 	);

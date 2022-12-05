@@ -38,7 +38,7 @@ const Headbar = () => {
 		>
 			<Box w="500px" display={"flex"} alignItems={"center"}>
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
-				<Text ml={5} fontSize="48px">
+				<Text ml={5} fontSize="48px" fontWeight="100">
 					<span style={{color: "yellow"}}>E</span>
 					<span style={{color: "orange"}}>S</span>
 					<span style={{color: "red"}}>P</span>
