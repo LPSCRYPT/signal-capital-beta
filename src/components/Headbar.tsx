@@ -33,11 +33,12 @@ const Headbar = () => {
 			w="100%"
 			alignItems={"center"}
 			justifyContent={"space-between"}
+			flexWrap={"wrap"}
 			p={25}
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box minW="33%" display={"flex"} alignItems={"center"}>
+			<Box minW={["100%", "100%", "33%", null]} display={"flex"} alignItems={"center"}>
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
 				<Text ml={5} fontSize="48px" fontWeight="100">
 					<span style={{color: "yellow"}}>E</span>
