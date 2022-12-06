@@ -31,12 +31,13 @@ const Headbar = () => {
 		<Box
 			display={"flex"}
 			w="100%"
+			alignItems={"center"}
 			justifyContent={"space-between"}
 			p={25}
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box w="500px" display={"flex"} alignItems={"center"}>
+			<Box minW="33%" display={"flex"} alignItems={"center"}>
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
 				<Text ml={5} fontSize="48px" fontWeight="100">
 					<span style={{color: "yellow"}}>E</span>
@@ -45,40 +46,44 @@ const Headbar = () => {
 				</Text>
 				<Text size="xs" color="rgba(255,255,255,0.5)">ALPHA</Text>
 			</Box>
+			<Box minW="33%">
+				<Text py={3} fontSize="xs" style={{ color: 'red', textAlign: "center", border: "2px solid red"}}>(!) Please make sure you're connected to <b>Gnosis Chain</b></Text>
+			</Box>
 			
-				<Box
+			<Box
+				display={"flex"}
+				alignItems={"center"}
+				justifyContent={"flex-end"}
+				minW="33%"
+			>
+				<span style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", textAlign: 'right' }}>
+					<Stack direction="row">
+						<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
+					</Stack>
+					<span style={{ fontSize: "18px", marginLeft: "5px" }}>
+						{colorMode === "light" ? " 🌙" : "🌞"}
+					</span>
+				</span>
+				{address ? (
+					<Box
 					display={"flex"}
+					w="100%"
 					alignItems={"center"}
 					justifyContent={"flex-end"}
 				>
-					<span style={{ display: "flex", flexDirection: "row", paddingRight: 10 }} >
-						<Stack direction="row">
-							<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
-						</Stack>
-						<span style={{ fontSize: "18px", marginLeft: "5px" }}>
-							{colorMode === "light" ? " 🌙" : "🌞"}
-						</span>
+				<Box className="Points" marginRight={2}>
+					{friend.length > 0 ? `${friend[0]["points"]}` : null}
+					<br />
+					<span>
+						<small>/1000</small>
 					</span>
-					{address ? (
-						<Box
-						display={"flex"}
-						w="100%"
-						alignItems={"center"}
-						justifyContent={"flex-end"}
-					>
-					<Box className="Points" marginRight={2}>
-						{friend.length > 0 ? `${friend[0]["points"]}` : null}
-						<br />
-						<span>
-							<small>/1000</small>
-						</span>
-					</Box>
-					<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
-					</Box>
-					) : (
-						<Button onClick={() => connect()}>Connect Wallet</Button>
-					)}
 				</Box>
+				<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
+				</Box>
+				) : (
+					<Button onClick={() => connect()}>Connect Wallet</Button>
+				)}
+			</Box>
 		</Box>
 	);
 };
