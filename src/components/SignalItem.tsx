@@ -68,28 +68,31 @@ const SignalItem: React.FC<SignalInterface> = ({
 								return -1 * Number(e.amount);
 						  }).map((holder) => {
 								return (
-									<AccordionPanel>
+									<AccordionPanel bg={"rgba(153,153,255,0.2)"}>
 										<Box
 											display={"flex"}
 											w={"100%"}
 											justifyContent={"space-between"}
 											py={5}
+											// bg={"gry.200"}
+											// fontStyle={"italic"}
 										>
 											<Box
 												display={"flex"}
 												justifyContent={"space-between"}
 												alignItems={"center"}
 												w={"80%"}
+												// opacity={1}
 											>
-											<Box>{holder.friend.name}</Box>
-											<Box>
-												{calcTVS(
-													Number(holder["lastUpdatedTime"]),
-													Number(currentTime),
-													Number(holder["amount"]),
-													Number(holder["timeValueSignal"])
-												).toLocaleString("en-US")}
-											</Box>
+												<Box>{holder.friend.name}</Box>
+												<Box>
+													{calcTVS(
+														Number(holder["lastUpdatedTime"]),
+														Number(currentTime),
+														Number(holder["amount"]),
+														Number(holder["timeValueSignal"])
+													).toLocaleString("en-US")}
+												</Box>
 											</Box>
 											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
 										</Box>

@@ -35,7 +35,7 @@ const Headbar = () => {
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box w="150px" display={"flex"} alignItems={"center"}>
+			<Box w="350px" display={"flex"} alignItems={"center"}>
 				<b
 					style={{
 						display: "flex",
@@ -46,44 +46,42 @@ const Headbar = () => {
 					{/* <Avatar src={Logo} name="logo" size={"sm"} marginRight={3} /> */}
 					<span>
 						<span style={{ fontSize: "32px" }}>📡 </span>
-						<span style={{ fontSize: "18px" }}>SigCap</span>
+						<span style={{ fontSize: "18px" }}>ESP Alpha_v0.3~Gnosis</span>
 					</span>
 				</b>
 			</Box>
-			
-				<Box
-					display={"flex"}
-					alignItems={"center"}
-					justifyContent={"flex-end"}
+
+			<Box display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
+				<span
+					style={{ display: "flex", flexDirection: "row", paddingRight: 10 }}
 				>
-					<span style={{ display: "flex", flexDirection: "row", paddingRight: 10 }} >
-						<Stack direction="row">
-							<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
-						</Stack>
-						<span style={{ fontSize: "18px", marginLeft: "5px" }}>
-							{colorMode === "light" ? " 🌙" : "🌞"}
-						</span>
+					<Stack direction="row">
+						<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
+					</Stack>
+					<span style={{ fontSize: "18px", marginLeft: "5px" }}>
+						{colorMode === "light" ? " 🌙" : "🌞"}
 					</span>
-					{address ? (
-						<Box
+				</span>
+				{address ? (
+					<Box
 						display={"flex"}
 						w="100%"
 						alignItems={"center"}
 						justifyContent={"flex-end"}
 					>
-					<Box className="Points" marginRight={2}>
-						{friend.length > 0 ? `${friend[0]["points"]}` : null}
-						<br />
-						<span>
-							<small>/1000</small>
-						</span>
+						<Box className="Points" marginRight={2}>
+							{friend.length > 0 ? `${friend[0]["points"]}` : null}
+							<br />
+							<span>
+								<small>/1000</small>
+							</span>
+						</Box>
+						<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
 					</Box>
-					<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
-					</Box>
-					) : (
-						<Button onClick={() => connect()}>Connect Wallet</Button>
-					)}
-				</Box>
+				) : (
+					<Button onClick={() => connect()}>Connect Wallet</Button>
+				)}
+			</Box>
 		</Box>
 	);
 };
