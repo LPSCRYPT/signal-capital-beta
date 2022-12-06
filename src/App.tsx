@@ -63,18 +63,21 @@ function App() {
 							maxW="32px"
 							src={iconA}
 							alt="iconA"
+							mr={3}
 						/> Signals</Tab>
 						<Tab><Image
 							id="iconC"
 							maxW="32px"
 							src={iconC}
 							alt="iconC"
+							mr={3}
 						/> Signalers</Tab>
 						<Tab><Image
 							id="iconB"
 							maxW="32px"
 							src={iconB}
 							alt="iconB"
+							mr={3}
 						/>You</Tab>
 					</TabList>
 					<TabPanels>
