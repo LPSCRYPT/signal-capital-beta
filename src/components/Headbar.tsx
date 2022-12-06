@@ -8,7 +8,8 @@ import {
 	Avatar,
 	AvatarBadge,
 	Stack,
-	Switch
+	Switch,
+	Text
 } from "@chakra-ui/react";
 import { useAddAccount } from "../contract/calls/sigcapfunctions";
 import { useFriendInfo } from "../views/subgraph";

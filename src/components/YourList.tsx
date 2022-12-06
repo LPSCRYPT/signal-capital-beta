@@ -28,6 +28,10 @@ interface SignalListProps {
 	currentTime: number;
 }
 
+interface Signal {
+	balance: string
+}
+
 const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
@@ -36,6 +40,9 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 
 	console.log("friend");
 	console.log(friend);
+
+	const sumSignals: number = signals.reduce((acc: number, next: Signal) => acc + parseInt(next.balance), 0)
+	const maxSignals: number = signals.reduce((acc: number, next: Signal) => acc > parseInt(next.balance) ? acc : parseInt(next.balance), 0)
 
 	const [currentButton, setCurrentButton] = useState(ButtonPress.descBal);
 
@@ -247,11 +254,12 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						  // @ts-ignore
 
-						  friendList.map((holding: { [x: string]: any }) => {
+						  friendList.map((holding: { [x: string]: any }, index) => {
 								console.log("fire");
 								/* tslint:enable */
 								return (
 									<SignalItem
+									key={index}
 										name={holding["id"].substring(0, holding["id"].length - 43)}
 										tvs={calcTVS(
 											Number(holding["lastUpdatedTime"]),
@@ -262,6 +270,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 										balance={Number(holding["amount"]).toLocaleString("en-US")}
 										holders={[]}
 										currentTime={currentTime}
+										sumSignals={sumSignals}
+										maxSignals={maxSignals}
 									/>
 								);
 						  })

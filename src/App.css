@@ -1,3 +1,7 @@
+body {
+	background-color: #000;
+}
+
 body,
 b,
 p,
@@ -8,7 +12,7 @@ h4,
 h5,
 h6,
 span {
-	font-family: "JetBrains Mono", monospace;
+	font-family: "bdr-mono", monospace;
 }
 
 .App {
@@ -27,7 +31,7 @@ span {
 }
 
 .App-header {
-	background-color: #282c34;
+	background-color: #000;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
@@ -19,8 +19,8 @@ const Body = () => {
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.100"}
-			backgroundImage={signalBg}
-			backgroundSize={'cover'}
+			// backgroundImage={signalBg}
+			// backgroundSize={'cover'}
 		>
 			<Box
 				display={"flex"}
@@ -36,23 +36,23 @@ const Body = () => {
 					<NewAccount />
 				) : (
 					<Box>
-						<p>
+						<Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>
 								{" "}
 								{friend && friend.length > 0 ? friend[0]["name"] : address}
 							</strong>
-						</p>
-						<p>
+						</Text>
+						<Text fontSize="sm" mt={3}>
 							{friend && friend.length > 0
 								? `You have ${friend[0]["points"]} of 1000 points available to Signal.`
 								: null}
-						</p>
-						<p>
+						</Text>
+						<Text fontSize="sm" mt={3}>
 							Update your Signals to reflect the current state of your
 							interests, for the benefit of your friends!
-						</p>
-						<p>TVS = Time Value Signal - weighted measure of signal * time</p>
+						</Text>
+						<Text fontSize="xs" mt={6}><pre>TVS = Time Value Signal - weighted measure of signal * time</pre></Text>
 					</Box>
 				)}
 			</Box>

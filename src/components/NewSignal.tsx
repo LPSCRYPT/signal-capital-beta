@@ -24,8 +24,7 @@ const NewSignal = () => {
 			flexDirection={"column"}
 			justifyContent={"space-between"}
 			p={5}
-			border="1px solid #5d5FEF"
-			boxShadow="0px 0px 35px rgba(93, 95, 239, .5)"
+			border="2px solid #5d5FEF"
 		>
 			<Box mb={3}>New Signal</Box>
 			<Input
