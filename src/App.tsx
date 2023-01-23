@@ -58,21 +58,21 @@ function App() {
 			<Box flex="row" padding={25} paddingBottom={500}>
 				<Tabs align="center">
 					<TabList>
-						<Tab><Image
+						<Tab fontWeight={'700'}><Image
 							id="iconA"
 							maxW="32px"
 							src={iconA}
 							alt="iconA"
 							mr={3}
 						/> Signals</Tab>
-						<Tab><Image
+						<Tab fontWeight={'700'}><Image
 							id="iconC"
 							maxW="32px"
 							src={iconC}
 							alt="iconC"
 							mr={3}
 						/> Signalers</Tab>
-						<Tab><Image
+						<Tab fontWeight={'700'}><Image
 							id="iconB"
 							maxW="32px"
 							src={iconB}

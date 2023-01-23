@@ -67,7 +67,7 @@ const Body = () => {
 								: null}
 						</Text>
 						<Text fontSize="sm" mt={3}>
-							Add your signal to existing signals or add a new signal of your own.
+							Allocate your signal points to existing signals or add one of your own.
 						</Text>
 						<Box mt={6}>
 							<Button onClick={handleDisconnect}>Disconnect</Button>
