@@ -4,6 +4,7 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 import {
 	Box,
 	Button,
+	Heading,
 	Input,
 	Avatar,
 	AvatarBadge,
@@ -40,12 +41,12 @@ const Headbar = () => {
 		>
 			<Box minW={["100%", "100%", "33%", null]} display={"flex"} alignItems={"center"}>
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
-				<Text ml={5} fontSize="48px" fontWeight="100">
+				<Heading ml={5} fontSize="48px" fontWeight="100">
 					<span style={{color: "yellow"}}>E</span>
 					<span style={{color: "orange"}}>S</span>
 					<span style={{color: "red"}}>P</span>
-				</Text>
-				<Text size="xs" color="rgba(255,255,255,0.5)">ALPHA</Text>
+				</Heading>
+				<Heading size="xs" color="rgba(255,255,255,0.5)">ALPHA</Heading>
 			</Box>
 			<Box minW="33%">
 				<Text py={3} fontSize="xs" style={{ color: 'red', textAlign: "center", border: "2px solid red"}}>(!) Be sure you are on <b>Gnosis Chain</b></Text>

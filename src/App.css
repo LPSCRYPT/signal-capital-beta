@@ -1,18 +1,19 @@
 body {
 	background-color: #000;
+	font-size: 21px;
 }
 
-body,
-b,
-p,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-span {
+h6 {
 	font-family: "bdr-mono", monospace;
+}
+
+body, p {
+	font-family: 'nimbus-sans-condensed', sans-serif;
 }
 
 .App {

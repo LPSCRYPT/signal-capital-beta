@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
@@ -53,7 +53,7 @@ const Body = () => {
 					</Box>
 				) : (
 					<Box>
-						<Text my={6} fontWeight="900" fontSize={"4xl"}>DXDAO</Text>
+						<Heading my={6} fontWeight="900" fontSize={"4xl"}>DXDAO</Heading>
 						{/* <Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>

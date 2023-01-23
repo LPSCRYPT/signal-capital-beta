@@ -83,10 +83,10 @@ const SignalItem: React.FC<SignalInterface> = ({
 							alignItems={'center'}
 							py={5}
 						>
-							<Box>{name}</Box>
+							<Box fontWeight={'900'}>{name}</Box>
 							<Box alignItems={'center'} justifyContent={'end'}>
 								{/* <Box>{tvs}</Box> */}
-								<Box>{balance}</Box>
+								<Box fontFamily="data">{balance}</Box>
 							</Box>
 						</Box>
 					</AccordionButton>
@@ -109,14 +109,14 @@ const SignalItem: React.FC<SignalInterface> = ({
 												w={"80%"}
 											>
 											<Box>{holder.friend.name}</Box>
-											<Box>
+											{/* <Box>
 												{calcTVS(
 													Number(holder["lastUpdatedTime"]),
 													Number(currentTime),
 													Number(holder["amount"]),
 													Number(holder["timeValueSignal"])
 												).toLocaleString("en-US")}
-											</Box>
+											</Box> */}
 											</Box>
 											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
 										</Box>

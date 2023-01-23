@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: 'bdr-mono', monospace;
+  font-family: 'nimbus-sans-condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +10,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'bdr-mono',
     monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'bdr-mono', monospace;
 }
