@@ -12,14 +12,14 @@ import {
 import "../App.css";
 import { useSubgraph } from "../views/subgraph";
 import { ethers } from "ethers";
+import { ENSName } from 'react-ens-name';
 
 const Keepers = () => {
 	const { friends, signals } = useSubgraph();
-
 	return (
 		<Box w={"100%"}>
 			<Box display={"flex"} w={"100%"} justifyContent={"space-between"} py={3}>
-				<Box pl={4}>Friend Name</Box>
+				<Box pl={4}>Signaler</Box>
 				<Box pr={10}>Allocated</Box>
 			</Box>
 			<Accordion allowToggle>
@@ -35,7 +35,7 @@ const Keepers = () => {
 												display={"flex"}
 												justifyContent={"space-between"}
 											>
-												<Box>{friend["name"]}</Box>
+												<Box><ENSName address={friend["id"]} withEllipses/></Box>
 												<Box>{1000 - Number(friend["points"])}</Box>
 											</Box>
 											<AccordionIcon />

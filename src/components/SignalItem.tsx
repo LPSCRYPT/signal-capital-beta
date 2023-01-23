@@ -13,6 +13,7 @@ import {
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount, useEnsName } from "wagmi";
+import { ENSName } from 'react-ens-name';
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
@@ -39,9 +40,6 @@ const SignalItem: React.FC<SignalInterface> = ({
 }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
-	const { data, isError, isLoading } = useEnsName({
-		address: address
-	  })
 
 	const balanceNumber: number = parseInt(balance.replace(/,/g, ""))
 	const relativeColor: number = (balanceNumber / maxSignals) * 100
@@ -111,8 +109,9 @@ const SignalItem: React.FC<SignalInterface> = ({
 												alignItems={"center"}
 												w={"80%"}
 											>
-											<Box>{ holder.friend.id.slice(0,5) + '...' + holder.friend.id.slice(-4) }</Box>
-											{ }
+												<ENSName address={holder.friend.id} withEllipses />
+											
+											</Box>
 											{/* <Box>
 												{calcTVS(
 													Number(holder["lastUpdatedTime"]),
@@ -121,7 +120,6 @@ const SignalItem: React.FC<SignalInterface> = ({
 													Number(holder["timeValueSignal"])
 												).toLocaleString("en-US")}
 											</Box> */}
-											</Box>
 											<Box alignSelf={"flex-end"} fontFamily="data">{holder.amount}</Box>
 										</Box>
 									</AccordionPanel>
