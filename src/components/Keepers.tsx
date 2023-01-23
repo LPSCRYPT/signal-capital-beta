@@ -35,7 +35,7 @@ const Keepers = () => {
 												display={"flex"}
 												justifyContent={"space-between"}
 											>
-												<Box><ENSName address={friend["id"]} withEllipses/></Box>
+												<Box><ENSName address={friend["id"]} withEllipses /></Box>
 												<Box>{1000 - Number(friend["points"])}</Box>
 											</Box>
 											<AccordionIcon />
