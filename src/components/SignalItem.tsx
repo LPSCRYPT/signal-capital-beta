@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
-import { useAccount } from "wagmi";
+import { useAccount, useEnsName } from "wagmi";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
@@ -39,6 +39,9 @@ const SignalItem: React.FC<SignalInterface> = ({
 }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
+	const { data, isError, isLoading } = useEnsName({
+		address: address
+	  })
 
 	const balanceNumber: number = parseInt(balance.replace(/,/g, ""))
 	const relativeColor: number = (balanceNumber / maxSignals) * 100
@@ -108,7 +111,8 @@ const SignalItem: React.FC<SignalInterface> = ({
 												alignItems={"center"}
 												w={"80%"}
 											>
-											<Box>{holder.friend.name}</Box>
+											<Box>{ holder.friend.id.slice(0,5) + '...' + holder.friend.id.slice(-4) }</Box>
+											{ }
 											{/* <Box>
 												{calcTVS(
 													Number(holder["lastUpdatedTime"]),
