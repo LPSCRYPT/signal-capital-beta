@@ -136,8 +136,6 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'}>
 				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'} pb={5}>
 					<Box>Name</Box>
-					<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
-					</Box>
 				</Box>
 				<Box
 					display={"flex"}

@@ -79,7 +79,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 						<Box
 							display={"flex"}
 							w={"100%"}
-							justifyContent={'start'}
+							justifyContent={'space-between'}
 							alignItems={'center'}
 							py={5}
 						>
