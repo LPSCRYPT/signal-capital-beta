@@ -118,7 +118,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 												).toLocaleString("en-US")}
 											</Box> */}
 											</Box>
-											<Box alignSelf={"flex-end"}>{holder.amount}</Box>
+											<Box alignSelf={"flex-end"} fontFamily="data">{holder.amount}</Box>
 										</Box>
 									</AccordionPanel>
 								);

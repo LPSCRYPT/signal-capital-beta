@@ -154,7 +154,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						>
 							<Box>Name</Box>
 							<Box>
-								<Box
+								{/* <Box
 									display={"flex"}
 									alignItems={"center"}
 									justifyContent={"end"}
@@ -193,7 +193,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 											<TiArrowSortedDown />
 										</Button>
 									</Box>
-								</Box>
+								</Box> */}
 							</Box>
 						</Box>
 						<Box pb={5}
