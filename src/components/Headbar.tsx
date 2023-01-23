@@ -48,7 +48,7 @@ const Headbar = () => {
 				<Text size="xs" color="rgba(255,255,255,0.5)">ALPHA</Text>
 			</Box>
 			<Box minW="33%">
-				<Text py={3} fontSize="xs" style={{ color: 'red', textAlign: "center", border: "2px solid red"}}>(!) Please make sure you're connected to <b>Gnosis Chain</b></Text>
+				<Text py={3} fontSize="xs" style={{ color: 'red', textAlign: "center", border: "2px solid red"}}>(!) Be sure you are on <b>Gnosis Chain</b></Text>
 			</Box>
 			
 			<Box
@@ -68,17 +68,17 @@ const Headbar = () => {
 					justifyContent={"flex-end"}
 				>
 				<Box className="Points" marginRight={2}>
-					{friend.length > 0 ? `${friend[0]["points"]}` : null}
+					{friend.length > 0 ? `${friend[0]["points"]}` : 0}
 					<br />
 					<span>
 						<small>/1000</small>
 					</span>
 				</Box>
-				<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
+				<Box><Text noOfLines={1}>{friend.length > 0 ? friend[0]["name"] : address.slice(0,6) + '...' + address.slice(-4)}</Text></Box>
 				</Box>
 				) : (
 					<Box>
-					<Button onClick={() => connect()} outline="5px solid red">Connect Wallet</Button></Box>
+					<Button onClick={() => connect()}>Connect</Button></Box>
 				)}
 			</Box>
 		</Box>

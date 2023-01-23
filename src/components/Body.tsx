@@ -46,27 +46,21 @@ const Body = () => {
 				alignItems={"start"}
 				
 			>
-				<Box>
-					<Box>Connect on Gnosis Chain</Box>
-					{ !address ? (
-					<Button onClick={handleConnect} outline="5px solid red">Connect Wallet!!!</Button>
-					):(
-					<Button onClick={handleDisconnect} outline="5px solid red">Disconnect!!</Button>
-					)}
-				</Box>
-				{friend.length === 0 ? (
-					<Box>No friends</Box>
-					
+				{!address ? (
+					<Box>
+						<Box mb={6}>Connect on Gnosis Chain</Box>
+						<Button onClick={handleConnect}>Connect Wallet</Button>
+					</Box>
 				) : (
 					<Box>
 						<Text my={6} fontWeight="900" fontSize={"4xl"}>DXDAO</Text>
-						<Text fontSize="xl">
+						{/* <Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>
 								{" "}
 								{friend && friend.length > 0 ? friend[0]["name"] : address}
 							</strong>
-						</Text>
+						</Text> */}
 						<Text fontSize="sm" mt={3}>
 							{friend && friend.length > 0
 								? `You have ${friend[0]["points"]} of 1000 points available to Signal.`
@@ -75,11 +69,14 @@ const Body = () => {
 						<Text fontSize="sm" mt={3}>
 							Add your signal to existing signals or add a new signal of your own.
 						</Text>
+						<Box mt={6}>
+							<Button onClick={handleDisconnect}>Disconnect</Button>
+						</Box>
 						{/* <Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text> */}
 					</Box>
 				)}
 			</Box>
-			{friend.length > 0 ? (
+			{ address ? (
 				<Box
 					display={"flex"}
 					flexDirection={"column"}
