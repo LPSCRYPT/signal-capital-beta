@@ -57,14 +57,9 @@ const Headbar = () => {
 				justifyContent={"flex-end"}
 				minW="33%"
 			>
-				<span style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", textAlign: 'right' }}>
-					<Stack direction="row">
-						<Switch colorScheme="teal" size="lg" onChange={toggleColorMode} />
-					</Stack>
-					<span style={{ fontSize: "18px", marginLeft: "5px" }}>
-						{colorMode === "light" ? " 🌙" : "🌞"}
-					</span>
-				</span>
+				<Button variant="ghost" style={{ fontSize: "18px", marginLeft: "5px" }} onClick={toggleColorMode}>
+					{colorMode === "light" ? " 🌙" : "🌞"}
+				</Button>
 				{address ? (
 					<Box
 					display={"flex"}
@@ -82,7 +77,8 @@ const Headbar = () => {
 				<Box>{friend.length > 0 ? friend[0]["name"] : address}</Box>
 				</Box>
 				) : (
-					<Button onClick={() => connect()}>Connect Wallet</Button>
+					<Box>
+					<Button onClick={() => connect()} outline="5px solid red">Connect Wallet</Button></Box>
 				)}
 			</Box>
 		</Box>

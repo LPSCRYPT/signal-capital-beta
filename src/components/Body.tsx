@@ -1,17 +1,29 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
-import { useAccount } from "wagmi";
-import NewAccount from "./NewAccount";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
 import NewSignal from "./NewSignal";
-import signalBg from "../assets/signal_bg_trans.png";
 
 const Body = () => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
+	console.log({address})
+	const { connect } = useConnect({
+		connector: new InjectedConnector()
+	});
+	const { disconnect } = useDisconnect();
 	const friend = useFriendInfo(address);
 
+	const handleConnect = () => {
+		console.log("Connecting")
+		connect()
+	}
+	const handleDisconnect = () => {
+		console.log("Disconnecting")
+		disconnect()
+	}
 	return (
 		<Box
 			display={"flex"}
@@ -34,11 +46,20 @@ const Body = () => {
 				alignItems={"start"}
 				
 			>
-				{friend.length == 0 ? (
-					<NewAccount />
+				<Box>
+					<Box>Connect on Gnosis Chain</Box>
+					{ !address ? (
+					<Button onClick={handleConnect} outline="5px solid red">Connect Wallet!!!</Button>
+					):(
+					<Button onClick={handleDisconnect} outline="5px solid red">Disconnect!!</Button>
+					)}
+				</Box>
+				{friend.length === 0 ? (
+					<Box>No friends</Box>
+					
 				) : (
 					<Box>
-						<Text my={6} fontWeight="900" fontSize={"4xl"}>DAOCEMBER</Text>
+						<Text my={6} fontWeight="900" fontSize={"4xl"}>DXDAO</Text>
 						<Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>
@@ -54,7 +75,7 @@ const Body = () => {
 						<Text fontSize="sm" mt={3}>
 							Add your signal to existing signals or add a new signal of your own.
 						</Text>
-						<Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text>
+						{/* <Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text> */}
 					</Box>
 				)}
 			</Box>

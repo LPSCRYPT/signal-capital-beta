@@ -137,40 +137,6 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'} pb={5}>
 					<Box>Name</Box>
 					<Box display={"flex"} alignItems={"center"} justifyContent={"end"}>
-						<Box>TVS</Box>
-						<Box
-							display={"flex"}
-							flexDirection={"column"}
-							alignItems={"center"}
-							pl={2}
-						>
-							<Button
-								variant="ghost"
-								size="xs"
-								color={currentButton == 1 ? "limegreen" : ""}
-								border={
-									currentButton == 1
-										? "limegreen 1px solid"
-										: "rgba(255,255,255,0) 1px solid"
-								}
-								onClick={() => setCurrentButton(ButtonPress.ascTVS)}
-							>
-							<TiArrowSortedUp />
-						</Button>
-						<Button
-							variant="ghost"
-							size="xs"
-							onClick={() => setCurrentButton(ButtonPress.descTVS)}
-							color={currentButton == 2 ? "limegreen" : ""}
-							border={
-								currentButton == 2
-									? "limegreen 1px solid"
-									: "rgba(255,255,255,0) 1px solid"
-							}
-						>
-							<TiArrowSortedDown />
-						</Button>
-						</Box>
 					</Box>
 				</Box>
 				<Box

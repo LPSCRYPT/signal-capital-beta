@@ -79,19 +79,15 @@ const SignalItem: React.FC<SignalInterface> = ({
 						<Box
 							display={"flex"}
 							w={"100%"}
-							justifyContent={"space-between"}
+							justifyContent={'start'}
+							alignItems={'center'}
 							py={5}
 						>
-							<Box
-								display={"flex"}
-								justifyContent={"space-between"}
-								alignItems={"center"}
-								w={"80%"}
-							>
-								<Box>{name}</Box>
-								<Box>{tvs}</Box>
+							<Box>{name}</Box>
+							<Box alignItems={'center'} justifyContent={'end'}>
+								{/* <Box>{tvs}</Box> */}
+								<Box>{balance}</Box>
 							</Box>
-							<Box>{balance}</Box>
 						</Box>
 					</AccordionButton>
 					{holders && holders.length > 0
