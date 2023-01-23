@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import {
 	Box,
@@ -12,6 +12,7 @@ import {
 	Switch,
 	Text,
 } from "@chakra-ui/react";
+import { AiOutlineDisconnect, AiOutlineApi } from 'react-icons/ai';
 import { useAddAccount } from "../contract/calls/sigcapfunctions";
 import { useFriendInfo } from "../views/subgraph";
 import Logo from "../assets/darksignal_circle.png";
@@ -20,6 +21,7 @@ import { useColorMode } from "@chakra-ui/color-mode";
 
 const Headbar = () => {
 	const { address } = useAccount();
+	
 	const { connect } = useConnect({
 		connector: new InjectedConnector()
 	});
@@ -27,6 +29,9 @@ const Headbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 
 	const friend = useFriendInfo(address);
+	const { data, isError, isLoading } = useEnsName({
+		address: address,
+	  })
 
 	return (
 		<Box
@@ -67,19 +72,29 @@ const Headbar = () => {
 					w="100%"
 					alignItems={"center"}
 					justifyContent={"flex-end"}
-				>
-				<Box className="Points" marginRight={2}>
-					{friend.length > 0 ? `${friend[0]["points"]}` : 0}
-					<br />
-					<span>
-						<small>/1000</small>
-					</span>
-				</Box>
-				<Box><Text noOfLines={1}>{friend.length > 0 ? friend[0]["name"] : address.slice(0,6) + '...' + address.slice(-4)}</Text></Box>
-				</Box>
-				) : (
+					>
+						<Box className="Points" marginRight={2}>
+						{friend.length > 0 ? `${friend[0]["points"]}` : 0}
+						<br />
+						<span>
+							<small>/1000</small>
+						</span>
+						</Box>
+						<Box>
+							<Button onClick={() => disconnect()}>
+								
+							{/* <Text>{friend.length > 0 ? friend[0]["name"] : address.slice(0,6) + '...' + address.slice(-4)}</Text> */}
+							{ isLoading && (<Box fontSize="xs">fetching ENS</Box>)}
+							{ isError && (<Box>Error fetching ENS</Box>)}
+							{ data ? (<Box>{data}</Box>) : (<Box>{address.slice(0,6) + '...' + address.slice(-4)}</Box>)}
+							<Box ml={3}><AiOutlineDisconnect /></Box>
+							</Button>
+						</Box>
+					</Box>
+					) : (
 					<Box>
-					<Button onClick={() => connect()}>Connect</Button></Box>
+						<Button onClick={() => connect()}>Connect <Box ml={3} color="white"><AiOutlineApi /></Box></Button>
+					</Box>
 				)}
 			</Box>
 		</Box>

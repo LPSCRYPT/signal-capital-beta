@@ -143,16 +143,16 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 					justifyContent={"end"}
 					pb={5}
 				>
-					<Box>Allocated </Box>
+					<Box>Current Signal </Box>
 					<Box display={"flex"} flexDirection={"column"} pl={2}>
 						<Button
 							variant="ghost"
 							size="xs"
 							onClick={() => setCurrentButton(ButtonPress.ascBal)}
-							color={currentButton === 3 ? "limegreen" : ""}
+							color={currentButton === 3 ? "#5d5fef" : ""}
 							border={
 								currentButton == 3
-									? "limegreen 1px solid"
+									? "#5d5fef 1px solid"
 									: "rgba(255,255,255,0) 1px solid"
 							}
 						>
@@ -162,10 +162,10 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							variant="ghost"
 							size="xs"
 							onClick={() => setCurrentButton(ButtonPress.descBal)}
-							color={currentButton == 4 ? "limegreen" : ""}
+							color={currentButton == 4 ? "#5d5fef" : ""}
 							border={
 								currentButton == 4
-									? "limegreen 1px solid"
+									? "#5d5fef 1px solid"
 									: "rgba(255,255,255,0) 1px solid"
 							}
 						>
@@ -173,7 +173,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						</Button>
 					</Box>
 					</Box >
-					<Box pb={5}>Signal</Box>
+					<Box pb={5}>Allocate</Box>
 				
 
 				{signalsList && signalsList.length > 0
