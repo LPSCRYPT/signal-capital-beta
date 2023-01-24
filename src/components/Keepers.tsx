@@ -45,6 +45,7 @@ const Keepers = () => {
 												<Box>
 													{Number(friend["totalPoints"]) -
 														Number(friend["availablePoints"])}
+													/{friend["totalPoints"]}
 												</Box>
 											</Box>
 											<AccordionIcon />
