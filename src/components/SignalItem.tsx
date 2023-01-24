@@ -148,7 +148,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 				flexDirection={"column"}
 				justifyContent={"center"}
 			>
-				{found ? (<Box>{found.balance}</Box>) : <Box>–</Box>}
+				{found ? (<Box fontSize="sm">{found.balance}</Box>) : <Box fontSize="sm">–</Box>}
 				<Signaller meme={value}/>
 			</Box>
 		</Box>
