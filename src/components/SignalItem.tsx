@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
 	Tbody,
 	Tr,
@@ -47,11 +47,26 @@ const SignalItem: React.FC<SignalInterface> = ({
 	const balanceNumber: number = parseInt(balance.replace(/,/g, ""));
 	const relativeColor: number = (balanceNumber / maxSignals) * 100;
 
-	const found = signallers.find(signaller => {
-		return signaller.user.user.id === address;
-	  });
+	// const found = signallers.find(signaller => {
+	// 	return signaller.user.user.id === address;
+	//   });
 
-	  console.log("found " + found);
+	const [found, setFound] = useState("");
+
+	useEffect(() => {
+		if (address && signallers && signallers.length > 0) {
+			const lookup = signallers.find((signaller) => {
+				return signaller.user.user.id === address.toLowerCase();
+			});
+			if (lookup) {
+				setFound(lookup["balance"]);
+			} else {
+				setFound("");
+			}
+		}
+	}, [address, signallers]);
+
+	console.log("found " + found);
 
 	function getRelativeColor() {
 		if (relativeColor >= 90) {
@@ -122,7 +137,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 												w={"80%"}
 											>
 												<ENSName address={holder.user.user.id} withEllipses />
-												 break {holder.user.user.id}
+												break {holder.user.user.id}
 											</Box>
 											{/* <Box>
 												{calcTVS(
@@ -148,8 +163,8 @@ const SignalItem: React.FC<SignalInterface> = ({
 				flexDirection={"column"}
 				justifyContent={"center"}
 			>
-				{found ? (<Box fontSize="sm">{found.balance}</Box>) : <Box fontSize="sm">–</Box>}
-				<Signaller meme={value}/>
+				{<Box fontSize="sm">{found}</Box>}
+				<Signaller meme={value} />
 			</Box>
 		</Box>
 	);
