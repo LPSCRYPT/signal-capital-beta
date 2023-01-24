@@ -19,6 +19,7 @@ import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
 import { ParsedUrlQueryInput } from "querystring";
 import { Stream } from "stream";
+import { AiOutlineHolder } from "react-icons/ai";
 
 interface SignalInterface {
 	value: string;
@@ -139,7 +140,8 @@ const SignalItem: React.FC<SignalInterface> = ({
 				flexDirection={"column"}
 				justifyContent={"center"}
 			>
-				<Signaller meme={value} />
+				<Box>{signallers[0].balance}</Box>
+				<Signaller meme={value}/>
 			</Box>
 		</Box>
 	);
