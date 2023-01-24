@@ -7,7 +7,7 @@ import { useAddAccount } from "../contract/calls/sigcapfunctions";
 
 /**
  *
- * @dev Deprecated in current built
+ * @dev Deprecated in current build
  */
 
 const NewSignal = () => {

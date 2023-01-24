@@ -4,6 +4,9 @@ import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
 import { useAddNewSignal } from "../contract/calls/sigcapfunctions";
+import { execute } from "../contract/calls/routerexecute";
+import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
+import { espgoerli } from "../ref/addresses";
 
 const NewSignal = () => {
 	const { friends, signals } = useSubgraph();
@@ -16,6 +19,16 @@ const NewSignal = () => {
 	const fireAddNewSignal = useAddNewSignal(
 		addNewSignalText,
 		addNewSignalAmount
+	);
+
+	const fireExecute = execute(
+		useBuildDxDSignal(
+			1,
+			espgoerli.toplevelsystem,
+			addNewSignalAmount,
+			addNewSignalText,
+			true
+		)
 	);
 
 	return (
@@ -43,7 +56,7 @@ const NewSignal = () => {
 				onChange={(e) => setaddNewSignalAmount(Number(e.target.value))}
 				mb={3}
 			></Input>
-			<Button onClick={() => fireAddNewSignal()} border={"1px black solid"}>
+			<Button onClick={() => fireExecute()} border={"1px black solid"}>
 				Submit
 			</Button>{" "}
 		</Box>
