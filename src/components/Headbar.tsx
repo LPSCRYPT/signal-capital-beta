@@ -22,13 +22,14 @@ import { useColorMode } from "@chakra-ui/color-mode";
 const Headbar = () => {
 	const { address } = useAccount();
 
+	const friend = useFriendInfo(address);
+
 	const { connect } = useConnect({
 		connector: new InjectedConnector()
 	});
 	const { disconnect } = useDisconnect();
 	const { colorMode, toggleColorMode } = useColorMode();
 
-	const friend = useFriendInfo(address);
 	const { data, isError, isLoading } = useEnsName({
 		address: address
 	});
@@ -94,7 +95,7 @@ const Headbar = () => {
 							<br />
 							<span>
 								<small>
-									/`${friend.length > 0 ? friend[0]["totalPoints"] : 0}`
+									/{friend.length > 0 ? friend[0]["totalPoints"] : 0}
 								</small>
 							</span>
 						</Box>

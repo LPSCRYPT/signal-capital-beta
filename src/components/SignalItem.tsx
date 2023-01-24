@@ -19,6 +19,8 @@ import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
 import { ParsedUrlQueryInput } from "querystring";
 import { Stream } from "stream";
+import { AiOutlineHolder } from "react-icons/ai";
+import userEvent from "@testing-library/user-event";
 
 interface SignalInterface {
 	value: string;
@@ -44,6 +46,12 @@ const SignalItem: React.FC<SignalInterface> = ({
 
 	const balanceNumber: number = parseInt(balance.replace(/,/g, ""));
 	const relativeColor: number = (balanceNumber / maxSignals) * 100;
+
+	const found = signallers.find(signaller => {
+		return signaller.user.user.id === address;
+	  });
+
+	  console.log("found " + found);
 
 	function getRelativeColor() {
 		if (relativeColor >= 90) {
@@ -114,6 +122,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 												w={"80%"}
 											>
 												<ENSName address={holder.user.user.id} withEllipses />
+												 break {holder.user.user.id}
 											</Box>
 											{/* <Box>
 												{calcTVS(
@@ -139,7 +148,8 @@ const SignalItem: React.FC<SignalInterface> = ({
 				flexDirection={"column"}
 				justifyContent={"center"}
 			>
-				<Signaller meme={value} />
+				{found ? (<Box fontSize="sm">{found.balance}</Box>) : <Box fontSize="sm">–</Box>}
+				<Signaller meme={value}/>
 			</Box>
 		</Box>
 	);
