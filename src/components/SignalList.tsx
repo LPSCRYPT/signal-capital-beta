@@ -181,7 +181,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							return (
 								<SignalItem
 									key={index}
-									name={signal["meme"]}
+									value={signal["value"]}
 									tvs={calcTVS(
 										Number(signal["lastUpdatedTime"]),
 										currentTime,
@@ -189,7 +189,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 										Number(signal["timeValueSignal"])
 									).toLocaleString("en-US")}
 									balance={Number(signal["balance"]).toLocaleString("en-US")}
-									holders={signal["holders"]}
+									signallers={signal["signallers"]}
 									currentTime={currentTime}
 									sumSignals={sumSignals}
 									maxSignals={maxSignals}

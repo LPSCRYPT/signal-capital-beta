@@ -18,22 +18,23 @@ import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
 import { ParsedUrlQueryInput } from "querystring";
+import { Stream } from "stream";
 
 interface SignalInterface {
-	name: string;
+	value: string;
 	tvs: string;
 	balance: string;
-	holders: any[];
+	signallers: any[];
 	currentTime: number;
 	maxSignals: number;
 	sumSignals: number;
 }
 
 const SignalItem: React.FC<SignalInterface> = ({
-	name,
+	value,
 	tvs,
 	balance,
-	holders,
+	signallers,
 	currentTime,
 	maxSignals,
 	sumSignals
@@ -84,15 +85,15 @@ const SignalItem: React.FC<SignalInterface> = ({
 							alignItems={'center'}
 							py={5}
 						>
-							<Box fontWeight={'900'}>{name}</Box>
+							<Box fontWeight={'900'}>{value}</Box>
 							<Box alignItems={'center'} justifyContent={'end'}>
 								{/* <Box>{tvs}</Box> */}
 								<Box fontFamily="data">{balance}</Box>
 							</Box>
 						</Box>
 					</AccordionButton>
-					{holders && holders.length > 0
-						? _.sortBy(holders, (e) => {
+					{signallers && signallers.length > 0
+						? _.sortBy(signallers, (e) => {
 								return -1 * Number(e.amount);
 						  }).map((holder) => {
 								return (
@@ -134,7 +135,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 				flexDirection={"column"}
 				justifyContent={"center"}
 			>
-				<Signaller meme={name} />
+				<Signaller meme={value} />
 			</Box>
 		</Box>
 	);

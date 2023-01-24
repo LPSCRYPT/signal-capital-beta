@@ -3,7 +3,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import SignalList from "./components/SignalList";
 import KeeperList from "./components/Keepers";
-import YourList from "./components/YourList";
 import {
 	Tabs,
 	TabList,
@@ -87,8 +86,7 @@ function App() {
 						<TabPanel>
 							<Keepers />
 						</TabPanel>
-						<TabPanel>
-							<YourList currentTime={currentTime} />
+						<TabPanel>YourList
 						</TabPanel>
 					</TabPanels>
 				</Tabs>
