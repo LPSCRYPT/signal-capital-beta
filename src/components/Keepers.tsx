@@ -12,7 +12,7 @@ import {
 import "../App.css";
 import { useSubgraph } from "../views/subgraph";
 import { ethers } from "ethers";
-import { ENSName } from "react-ens-name";
+import { ENSName, AddressDisplayEnum } from "react-ens-name";
 
 const Keepers = () => {
 	const { friends, signals } = useSubgraph();
@@ -39,6 +39,7 @@ const Keepers = () => {
 													<ENSName
 														address={friend["user"]["id"]}
 														withEllipses
+														displayType={AddressDisplayEnum.FIRST4_LAST4}
 													/>
 												</Box>
 												<Box>
