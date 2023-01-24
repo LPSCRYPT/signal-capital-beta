@@ -19,6 +19,7 @@ export const useSubgraph = () => {
 			availablePoints
 			signals {
 				id
+				value
 				balance
 				lastUpdatedTime
 			  }
