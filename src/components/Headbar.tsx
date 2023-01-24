@@ -10,9 +10,9 @@ import {
 	AvatarBadge,
 	Stack,
 	Switch,
-	Text,
+	Text
 } from "@chakra-ui/react";
-import { AiOutlineDisconnect, AiOutlineApi } from 'react-icons/ai';
+import { AiOutlineDisconnect, AiOutlineApi } from "react-icons/ai";
 import { useAddAccount } from "../contract/calls/sigcapfunctions";
 import { useFriendInfo } from "../views/subgraph";
 import Logo from "../assets/darksignal_circle.png";
@@ -21,7 +21,7 @@ import { useColorMode } from "@chakra-ui/color-mode";
 
 const Headbar = () => {
 	const { address } = useAccount();
-	
+
 	const { connect } = useConnect({
 		connector: new InjectedConnector()
 	});
@@ -30,8 +30,8 @@ const Headbar = () => {
 
 	const friend = useFriendInfo(address);
 	const { data, isError, isLoading } = useEnsName({
-		address: address,
-	  })
+		address: address
+	});
 
 	return (
 		<Box
@@ -44,56 +44,84 @@ const Headbar = () => {
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box minW={["100%", "100%", "33%", null]} display={"flex"} alignItems={"center"}>
+			<Box
+				minW={["100%", "100%", "33%", null]}
+				display={"flex"}
+				alignItems={"center"}
+			>
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
 				<Heading ml={5} fontSize="48px" fontWeight="100">
-					<span style={{color: "yellow"}}>E</span>
-					<span style={{color: "orange"}}>S</span>
-					<span style={{color: "red"}}>P</span>
+					<span style={{ color: "yellow" }}>E</span>
+					<span style={{ color: "orange" }}>S</span>
+					<span style={{ color: "red" }}>P</span>
 				</Heading>
-				<Heading size="xs" color="rgba(255,255,255,0.5)">ALPHA</Heading>
+				<Heading size="xs" color="rgba(255,255,255,0.5)">
+					ALPHA
+				</Heading>
 			</Box>
 			<Box minW="33%">
-				<Text py={3} fontSize="xs" style={{ color: 'red', textAlign: "center", border: "2px solid red"}}>(!) Be sure you are on <b>Gnosis Chain</b></Text>
+				<Text
+					py={3}
+					fontSize="xs"
+					style={{ color: "red", textAlign: "center", border: "2px solid red" }}
+				>
+					(!) Be sure you are on <b>Gnosis Chain</b>
+				</Text>
 			</Box>
-			
+
 			<Box
 				display={"flex"}
 				alignItems={"center"}
 				justifyContent={"flex-end"}
 				minW="33%"
 			>
-				<Button variant="ghost" style={{ fontSize: "18px", marginLeft: "5px" }} onClick={toggleColorMode}>
+				<Button
+					variant="ghost"
+					style={{ fontSize: "18px", marginLeft: "5px" }}
+					onClick={toggleColorMode}
+				>
 					{colorMode === "light" ? " 🌙" : "🌞"}
 				</Button>
 				{address ? (
 					<Box
-					display={"flex"}
-					w="100%"
-					alignItems={"center"}
-					justifyContent={"flex-end"}
+						display={"flex"}
+						w="100%"
+						alignItems={"center"}
+						justifyContent={"flex-end"}
 					>
 						<Box className="Points" marginRight={2}>
-						{friend.length > 0 ? `${friend[0]["points"]}` : 0}
-						<br />
-						<span>
-							<small>/1000</small>
-						</span>
+							{friend.length > 0 ? `${friend[0]["availablePoints"]}` : 0}
+							<br />
+							<span>
+								<small>
+									/`${friend.length > 0 ? friend[0]["totalPoints"] : 0}`
+								</small>
+							</span>
 						</Box>
 						<Box>
 							<Button onClick={() => disconnect()}>
-								
-							{/* <Text>{friend.length > 0 ? friend[0]["name"] : address.slice(0,6) + '...' + address.slice(-4)}</Text> */}
-							{ isLoading && (<Box fontSize="xs">fetching ENS</Box>)}
-							{ isError && (<Box>Error fetching ENS</Box>)}
-							{ data ? (<Box>{data}</Box>) : (<Box>{address.slice(0,6) + '...' + address.slice(-4)}</Box>)}
-							<Box ml={3}><AiOutlineDisconnect /></Box>
+								{/* <Text>{friend.length > 0 ? friend[0]["name"] : address.slice(0,6) + '...' + address.slice(-4)}</Text> */}
+								{isLoading && <Box fontSize="xs">fetching ENS</Box>}
+								{isError && <Box>Error fetching ENS</Box>}
+								{data ? (
+									<Box>{data}</Box>
+								) : (
+									<Box>{address.slice(0, 6) + "..." + address.slice(-4)}</Box>
+								)}
+								<Box ml={3}>
+									<AiOutlineDisconnect />
+								</Box>
 							</Button>
 						</Box>
 					</Box>
-					) : (
+				) : (
 					<Box>
-						<Button onClick={() => connect()}>Connect <Box ml={3} color="white"><AiOutlineApi /></Box></Button>
+						<Button onClick={() => connect()}>
+							Connect{" "}
+							<Box ml={3} color="white">
+								<AiOutlineApi />
+							</Box>
+						</Button>
 					</Box>
 				)}
 			</Box>

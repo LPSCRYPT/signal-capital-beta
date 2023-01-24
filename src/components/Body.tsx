@@ -9,7 +9,7 @@ import NewSignal from "./NewSignal";
 const Body = () => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
-	console.log({address})
+	console.log({ address });
 	const { connect } = useConnect({
 		connector: new InjectedConnector()
 	});
@@ -17,19 +17,19 @@ const Body = () => {
 	const friend = useFriendInfo(address);
 
 	const handleConnect = () => {
-		console.log("Connecting")
-		connect()
-	}
+		console.log("Connecting");
+		connect();
+	};
 	const handleDisconnect = () => {
-		console.log("Disconnecting")
-		disconnect()
-	}
+		console.log("Disconnecting");
+		disconnect();
+	};
 	return (
 		<Box
 			display={"flex"}
 			flexDirection={"row"}
-			flexWrap={'wrap'}
-			justifyContent={'center'}
+			flexWrap={"wrap"}
+			justifyContent={"center"}
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.100"}
@@ -44,7 +44,6 @@ const Body = () => {
 				p={50}
 				maxWidth={"600px"}
 				alignItems={"start"}
-				
 			>
 				{!address ? (
 					<Box>
@@ -53,7 +52,9 @@ const Body = () => {
 					</Box>
 				) : (
 					<Box>
-						<Heading my={6} fontWeight="900" fontSize={"4xl"}>DXDAO</Heading>
+						<Heading my={6} fontWeight="900" fontSize={"4xl"}>
+							DXDAO
+						</Heading>
 						{/* <Text fontSize="xl">
 							Welkommen,{" "}
 							<strong>
@@ -63,11 +64,12 @@ const Body = () => {
 						</Text> */}
 						<Text fontSize="sm" mt={3}>
 							{friend && friend.length > 0
-								? `You have ${friend[0]["points"]} of 1000 points available to Signal.`
+								? `You have ${friend[0]["availablePoints"]} of ${friend[0]["totalPoints"]} points available to Signal.`
 								: null}
 						</Text>
 						<Text fontSize="sm" mt={3}>
-							Allocate your signal points to existing signals or add one of your own.
+							Allocate your signal points to existing signals or add one of your
+							own.
 						</Text>
 						<Box mt={6}>
 							<Button onClick={handleDisconnect}>Disconnect</Button>
@@ -76,7 +78,7 @@ const Body = () => {
 					</Box>
 				)}
 			</Box>
-			{ address ? (
+			{address ? (
 				<Box
 					display={"flex"}
 					flexDirection={"column"}

@@ -12,7 +12,7 @@ import {
 import "../App.css";
 import { useSubgraph } from "../views/subgraph";
 import { ethers } from "ethers";
-import { ENSName } from 'react-ens-name';
+import { ENSName } from "react-ens-name";
 
 const Keepers = () => {
 	const { friends, signals } = useSubgraph();
@@ -35,8 +35,16 @@ const Keepers = () => {
 												display={"flex"}
 												justifyContent={"space-between"}
 											>
-												<Box><ENSName address={friend["id"]} withEllipses /></Box>
-												<Box>{1000 - Number(friend["points"])}</Box>
+												<Box>
+													<ENSName
+														address={friend["user"]["id"]}
+														withEllipses
+													/>
+												</Box>
+												<Box>
+													{Number(friend["totalPoints"]) -
+														Number(friend["availablePoints"])}
+												</Box>
 											</Box>
 											<AccordionIcon />
 										</AccordionButton>
@@ -46,10 +54,10 @@ const Keepers = () => {
 										// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 										// @ts-ignore
 										friend &&
-										friend["holdings"] &&
+										friend["signals"] &&
 										// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 										// @ts-ignore
-										friend["holdings"].length > 0
+										friend["signals"].length > 0
 											? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 											  // @ts-ignore
 											  //   friend["holdings"].map((holding) => {
@@ -77,11 +85,11 @@ const Keepers = () => {
 											  // 			</AccordionPanel>
 											  // 		);
 											  //   })
-											  _.sortBy(friend["holdings"], (e) => {
+											  _.sortBy(friend["signals"], (e) => {
 													// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 													// @ts-ignore
-													return -1 * Number(e.amount);
-											  }).map((holding) => {
+													return -1 * Number(e.balance);
+											  }).map((signal) => {
 													return (
 														<AccordionPanel pb={4}>
 															<Box
@@ -98,19 +106,14 @@ const Keepers = () => {
 																		{
 																			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 																			// @ts-ignore
-																			holding.id.substring(
-																				0,
-																				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-																				// @ts-ignore
-																				holding.id.length - 43
-																			)
+																			signal.signal.value
 																		}
 																	</Box>
 																	<Box>
 																		{
 																			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 																			// @ts-ignore
-																			holding.amount
+																			signal.balance
 																		}
 																	</Box>
 																</Box>

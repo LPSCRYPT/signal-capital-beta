@@ -19,7 +19,10 @@ export const useSubgraph = () => {
 			availablePoints
 			signals {
 				id
-				value
+				signal {
+					id
+					value
+				}
 				balance
 				lastUpdatedTime
 			  }
@@ -114,7 +117,7 @@ export const useSubgraph = () => {
 export const useFriendInfo = (address: string | undefined) => {
 	const FRIEND_QUERY = `
     {
-		userStreams(where: {id: ${`1 ` + address?.toLowerCase()}}) {
+		userStreams(where: {id: "${`1 ` + address?.toLowerCase()}"}) {
 			id
 			user {
 				id
@@ -124,6 +127,10 @@ export const useFriendInfo = (address: string | undefined) => {
 			availablePoints
 			signals {
 				id
+				signal {
+					id
+					value
+				}
 				balance
 				lastUpdatedTime
 			  }

@@ -13,7 +13,7 @@ import {
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount, useEnsName } from "wagmi";
-import { ENSName } from 'react-ens-name';
+import { ENSName } from "react-ens-name";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
@@ -42,51 +42,54 @@ const SignalItem: React.FC<SignalInterface> = ({
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 
-	const balanceNumber: number = parseInt(balance.replace(/,/g, ""))
-	const relativeColor: number = (balanceNumber / maxSignals) * 100
- 
+	const balanceNumber: number = parseInt(balance.replace(/,/g, ""));
+	const relativeColor: number = (balanceNumber / maxSignals) * 100;
+
 	function getRelativeColor() {
 		if (relativeColor >= 90) {
-			return '#FF0000';
+			return "#FF0000";
 		}
 		if (relativeColor < 90 && relativeColor >= 70) {
-			return '#FF7A00';
+			return "#FF7A00";
 		}
 		if (relativeColor < 70 && relativeColor >= 30) {
-			return '#F3BF06';
+			return "#F3BF06";
 		}
 		if (relativeColor < 30 && relativeColor >= 10) {
-			return '#1DD291';
+			return "#1DD291";
 		}
 		if (relativeColor < 10 && relativeColor > 0) {
-			return '#68DDFD';
+			return "#68DDFD";
 		}
-		return '#ccc';
-	};
-
+		return "#ccc";
+	}
 
 	return (
 		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
 			<Accordion allowToggle w={"90%"}>
-				<AccordionItem display={"flex"} flexDirection={"column"} borderWidth="0px">
+				<AccordionItem
+					display={"flex"}
+					flexDirection={"column"}
+					borderWidth="0px"
+				>
 					<AccordionButton
 						borderTopWidth="2px"
 						borderTopStyle="solid"
-						borderTopColor={ getRelativeColor()} 
-						color={ getRelativeColor()} 					
-							_expanded={{
-								borderTopWidth:"1px",
-							}}
+						borderTopColor={getRelativeColor()}
+						color={getRelativeColor()}
+						_expanded={{
+							borderTopWidth: "1px"
+						}}
 					>
 						<Box
 							display={"flex"}
 							w={"100%"}
-							justifyContent={'space-between'}
-							alignItems={'center'}
+							justifyContent={"space-between"}
+							alignItems={"center"}
 							py={5}
 						>
-							<Box fontWeight={'900'}>{value}</Box>
-							<Box alignItems={'center'} justifyContent={'end'}>
+							<Box fontWeight={"900"}>{value}</Box>
+							<Box alignItems={"center"} justifyContent={"end"}>
 								{/* <Box>{tvs}</Box> */}
 								<Box fontFamily="data">{balance}</Box>
 							</Box>
@@ -94,7 +97,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 					</AccordionButton>
 					{signallers && signallers.length > 0
 						? _.sortBy(signallers, (e) => {
-								return -1 * Number(e.amount);
+								return -1 * Number(e.balance);
 						  }).map((holder) => {
 								return (
 									<AccordionPanel>
@@ -110,8 +113,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 												alignItems={"center"}
 												w={"80%"}
 											>
-												<ENSName address={holder.friend.id} withEllipses />
-											
+												<ENSName address={holder.user.user.id} withEllipses />
 											</Box>
 											{/* <Box>
 												{calcTVS(
@@ -121,7 +123,9 @@ const SignalItem: React.FC<SignalInterface> = ({
 													Number(holder["timeValueSignal"])
 												).toLocaleString("en-US")}
 											</Box> */}
-											<Box alignSelf={"flex-end"} fontFamily="data">{holder.amount}</Box>
+											<Box alignSelf={"flex-end"} fontFamily="data">
+												{holder.balance}
+											</Box>
 										</Box>
 									</AccordionPanel>
 								);

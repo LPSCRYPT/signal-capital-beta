@@ -28,9 +28,8 @@ interface SignalListProps {
 }
 
 interface Signal {
-	balance: string
+	balance: string;
 }
-
 
 const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
@@ -42,10 +41,17 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	console.log("signals");
 	console.log(signals);
 
-	const sumSignals: number = signals.reduce((acc: number, next: Signal) => acc + parseInt(next.balance), 0)
-	const maxSignals: number = signals.reduce((acc: number, next: Signal) => acc > parseInt(next.balance) ? acc : parseInt(next.balance), 0)
+	const sumSignals: number = signals.reduce(
+		(acc: number, next: Signal) => acc + parseInt(next.balance),
+		0
+	);
+	const maxSignals: number = signals.reduce(
+		(acc: number, next: Signal) =>
+			acc > parseInt(next.balance) ? acc : parseInt(next.balance),
+		0
+	);
 
-	console.log({maxSignals, sumSignals})
+	console.log({ maxSignals, sumSignals });
 	const [currentButton, setCurrentButton] = useState(ButtonPress.descBal);
 
 	const [signalsList, setSignalsList] = useState([]);
@@ -132,9 +138,21 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	// }, [signalsList, currentButton]);
 
 	return (
-		<Box w={"100%"} maxW={'1200px'}>
-			<Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} w={'100%'} flexWrap={'wrap'}>
-				<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} w={'72%'} pb={5}>
+		<Box w={"100%"} maxW={"1200px"}>
+			<Box
+				display={"flex"}
+				alignItems={"center"}
+				justifyContent={"space-between"}
+				w={"100%"}
+				flexWrap={"wrap"}
+			>
+				<Box
+					display={"flex"}
+					justifyContent={"space-between"}
+					alignItems={"center"}
+					w={"72%"}
+					pb={5}
+				>
 					<Box>Signal Name</Box>
 				</Box>
 				<Box
@@ -172,9 +190,8 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 							<TiArrowSortedDown />
 						</Button>
 					</Box>
-					</Box >
-					<Box pb={5}>Allocate</Box>
-				
+				</Box>
+				<Box pb={5}>Allocate</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal, index) => {
