@@ -18,6 +18,9 @@ import {
 	useSignalExisting,
 	useWithdrawPoints
 } from "../contract/calls/sigcapfunctions";
+import { execute } from "../contract/calls/routerexecute";
+import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
+import { espgoerli } from "../ref/addresses";
 
 interface SignallerInterface {
 	meme: string;
@@ -30,8 +33,28 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 	const [existingSignalAmount, setexistingSignalAmount] = useState(0);
 	const [withdrawPointsAmount, setwithdrawPointsAmount] = useState(0);
 
-	const fireSignalExising = useSignalExisting(meme, existingSignalAmount);
-	const fireWithdrawPoints = useWithdrawPoints(meme, withdrawPointsAmount);
+	// const fireSignalExising = useSignalExisting(meme, existingSignalAmount);
+	// const fireWithdrawPoints = useWithdrawPoints(meme, withdrawPointsAmount);
+
+	const fireSignalExising = execute(
+		useBuildDxDSignal(
+			1,
+			espgoerli.toplevelsystem,
+			existingSignalAmount,
+			meme,
+			true
+		)
+	);
+
+	const fireWithdrawPoints = execute(
+		useBuildDxDSignal(
+			1,
+			espgoerli.toplevelsystem,
+			withdrawPointsAmount,
+			meme,
+			false
+		)
+	);
 
 	// useEffect(()=> {
 	//   setwithdrawPointsText(meme);

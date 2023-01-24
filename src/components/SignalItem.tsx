@@ -13,7 +13,7 @@ import {
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount, useEnsName } from "wagmi";
-import { ENSName } from "react-ens-name";
+import { ENSName, AddressDisplayEnum } from "react-ens-name";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import _ from "lodash";
@@ -136,8 +136,11 @@ const SignalItem: React.FC<SignalInterface> = ({
 												alignItems={"center"}
 												w={"80%"}
 											>
-												<ENSName address={holder.user.user.id} withEllipses />
-												break {holder.user.user.id}
+												<ENSName
+													address={holder.user.user.id}
+													withEllipses
+													displayType={AddressDisplayEnum.FIRST4_LAST4}
+												/>
 											</Box>
 											{/* <Box>
 												{calcTVS(
