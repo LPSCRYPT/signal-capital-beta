@@ -62,7 +62,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 	// },[meme])
 
 	return (
-		<Box className="Signaller" alignSelf="end">
+		<Box className="Signaller" alignSelf="start">
 			<Popover>
 				<PopoverTrigger>
 					<Button marginRight={1}>-</Button>
