@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
+import {
+	useAccount,
+	useConnect,
+	useDisconnect,
+	useEnsName,
+	useContractRead,
+	useProvider
+} from "wagmi";
+import { readContract } from "@wagmi/core";
+import { ethers } from "ethers";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import {
 	Box,
@@ -18,6 +27,13 @@ import { useFriendInfo } from "../views/subgraph";
 import Logo from "../assets/darksignal_circle.png";
 import "../App.css";
 import { useColorMode } from "@chakra-ui/color-mode";
+// import { useMemberPoints } from "../contract/calls/memberpoints.txt";
+// import DxDMemberPointsRegistry from "../contract/abis/DxDMemberPointsRegistry.json";
+import { espgoerli } from "../ref/addresses";
+import { BigNumber, Bytes } from "ethers";
+import { chainId } from "../ref/chain";
+import memberpointsregistry from "../contract/abis/DxDMemberPointsRegistry.json";
+const DxDMemberPointsRegistry = require("../contract/abis/DxDMemberPointsRegistry.json");
 
 const Headbar = () => {
 	const { address } = useAccount();
@@ -33,6 +49,56 @@ const Headbar = () => {
 	const { data, isError, isLoading } = useEnsName({
 		address: address
 	});
+
+	// const []
+
+	// const { data: user } = useMemberPoints(address, 1);
+
+	// const provider = useProvider();
+
+	// const read = new ethers.Contract(
+	// 	espgoerli.memberpointsregistry,
+	// 	memberpointsregistry,
+	// 	provider
+	// );
+
+	// const readChain = async () => {
+	// 	console.log("READCHAIN");
+	// 	const { data } = await readContract({
+	// 		addressOrName: espgoerli.memberpointsregistry,
+	// 		contractInterface: DxDMemberPointsRegistry,
+	// 		functionName: "getUserPoints",
+	// 		chainId: chainId.goerli,
+	// 		// overrides: { gasLimit: 1e7 },
+	// 		args: [1, address]
+	// 	});
+	// 	console.log("CONTRACT DATA CALL ", data);
+	// };
+
+	// const [addr, setAddr] = useState(" ");
+
+	// useEffect(() => {
+	// 	if (address && address.length == 42 && address != addr) {
+	// 		setAddr(address);
+	// 		const triggerChain = async () => {
+	// 			await readChain();
+	// 		};
+	// 		triggerChain();
+	// 	}
+	// }, [address]);
+	// const [addr, setaddr] = useState("");
+
+	// useEffect(() => {
+	// 	if (address && address.length == 42 && address != addr) {
+	// 		setaddr(address);
+	// 		const fetchData = async () => {
+	// 			const x = await read.getUserPoints(1, address);
+	// 		};
+	// 		fetchData().catch(console.error);
+	// 	}
+	// }, [address]);
+
+	// const { data: points } = useMemberPoints(address!, 1);
 
 	return (
 		<Box
@@ -60,7 +126,7 @@ const Headbar = () => {
 					ALPHA
 				</Heading>
 			</Box>
-			<Box minW="33%">
+			{/* <Box minW="33%">
 				<Text
 					py={3}
 					fontSize="xs"
@@ -68,7 +134,7 @@ const Headbar = () => {
 				>
 					(!) Be sure you are on <b>Gnosis Chain</b>
 				</Text>
-			</Box>
+			</Box> */}
 
 			<Box
 				display={"flex"}
