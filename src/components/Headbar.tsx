@@ -63,19 +63,6 @@ const Headbar = () => {
 	// 	provider
 	// );
 
-	const readChain = async (abi: any) => {
-		console.log('before read')
-		const data = await readContract({
-				addressOrName: "0xdac17f958d2ee523a2206206994597c13d831ec7",
-				contractInterface: abi,
-				functionName: "getOwner",
-				chainId: 1,
-			});
-		console.log('data',data);
-		console.log('after read')
-	}
-
-
 	// 	// const data = await read.getUserPoints(1, address);
 	// 	console.log("CONTRACT DATA CALL ", data);
 	// };
@@ -93,6 +80,18 @@ const Headbar = () => {
 	// useEffect(() => {
 	// 	console.log("POINTS ", points);
 	// }, [points]);
+
+	const readChain = async (abi: any) => {
+		console.log('before read')
+		const data = await readContract({
+				addressOrName: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+				contractInterface: abi,
+				functionName: "getOwner",
+				chainId: 1,
+			});
+		console.log('data',data);
+		console.log('after read')
+	}
 
 	const [addr, setAddr] = useState(" ");
 
