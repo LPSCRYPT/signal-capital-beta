@@ -36,10 +36,10 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
 
-	console.log("friends");
-	console.log(friends);
-	console.log("signals");
-	console.log(signals);
+	// console.log("friends");
+	// console.log(friends);
+	// console.log("signals");
+	// console.log(signals);
 
 	const sumSignals: number = signals.reduce(
 		(acc: number, next: Signal) => acc + parseInt(next.balance),

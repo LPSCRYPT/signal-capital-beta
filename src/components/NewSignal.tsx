@@ -4,7 +4,7 @@ import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
 import { useAddNewSignal } from "../contract/calls/sigcapfunctions";
-import { execute } from "../contract/calls/routerexecute";
+import { useExecute } from "../contract/calls/routerexecute";
 import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
 import { espgoerli } from "../ref/addresses";
 
@@ -21,7 +21,7 @@ const NewSignal = () => {
 		addNewSignalAmount
 	);
 
-	const fireExecute = execute(
+	const fireExecute = useExecute(
 		useBuildDxDSignal(
 			1,
 			espgoerli.toplevelsystem,

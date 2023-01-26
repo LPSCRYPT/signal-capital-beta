@@ -9,7 +9,7 @@ const enum callSignature {
 	execute = "execute"
 }
 
-export const execute = (_data: string) => {
+export const useExecute = (_data: string) => {
 	const args = useMemo(() => [_data], [_data]);
 
 	const { data, isError, isLoading, writeAsync } = useContractWrite({

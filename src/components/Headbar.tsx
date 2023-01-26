@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
 	useAccount,
 	useConnect,
@@ -33,6 +33,7 @@ import { espgoerli } from "../ref/addresses";
 import { BigNumber, Bytes } from "ethers";
 import { chainId } from "../ref/chain";
 import memberpointsregistry from "../contract/abis/DxDMemberPointsRegistry.json";
+import erc20abi from "../contract/abis/erc20abi.json";
 const DxDMemberPointsRegistry = require("../contract/abis/DxDMemberPointsRegistry.json");
 
 const Headbar = () => {
@@ -62,31 +63,51 @@ const Headbar = () => {
 	// 	provider
 	// );
 
-	// const readChain = async () => {
-	// 	console.log("READCHAIN");
-	// 	const { data } = await readContract({
-	// 		addressOrName: espgoerli.memberpointsregistry,
-	// 		contractInterface: DxDMemberPointsRegistry,
-	// 		functionName: "getUserPoints",
-	// 		chainId: chainId.goerli,
-	// 		// overrides: { gasLimit: 1e7 },
-	// 		args: [1, address]
-	// 	});
+	const readChain = async (abi: any) => {
+		console.log('before read')
+		const data = await readContract({
+				addressOrName: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+				contractInterface: abi,
+				functionName: "getOwner",
+				chainId: 1,
+			});
+		console.log('data',data);
+		console.log('after read')
+	}
+
+
+	// 	// const data = await read.getUserPoints(1, address);
 	// 	console.log("CONTRACT DATA CALL ", data);
 	// };
 
-	// const [addr, setAddr] = useState(" ");
+	// const { data: points } = useContractRead({
+	// 	addressOrName: espgoerli.memberpointsregistry,
+	// 	contractInterface: DxDMemberPointsRegistry,
+	// 	functionName: "getUserPoints",
+	// 	chainId: chainId.goerli,
+	// 	cacheOnBlock: true,
+	// 	// overrides: { gasLimit: 1e7 },
+	// 	args: [1, address]
+	// });
 
 	// useEffect(() => {
-	// 	if (address && address.length == 42 && address != addr) {
-	// 		setAddr(address);
-	// 		const triggerChain = async () => {
-	// 			await readChain();
-	// 		};
-	// 		triggerChain();
-	// 	}
-	// }, [address]);
-	// const [addr, setaddr] = useState("");
+	// 	console.log("POINTS ", points);
+	// }, [points]);
+
+	const [addr, setAddr] = useState(" ");
+
+	const [ticker, setticker] = useState(false);
+
+	useEffect(() => {
+		if (address && address.length == 42 && addr != address && ticker) {
+			setAddr(address);
+			const triggerChain = async () => {
+				await readChain(erc20abi);
+			};
+			triggerChain();
+			console.log("TICKED");
+		}
+	}, [ticker]);
 
 	// useEffect(() => {
 	// 	if (address && address.length == 42 && address != addr) {
@@ -125,6 +146,7 @@ const Headbar = () => {
 				<Heading size="xs" color="rgba(255,255,255,0.5)">
 					ALPHA
 				</Heading>
+				<Button onClick={() => setticker(!ticker)}>press me</Button>
 			</Box>
 			{/* <Box minW="33%">
 				<Text
@@ -196,4 +218,4 @@ const Headbar = () => {
 	);
 };
 
-export default Headbar;
+export default React.memo(Headbar);

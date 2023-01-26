@@ -66,7 +66,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 		}
 	}, [address, signallers]);
 
-	console.log("found " + found);
+	// console.log("found " + found);
 
 	function getRelativeColor() {
 		if (relativeColor >= 90) {
