@@ -62,9 +62,9 @@ const Body = () => {
 								{friend && friend.length > 0 ? friend[0]["name"] : address}
 							</strong>
 						</Text> */}
-						<Text fontSize="sm" mt={3}>
+						<Text fontSize="md" mt={3}>
 							{friend && friend.length > 0
-								? `You have ${friend[0]["availablePoints"]} of ${friend[0]["totalPoints"]} points available to Signal.`
+								? `You have ${friend[0]["availablePoints"]} of ${friend[0]["totalPoints"]} points available to signal.`
 								: null}
 						</Text>
 						<Text fontSize="sm" mt={3}>

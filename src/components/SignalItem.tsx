@@ -88,8 +88,8 @@ const SignalItem: React.FC<SignalInterface> = ({
 	}
 
 	return (
-		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
-			<Accordion allowToggle w={"90%"}>
+		<Box display={"flex"} w={'100%'} justifyContent={"space-between"}>
+			<Accordion allowToggle w={'90%'}>
 				<AccordionItem
 					display={"flex"}
 					flexDirection={"column"}
@@ -161,12 +161,14 @@ const SignalItem: React.FC<SignalInterface> = ({
 				</AccordionItem>
 			</Accordion>
 			<Box
-				w={"100px"}
+				w={"200px"}
 				display={"flex"}
-				flexDirection={"column"}
-				justifyContent={"center"}
+				flexDirection={"row"}
+				justifyContent={"end"}
+				alignItems={'start'}
+				mt={6}
 			>
-				{<Box fontSize="sm">{found}</Box>}
+				{<Box fontSize="sm" fontFamily="data" mt={2} mr={3} color={found ? 'whiteAlpha.500' : 'whiteAlpha.100'}>{found || '–'}</Box>}
 				<Signaller meme={value} />
 			</Box>
 		</Box>

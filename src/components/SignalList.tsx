@@ -146,52 +146,45 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				w={"100%"}
 				flexWrap={"wrap"}
 			>
-				<Box
-					display={"flex"}
-					justifyContent={"space-between"}
-					alignItems={"center"}
-					w={"72%"}
-					pb={5}
-				>
+				<Box display={'flex'} w={"calc(100% - 200px)"} alignItems={'center'} justifyContent={'space-between'}>
 					<Box>Signal Name</Box>
-				</Box>
-				<Box
-					display={"flex"}
-					alignItems={"center"}
-					justifyContent={"end"}
-					pb={5}
-				>
-					<Box>Current Signal </Box>
-					<Box display={"flex"} flexDirection={"column"} pl={2}>
-						<Button
-							variant="ghost"
-							size="xs"
-							onClick={() => setCurrentButton(ButtonPress.ascBal)}
-							color={currentButton === 3 ? "#5d5fef" : ""}
-							border={
-								currentButton == 3
-									? "#5d5fef 1px solid"
-									: "rgba(255,255,255,0) 1px solid"
-							}
-						>
-							<TiArrowSortedUp />
-						</Button>
-						<Button
-							variant="ghost"
-							size="xs"
-							onClick={() => setCurrentButton(ButtonPress.descBal)}
-							color={currentButton == 4 ? "#5d5fef" : ""}
-							border={
-								currentButton == 4
-									? "#5d5fef 1px solid"
-									: "rgba(255,255,255,0) 1px solid"
-							}
-						>
-							<TiArrowSortedDown />
-						</Button>
+					<Box
+						display={"flex"}
+						alignItems={"center"}
+						pb={5}
+					>
+						<Box>Current Signal </Box>
+						<Box display={"flex"} flexDirection={"column"} pl={2}>
+							<Button
+								variant="ghost"
+								size="xs"
+								onClick={() => setCurrentButton(ButtonPress.ascBal)}
+								color={currentButton === 3 ? "#5d5fef" : ""}
+								border={
+									currentButton == 3
+										? "#5d5fef 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+							>
+								<TiArrowSortedUp />
+							</Button>
+							<Button
+								variant="ghost"
+								size="xs"
+								onClick={() => setCurrentButton(ButtonPress.descBal)}
+								color={currentButton == 4 ? "#5d5fef" : ""}
+								border={
+									currentButton == 4
+										? "#5d5fef 1px solid"
+										: "rgba(255,255,255,0) 1px solid"
+								}
+							>
+								<TiArrowSortedDown />
+							</Button>
+						</Box>
 					</Box>
 				</Box>
-				<Box pb={5}>Allocate</Box>
+				<Box w="200px" textAlign="right" pb={5}>Allocate</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal, index) => {
