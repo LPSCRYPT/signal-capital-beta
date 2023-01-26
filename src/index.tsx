@@ -19,11 +19,11 @@ const defaultOptions: any = {
 	}
 };
 
-const apolloClient = new ApolloClient({
-	uri: subgraphUri,
-	cache: new InMemoryCache(),
-	defaultOptions: defaultOptions
-});
+// const apolloClient = new ApolloClient({
+// 	uri: subgraphUri,
+// 	cache: new InMemoryCache(),
+// 	defaultOptions: defaultOptions
+// });
 
 const wagmiClient = createClient({
 	autoConnect: true,
@@ -36,13 +36,13 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		{/* <FlashlessScript theme={theme} /> */}
-		<ApolloProvider client={apolloClient}>
-			<WagmiConfig client={wagmiClient}>
-				<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
-					<App />
-				</ChakraProvider>
-			</WagmiConfig>
-		</ApolloProvider>
+		{/* <ApolloProvider client={apolloClient}> */}
+		<WagmiConfig client={wagmiClient}>
+			<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
+				<App />
+			</ChakraProvider>
+		</WagmiConfig>
+		{/* </ApolloProvider> */}
 	</React.StrictMode>
 );
 
