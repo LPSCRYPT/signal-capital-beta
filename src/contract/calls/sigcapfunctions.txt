@@ -15,8 +15,9 @@ export const useAddAccount = (name: string) => {
 	const args = useMemo(() => [name], [name]);
 
 	const { data, isError, isLoading, writeAsync } = useContractWrite({
-		addressOrName: sigcapAddress,
-		contractInterface: sigcapABI,
+		//@ts-ignore
+		address: sigcapAddress,
+		abi: sigcapABI,
 		functionName: callSignature.addAccount,
 		// overrides: { gasLimit: 1e7 },
 		args: args,

@@ -13,8 +13,10 @@ export const useExecute = (_data: string) => {
 	const args = useMemo(() => [_data], [_data]);
 
 	const { data, isError, isLoading, writeAsync } = useContractWrite({
-		addressOrName: espgoerli.router,
-		contractInterface: routerABI,
+		mode: "recklesslyUnprepared",
+		//@ts-ignore
+		address: espgoerli.router ? espgoerli.router : undefined,
+		abi: routerABI,
 		functionName: callSignature.execute,
 		chainId: chainId.goerli,
 		// overrides: { gasLimit: 1e7 },
@@ -28,7 +30,7 @@ export const useExecute = (_data: string) => {
 	});
 	const fireExecute = useCallback(async () => {
 		try {
-			await writeAsync();
+			await writeAsync?.();
 		} catch (e) {
 			console.log(e);
 		}

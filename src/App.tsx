@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import Headbar from "./components/Headbar";
 import Body from "./components/Body";
-import TestingFunctions from "./components/TestingFunctions";
 import { Box, Button } from "@chakra-ui/react";
 import Keepers from "./components/Keepers";
 import vitalyk1 from "./assets/vitalyk1.png";
@@ -30,7 +29,7 @@ const erc20abi = require("./contract/abis/erc20abi.json");
 
 function App() {
 	const [shake, setShake] = useState(false);
-	
+
 	// const [counter, setCounter] = useState(0);
 	// const [currentTime, setCurrentTime] = useState(
 	// 	Math.floor(new Date().getTime() / 1000)
@@ -52,13 +51,13 @@ function App() {
 
 	// const readit = async () => {
 	// 	// console.log('readbegin');
-		// // const resp = await contract.getOwner();
-		// const resp = await readContract({
-		// addressOrName: espgoerli.memberpointsregistry,
-		// contractInterface: DxDMemberPointsRegistry,
-		// functionName: "getUserPoints",
-		// chainId: chainId.goerli,
-		// })
+	// // const resp = await contract.getOwner();
+	// const resp = await readContract({
+	// addressOrName: espgoerli.memberpointsregistry,
+	// contractInterface: DxDMemberPointsRegistry,
+	// functionName: "getUserPoints",
+	// chainId: chainId.goerli,
+	// })
 	// 	console.log('READ ADDRESS ',resp);
 
 	// }

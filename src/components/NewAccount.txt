@@ -3,7 +3,7 @@ import { Box, Button, Input } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
-import { useAddAccount } from "../contract/calls/sigcapfunctions";
+// import { useAddAccount } from "../contract/calls/sigcapfunctions.txt";
 
 /**
  *
@@ -17,7 +17,7 @@ const NewSignal = () => {
 
 	const [addAccountInput, setaddAccountInput] = useState("");
 
-	const fireAddAccount = useAddAccount(addAccountInput);
+	// const fireAddAccount = useAddAccount(addAccountInput);
 
 	return (
 		<Box display={"flex"} flexDirection={"column"} h={"100%"}>
@@ -29,9 +29,9 @@ const NewSignal = () => {
 				value={addAccountInput}
 				onChange={(e) => setaddAccountInput(e.target.value)}
 			></Input>
-			<Button onClick={() => fireAddAccount()} border={"1px black solid"}>
+			{/* <Button onClick={() => fireAddAccount()} border={"1px black solid"}>
 				Register your account
-			</Button>{" "}
+			</Button>{" "} */}
 		</Box>
 	);
 };

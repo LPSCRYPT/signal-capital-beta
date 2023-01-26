@@ -27,7 +27,7 @@ const apolloClient = new ApolloClient({
 
 const wagmiClient = createClient({
 	autoConnect: true,
-	provider: getDefaultProvider()
+	provider: getDefaultProvider("goerli", { pollingInterval: 15000 })
 });
 
 const root = ReactDOM.createRoot(

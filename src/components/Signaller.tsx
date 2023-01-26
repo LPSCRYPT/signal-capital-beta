@@ -14,10 +14,6 @@ import {
 import { useSubgraph } from "../views/subgraph";
 import { useAccount } from "wagmi";
 import "../App.css";
-import {
-	useSignalExisting,
-	useWithdrawPoints
-} from "../contract/calls/sigcapfunctions";
 import { useExecute } from "../contract/calls/routerexecute";
 import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
 import { espgoerli } from "../ref/addresses";

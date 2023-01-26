@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import {
 	useAccount,
 	useConnect,
@@ -22,7 +22,7 @@ import {
 	Text
 } from "@chakra-ui/react";
 import { AiOutlineDisconnect, AiOutlineApi } from "react-icons/ai";
-import { useAddAccount } from "../contract/calls/sigcapfunctions";
+// import { useAddAccount } from "../contract/calls/sigcapfunctions.txt";
 import { useFriendInfo } from "../views/subgraph";
 import Logo from "../assets/darksignal_circle.png";
 import "../App.css";
@@ -51,74 +51,52 @@ const Headbar = () => {
 		address: address
 	});
 
-	// const []
-
-	// const { data: user } = useMemberPoints(address, 1);
-
-	// const provider = useProvider();
-
-	// const read = new ethers.Contract(
-	// 	espgoerli.memberpointsregistry,
-	// 	memberpointsregistry,
-	// 	provider
-	// );
-
-	// 	// const data = await read.getUserPoints(1, address);
-	// 	console.log("CONTRACT DATA CALL ", data);
-	// };
-
-	// const { data: points } = useContractRead({
-	// 	addressOrName: espgoerli.memberpointsregistry,
-	// 	contractInterface: DxDMemberPointsRegistry,
+	// const { data: user } = useContractRead({
+	// 	//@ts-ignore
+	// 	address: espgoerli.memberpointsregistry,
+	// 	abi: DxDMemberPointsRegistry,
 	// 	functionName: "getUserPoints",
 	// 	chainId: chainId.goerli,
-	// 	cacheOnBlock: true,
-	// 	// overrides: { gasLimit: 1e7 },
-	// 	args: [1, address]
+	// 	args: [BigNumber.from(1), address]
 	// });
 
-	// useEffect(() => {
-	// 	console.log("POINTS ", points);
-	// }, [points]);
+	const [tempUser, setTempUser] = useState("0");
 
-	const readChain = async (abi: any) => {
-		console.log('before read')
+	const readChain = async () => {
+		console.log("before read");
+		// const net = await provider.getNetwork();
+		// console.log(net);
 		const data = await readContract({
-				addressOrName: "0xdac17f958d2ee523a2206206994597c13d831ec7",
-				contractInterface: abi,
-				functionName: "getOwner",
-				chainId: 1,
-			});
-		console.log('data',data);
-		console.log('after read')
-	}
+			//@ts-ignore
+			address: espgoerli.memberpointsregistry,
+			abi: DxDMemberPointsRegistry,
+			functionName: "getUserPoints",
+			chainId: chainId.goerli,
+			args: [BigNumber.from(1), address]
+		});
+		console.log("data", data);
+		console.log("after read");
+		//@ts-ignore
+		if (data && data._hex) {
+			//@ts-ignore
+			setTempUser(ethers.utils.formatUnits(data, 0));
+		}
+	};
 
-	const [addr, setAddr] = useState(" ");
+	const [ticker, setticker] = useState(true);
 
-	const [ticker, setticker] = useState(false);
+	const renderCheck = useRef<number>(0);
 
 	useEffect(() => {
-		if (address && address.length == 42 && addr != address && ticker) {
-			setAddr(address);
+		if (address && address.length == 42 && renderCheck.current == 0) {
+			renderCheck.current = 1;
 			const triggerChain = async () => {
-				await readChain(erc20abi);
+				await readChain();
 			};
 			triggerChain();
 			console.log("TICKED");
 		}
-	}, [ticker]);
-
-	// useEffect(() => {
-	// 	if (address && address.length == 42 && address != addr) {
-	// 		setaddr(address);
-	// 		const fetchData = async () => {
-	// 			const x = await read.getUserPoints(1, address);
-	// 		};
-	// 		fetchData().catch(console.error);
-	// 	}
-	// }, [address]);
-
-	// const { data: points } = useMemberPoints(address!, 1);
+	}, []);
 
 	return (
 		<Box
@@ -178,11 +156,11 @@ const Headbar = () => {
 						justifyContent={"flex-end"}
 					>
 						<Box className="Points" marginRight={2}>
-							{friend.length > 0 ? `${friend[0]["availablePoints"]}` : 0}
+							{friend.length > 0 ? `${friend[0]["availablePoints"]}` : tempUser}
 							<br />
 							<span>
 								<small>
-									/{friend.length > 0 ? friend[0]["totalPoints"] : 0}
+									/{friend.length > 0 ? friend[0]["totalPoints"] : tempUser}
 								</small>
 							</span>
 						</Box>
