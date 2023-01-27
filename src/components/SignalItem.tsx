@@ -1,29 +1,177 @@
-import React, { FC } from "react";
-import { Box, Tbody, Tr, Td } from "@chakra-ui/react";
+import React, { FC, useState, useEffect } from "react";
+import {
+	Tbody,
+	Tr,
+	Td,
+	Accordion,
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+	AccordionIcon,
+	Box
+} from "@chakra-ui/react";
 import Signaller from "./Signaller";
 import { useSubgraph } from "../views/subgraph";
+import { useAccount, useEnsName } from "wagmi";
+import { ENSName, AddressDisplayEnum } from "react-ens-name";
 import "../App.css";
+import { calcTVS } from "../lib/calcTVS";
+import _ from "lodash";
+import { ParsedUrlQueryInput } from "querystring";
+import { Stream } from "stream";
+import { AiOutlineHolder } from "react-icons/ai";
+import userEvent from "@testing-library/user-event";
 
 interface SignalInterface {
-	name: string;
+	value: string;
 	tvs: string;
 	balance: string;
+	signallers: any[];
+	currentTime: number;
+	maxSignals: number;
+	sumSignals: number;
 }
 
-const SignalItem: React.FC<SignalInterface> = ({ name, tvs, balance }) => {
+const SignalItem: React.FC<SignalInterface> = ({
+	value,
+	tvs,
+	balance,
+	signallers,
+	currentTime,
+	maxSignals,
+	sumSignals
+}) => {
 	const { friends, signals } = useSubgraph();
+	const { address } = useAccount();
+
+	const balanceNumber: number = parseInt(balance.replace(/,/g, ""));
+	const relativeColor: number = (balanceNumber / maxSignals) * 100;
+
+	// const found = signallers.find(signaller => {
+	// 	return signaller.user.user.id === address;
+	//   });
+
+	const [found, setFound] = useState("");
+
+	useEffect(() => {
+		if (address && signallers && signallers.length > 0) {
+			const lookup = signallers.find((signaller) => {
+				return signaller.user.user.id === address.toLowerCase();
+			});
+			if (lookup) {
+				setFound(lookup["balance"]);
+			} else {
+				setFound("");
+			}
+		}
+	}, [address, signallers]);
+
+	// console.log("found " + found);
+
+	function getRelativeColor() {
+		if (relativeColor >= 90) {
+			return "#FF0000";
+		}
+		if (relativeColor < 90 && relativeColor >= 70) {
+			return "#FF7A00";
+		}
+		if (relativeColor < 70 && relativeColor >= 30) {
+			return "#F3BF06";
+		}
+		if (relativeColor < 30 && relativeColor >= 10) {
+			return "#1DD291";
+		}
+		if (relativeColor < 10 && relativeColor > 0) {
+			return "#68DDFD";
+		}
+		return "#ccc";
+	}
 
 	return (
-		<Tbody>
-			<Tr>
-				<Td>{name}</Td>
-				<Td isNumeric>{tvs}</Td>
-				<Td isNumeric>{balance}</Td>
-				<Td>
-					<Signaller />
-				</Td>
-			</Tr>
-		</Tbody>
+		<Box display={"flex"} w={'100%'} justifyContent={"space-between"}>
+			<Accordion allowToggle w={'90%'}>
+				<AccordionItem
+					display={"flex"}
+					flexDirection={"column"}
+					borderWidth="0px"
+				>
+					<AccordionButton
+						borderTopWidth="2px"
+						borderTopStyle="solid"
+						borderTopColor={getRelativeColor()}
+						color={getRelativeColor()}
+						_expanded={{
+							borderTopWidth: "1px"
+						}}
+					>
+						<Box
+							display={"flex"}
+							w={"100%"}
+							justifyContent={"space-between"}
+							alignItems={"center"}
+							py={5}
+						>
+							<Box fontWeight={"900"}>{value}</Box>
+							<Box alignItems={"center"} justifyContent={"end"}>
+								{/* <Box>{tvs}</Box> */}
+								<Box fontFamily="data">{balance}</Box>
+							</Box>
+						</Box>
+					</AccordionButton>
+					{signallers && signallers.length > 0
+						? _.sortBy(signallers, (e) => {
+								return -1 * Number(e.balance);
+						  }).map((holder) => {
+								return (
+									<AccordionPanel>
+										<Box
+											display={"flex"}
+											w={"100%"}
+											justifyContent={"space-between"}
+											py={5}
+										>
+											<Box
+												display={"flex"}
+												justifyContent={"space-between"}
+												alignItems={"center"}
+												w={"80%"}
+											>
+												<ENSName
+													address={holder.user.user.id}
+													withEllipses
+													displayType={AddressDisplayEnum.FIRST4_LAST4}
+												/>
+											</Box>
+											{/* <Box>
+												{calcTVS(
+													Number(holder["lastUpdatedTime"]),
+													Number(currentTime),
+													Number(holder["amount"]),
+													Number(holder["timeValueSignal"])
+												).toLocaleString("en-US")}
+											</Box> */}
+											<Box alignSelf={"flex-end"} fontFamily="data">
+												{holder.balance}
+											</Box>
+										</Box>
+									</AccordionPanel>
+								);
+						  })
+						: null}
+				</AccordionItem>
+			</Accordion>
+			<Box
+				w={"200px"}
+				display={"flex"}
+				flexDirection={"row"}
+				justifyContent={"end"}
+				alignItems={'start'}
+				mt={6}
+			>
+				{<Box fontSize="sm" fontFamily="data" mt={2} mr={3} color={found ? 'whiteAlpha.500' : 'whiteAlpha.100'}>{found || '–'}</Box>}
+				<Signaller meme={value} />
+			</Box>
+		</Box>
 	);
 };
 

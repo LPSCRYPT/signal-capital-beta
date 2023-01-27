@@ -9,7 +9,8 @@ import {
 	TableContainer
 } from "@chakra-ui/react";
 import SignalItem from "../components/SignalItem";
-import { useSubgraph } from "../views/subgraph";
+import { useAccount } from "wagmi";
+import { useSubgraph, useFriendInfo } from "../views/subgraph";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
@@ -31,8 +32,10 @@ interface Signal {
 	balance: string;
 }
 
-const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
+const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
+	const { address } = useAccount();
+	const user = useFriendInfo(address);
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
 
@@ -93,7 +96,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	// Signal Sort
 	useEffect(() => {
 		let localTime = Math.floor(new Date().getTime() / 1000);
-		if (signals && signals.length > 0) {
+		if (user && user["signals"] && user["signals"].length > 0) {
 			let tempArr = [];
 			if (
 				ButtonPress.ascBal == currentButton ||
@@ -101,36 +104,36 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 			) {
 				// sort by balance
 				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
-				tempArr = _.sortBy(signals, (e: any) => {
+				tempArr = _.sortBy(user["signals"], (e: any) => {
 					return tempSwitch * Number(e.balance);
 				});
 				console.log("tempArr", tempArr);
 				console.log("bal fire");
 			}
-			if (
-				ButtonPress.ascTVS === currentButton ||
-				ButtonPress.descTVS === currentButton
-			) {
-				// sort by TVS
-				let tempSwitch = ButtonPress.ascTVS === currentButton ? 1 : -1;
-				tempArr = _.sortBy(signals, (e: any) => {
-					console.log(e.timeValueSignal, "LOG 1");
-					let tempThing =
-						tempSwitch *
-						calcTVS(
-							Number(e.lastUpdatedTime),
-							Number(localTime),
-							Number(e.balance),
-							Number(e.timeValueSignal)
-						);
-					console.log(e.timeValueSignal, "LOG 2");
-					return tempThing;
-				});
-				console.log("TVStempArr", tempArr);
-			}
+			// if (
+			// 	ButtonPress.ascTVS === currentButton ||
+			// 	ButtonPress.descTVS === currentButton
+			// ) {
+			// 	// sort by TVS
+			// 	let tempSwitch = ButtonPress.ascTVS === currentButton ? 1 : -1;
+			// 	tempArr = _.sortBy(user[0]["signals"], (e: any) => {
+			// 		console.log(e.timeValueSignal, "LOG 1");
+			// 		let tempThing =
+			// 			tempSwitch *
+			// 			calcTVS(
+			// 				Number(e.lastUpdatedTime),
+			// 				Number(localTime),
+			// 				Number(e.balance),
+			// 				Number(e.timeValueSignal)
+			// 			);
+			// 		console.log(e.timeValueSignal, "LOG 2");
+			// 		return tempThing;
+			// 	});
+			// 	console.log("TVStempArr", tempArr);
+
 			setSignalsList(tempArr);
 		}
-	}, [signals, currentButton]);
+	}, [user, currentButton]);
 
 	// useEffect(() => {
 	// 	if (signalsList && signalsList.length > 0) {
@@ -146,13 +149,14 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				w={"100%"}
 				flexWrap={"wrap"}
 			>
-				<Box display={'flex'} w={"calc(100% - 200px)"} alignItems={'center'} justifyContent={'space-between'}>
+				<Box
+					display={"flex"}
+					w={"calc(100% - 200px)"}
+					alignItems={"center"}
+					justifyContent={"space-between"}
+				>
 					<Box>Signal Name</Box>
-					<Box
-						display={"flex"}
-						alignItems={"center"}
-						pb={5}
-					>
+					<Box display={"flex"} alignItems={"center"} pb={5}>
 						<Box>Current Signal </Box>
 						<Box display={"flex"} flexDirection={"column"} pl={2}>
 							<Button
@@ -184,14 +188,16 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						</Box>
 					</Box>
 				</Box>
-				<Box w="200px" textAlign="right" pb={5}>Allocate</Box>
+				<Box w="200px" textAlign="right" pb={5}>
+					Allocate
+				</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal, index) => {
 							return (
 								<SignalItem
 									key={index}
-									value={signal["value"]}
+									value={signal["signal"]["value"]}
 									tvs={calcTVS(
 										Number(signal["lastUpdatedTime"]),
 										currentTime,
@@ -212,4 +218,4 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 	);
 };
 
-export default SignalList;
+export default YourList;

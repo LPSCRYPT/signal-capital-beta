@@ -8,42 +8,49 @@ import React, { useState, useEffect } from "react";
 
 export const useSubgraph = () => {
 	const FRIENDS_QUERY = `
-  {
-    friends {
-      id
-      name
-        holdings {
-        id
-        friend {
-          id
-        }
-        amount
-        timeValueSignal
-        lastUpdatedTime
-      }
-    }
-  }
+	{
+		userStreams(where: {stream: "1"}) {
+			id
+			user {
+			id
+				}
+			stream
+			totalPoints
+			availablePoints
+			signals {
+				id
+				signal {
+					id
+					value
+				}
+				balance
+				lastUpdatedTime
+			  }
+		}
+	}
     
   `;
 	const SIGNALS_QUERY = `
-  {
-    signals {
-        id
-        balance
-        meme
-        timeValueSignal
-        lastUpdatedTime
-        holders {
-          id
-          friend {
-            id
-          }
-          amount
-          timeValueSignal
-          lastUpdatedTime
-        }
-      }
-  }
+	{
+		signals(where: {stream: "1"}) {
+		  id
+		  stream
+		  value
+		  balance
+		  lastUpdatedTime
+		  signallers {
+			id
+			balance
+			lastUpdatedTime
+			user {
+			  id
+			  user {
+				id
+			  }
+			}
+		  }
+		}
+	  }
   `;
 
 	const FRIENDS_GQL = gql(FRIENDS_QUERY);
@@ -85,11 +92,11 @@ export const useSubgraph = () => {
 
 	//   dem hooks
 	useEffect(() => {
-		if (dataFriends && dataFriends["friends"]) {
+		if (dataFriends && dataFriends["userStreams"]) {
 			// let tempArr = dataFriends.owners.map(owner => ({
 			//   id: owner.id,
 			// }));
-			setFriends(dataFriends["friends"]);
+			setFriends(dataFriends["userStreams"]);
 		}
 	}, [dataFriends]);
 	useEffect(() => {
@@ -110,21 +117,25 @@ export const useSubgraph = () => {
 export const useFriendInfo = (address: string | undefined) => {
 	const FRIEND_QUERY = `
     {
-      friends(where: {id: "${address?.toLowerCase()}"}) {
-        id
-        name
-        points
-          holdings {
-          id
-          friend {
-            id
-          }
-          amount
-          timeValueSignal
-          lastUpdatedTime
-        }
-      }
-    }
+		userStreams(where: {id: "${`1 ` + address?.toLowerCase()}"}) {
+			id
+			user {
+				id
+				}
+			stream
+			totalPoints
+			availablePoints
+			signals {
+				id
+				signal {
+					id
+					value
+				}
+				balance
+				lastUpdatedTime
+			  }
+		}
+	}
       
     `;
 
@@ -146,14 +157,18 @@ export const useFriendInfo = (address: string | undefined) => {
 		};
 	}, [friendPoll, friendStop]);
 
-	const [friend, setFriend] = useState();
+	const [friend, setFriend] = useState([]);
 
 	useEffect(() => {
-		if (dataFriend && dataFriend.friends && dataFriend.friends.length > 0) {
+		if (
+			dataFriend &&
+			dataFriend.userStreams &&
+			dataFriend.userStreams.length > 0
+		) {
 			// let tempArr = dataFriend.owners.map(owner => ({
 			//   id: owner.id,
 			// }));
-			setFriend(dataFriend.friends[0]);
+			setFriend(dataFriend.userStreams[0]);
 		}
 	}, [dataFriend]);
 	return friend;

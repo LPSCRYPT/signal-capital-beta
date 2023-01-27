@@ -3,13 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, localStorageManager } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 import { getDefaultProvider } from "ethers";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import theme from "./theme";
+import { FlashlessScript } from "chakra-ui-flashless";
 
 const subgraphUri =
-	"https://api.thegraph.com/subgraphs/name/lpscrypt/sigcaprinkeby2";
+	"https://api.thegraph.com/subgraphs/name/lpscrypt/espgoerli";
 
 const defaultOptions: any = {
 	query: {
@@ -25,7 +27,7 @@ const apolloClient = new ApolloClient({
 
 const wagmiClient = createClient({
 	autoConnect: true,
-	provider: getDefaultProvider()
+	provider: getDefaultProvider("goerli", { pollingInterval: 15000 })
 });
 
 const root = ReactDOM.createRoot(
@@ -33,9 +35,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
+		{/* <FlashlessScript theme={theme} /> */}
 		<ApolloProvider client={apolloClient}>
 			<WagmiConfig client={wagmiClient}>
-				<ChakraProvider>
+				<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
 					<App />
 				</ChakraProvider>
 			</WagmiConfig>

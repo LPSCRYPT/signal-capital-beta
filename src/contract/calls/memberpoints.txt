@@ -1,0 +1,32 @@
+import { useCallback, useMemo, useEffect, useState } from "react";
+import { useContract, useContractRead, useProvider, useSigner } from "wagmi";
+import DxDMemberPointsRegistry from "../abis/DxDMemberPointsRegistry.json";
+import { espgoerli } from "../../ref/addresses";
+import { BigNumber, Bytes } from "ethers";
+import { chainId } from "../../ref/chain";
+
+const enum callSignature {
+	execute = "getUserPoints"
+}
+
+export const useMemberPoints = (
+	address: string | undefined,
+	stream: number
+) => {
+	const args = useMemo(() => [address, stream], [address, stream]);
+
+	if (address) {
+		const { data } = useContractRead({
+			addressOrName: espgoerli.memberpointsregistry,
+			contractInterface: DxDMemberPointsRegistry,
+			functionName: callSignature.execute,
+			chainId: chainId.goerli,
+			// overrides: { gasLimit: 1e7 },
+			args: [args[1], args[0]]
+		});
+		console.log("memberpoints ", data);
+		return data;
+	} else {
+		return null;
+	}
+};
