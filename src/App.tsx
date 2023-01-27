@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import SignalList from "./components/SignalList";
+import YourList from "./components/YourList";
 import KeeperList from "./components/Keepers";
 import {
 	Tabs,
@@ -115,9 +116,11 @@ function App() {
 							<SignalList currentTime={currentTime.current} />
 						</TabPanel>
 						<TabPanel>
-							<Keepers />
+							<KeeperList />
 						</TabPanel>
-						<TabPanel>YourList</TabPanel>
+						<TabPanel>
+							<YourList currentTime={currentTime.current} />
+						</TabPanel>
 					</TabPanels>
 				</Tabs>
 			</Box>
