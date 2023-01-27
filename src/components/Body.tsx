@@ -4,6 +4,7 @@ import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import signalsBg from "../assets/signal_bg_trans.png";
 import NewSignal from "./NewSignal";
 
 const Body = () => {
@@ -33,8 +34,8 @@ const Body = () => {
 			h={"100%"}
 			w={"100%"}
 			bg={"blackAlpha.100"}
-			// backgroundImage={signalBg}
-			// backgroundSize={'cover'}
+			bgImage={signalsBg}
+			bgSize={'cover'}
 		>
 			<Box
 				display={"flex"}

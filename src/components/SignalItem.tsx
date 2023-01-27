@@ -98,24 +98,30 @@ const SignalItem: React.FC<SignalInterface> = ({
 					<AccordionButton
 						borderTopWidth="2px"
 						borderTopStyle="solid"
-						borderTopColor={getRelativeColor()}
+						borderColor={getRelativeColor()}
 						color={getRelativeColor()}
+						borderLeft='2px'
+						borderRight='2px'
+						outline="none"
 						_expanded={{
-							borderTopWidth: "1px"
+							borderBottom: "2px"
+							// bg: getRelativeColor(), 
+							// color: 'white'
 						}}
 					>
 						<Box
 							display={"flex"}
 							w={"100%"}
-							justifyContent={"space-between"}
+							justifyContent={"start"}
 							alignItems={"center"}
 							py={5}
 						>
-							<Box fontWeight={"900"}>{value}</Box>
-							<Box alignItems={"center"} justifyContent={"end"}>
+							<Box w={"100%"} fontWeight={"900"} textAlign="left">{value}</Box>
+							<Box alignItems={"center"}>
 								{/* <Box>{tvs}</Box> */}
-								<Box fontFamily="data">{balance}</Box>
+								<Box fontFamily="data" ml={"auto"}>{balance}</Box>
 							</Box>
+							<AccordionIcon />
 						</Box>
 					</AccordionButton>
 					{signallers && signallers.length > 0
@@ -123,12 +129,17 @@ const SignalItem: React.FC<SignalInterface> = ({
 								return -1 * Number(e.balance);
 						  }).map((holder) => {
 								return (
-									<AccordionPanel>
+									<AccordionPanel color={getRelativeColor()} 
+									borderColor={getRelativeColor()}
+									borderLeft='2px'
+									borderRight='2px'
+									fontWeight={'100'}>
 										<Box
 											display={"flex"}
 											w={"100%"}
 											justifyContent={"space-between"}
-											py={5}
+											pt={3}
+											borderColor={getRelativeColor()}
 										>
 											<Box
 												display={"flex"}
