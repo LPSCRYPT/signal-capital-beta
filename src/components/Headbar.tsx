@@ -14,6 +14,7 @@ import {
 	Box,
 	Button,
 	Heading,
+	Image,
 	Input,
 	Avatar,
 	AvatarBadge,
@@ -24,7 +25,7 @@ import {
 import { AiOutlineDisconnect, AiOutlineApi } from "react-icons/ai";
 // import { useAddAccount } from "../contract/calls/sigcapfunctions.txt";
 import { useFriendInfo } from "../views/subgraph";
-import Logo from "../assets/darksignal_circle.png";
+import Logo from "../assets/esp_ico.png";
 import "../App.css";
 import { useColorMode } from "@chakra-ui/color-mode";
 // import { useMemberPoints } from "../contract/calls/memberpoints.txt";
@@ -114,11 +115,12 @@ const Headbar = () => {
 				display={"flex"}
 				alignItems={"center"}
 			>
+				<Image w={"100px"} src={Logo} />
 				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
-				<Heading ml={5} fontSize="48px" fontWeight="100">
-					<span style={{ color: "yellow" }}>E</span>
-					<span style={{ color: "orange" }}>S</span>
-					<span style={{ color: "red" }}>P</span>
+				<Heading fontSize="48px" fontWeight="100">
+					<span style={{ color: "#68DDFD" }}>E</span>
+					<span style={{ color: "#F3BF06" }}>S</span>
+					<span style={{ color: "#FF0000" }}>P</span>
 				</Heading>
 				<Heading size="xs" color="rgba(255,255,255,0.5)">
 					ALPHA
