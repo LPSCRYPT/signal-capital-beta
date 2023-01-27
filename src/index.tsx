@@ -38,9 +38,9 @@ root.render(
 		{/* <FlashlessScript theme={theme} /> */}
 		{/* <ApolloProvider client={apolloClient}> */}
 		<WagmiConfig client={wagmiClient}>
-			<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
-				<App />
-			</ChakraProvider>
+			{/* <ChakraProvider theme={theme} colorModeManager={localStorageManager}> */}
+			<App />
+			{/* </ChakraProvider> */}
 		</WagmiConfig>
 		{/* </ApolloProvider> */}
 	</React.StrictMode>

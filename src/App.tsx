@@ -32,7 +32,7 @@ import DxDMemberPointsRegistry from "./contract/abis/DxDMemberPointsRegistry.jso
 import { espgoerli } from "./ref/addresses";
 
 function App() {
-	const { address } = useAccount();
+	// const { address } = useAccount();
 	const [shake, setShake] = useState(false);
 
 	// const [counter, setCounter] = useState(0);
@@ -81,7 +81,7 @@ function App() {
 		abi: DxDMemberPointsRegistry,
 		functionName: "getUserPoints",
 		chainId: chainId.goerli,
-		args: [BigNumber.from(1), address]
+		args: [BigNumber.from(1), "0x3514be7b0471a937bdd39b1d22ef820ce1c90a2c"]
 	});
 
 	// /**USEFUL CODE STARTS HERE */
@@ -137,7 +137,7 @@ function App() {
 	// 	console.log(currentTime);
 	// }, [counter]);
 
-	return <Box>test</Box>;
+	return <div>test</div>;
 }
 
 export default App;
