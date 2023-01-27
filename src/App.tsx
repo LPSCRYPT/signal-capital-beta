@@ -119,7 +119,7 @@ function App() {
 							<KeeperList />
 						</TabPanel>
 						<TabPanel>
-							<YourList />
+							<YourList currentTime={currentTime.current} />
 						</TabPanel>
 					</TabPanels>
 				</Tabs>

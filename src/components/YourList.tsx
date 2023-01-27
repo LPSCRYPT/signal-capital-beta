@@ -34,8 +34,8 @@ interface Signal {
 
 const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 	const { friends, signals } = useSubgraph();
-	const {address} = useAccount();
-	const user = useFriendInfo(address)
+	const { address } = useAccount();
+	const user = useFriendInfo(address);
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
 
@@ -96,7 +96,7 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 	// Signal Sort
 	useEffect(() => {
 		let localTime = Math.floor(new Date().getTime() / 1000);
-		if (user && user.length > 0 && user[0]["signals"] && user[0]["signals"].length > 0) {
+		if (user && user["signals"] && user["signals"].length > 0) {
 			let tempArr = [];
 			if (
 				ButtonPress.ascBal == currentButton ||
@@ -104,7 +104,7 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 			) {
 				// sort by balance
 				let tempSwitch = ButtonPress.ascBal == currentButton ? 1 : -1;
-				tempArr = _.sortBy(user[0]["signals"], (e: any) => {
+				tempArr = _.sortBy(user["signals"], (e: any) => {
 					return tempSwitch * Number(e.balance);
 				});
 				console.log("tempArr", tempArr);
@@ -130,10 +130,10 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 			// 		return tempThing;
 			// 	});
 			// 	console.log("TVStempArr", tempArr);
-			
+
 			setSignalsList(tempArr);
 		}
-	}, [user[0]["signals"], currentButton]);
+	}, [user, currentButton]);
 
 	// useEffect(() => {
 	// 	if (signalsList && signalsList.length > 0) {
@@ -149,13 +149,14 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 				w={"100%"}
 				flexWrap={"wrap"}
 			>
-				<Box display={'flex'} w={"calc(100% - 200px)"} alignItems={'center'} justifyContent={'space-between'}>
+				<Box
+					display={"flex"}
+					w={"calc(100% - 200px)"}
+					alignItems={"center"}
+					justifyContent={"space-between"}
+				>
 					<Box>Signal Name</Box>
-					<Box
-						display={"flex"}
-						alignItems={"center"}
-						pb={5}
-					>
+					<Box display={"flex"} alignItems={"center"} pb={5}>
 						<Box>Current Signal </Box>
 						<Box display={"flex"} flexDirection={"column"} pl={2}>
 							<Button
@@ -187,14 +188,16 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 						</Box>
 					</Box>
 				</Box>
-				<Box w="200px" textAlign="right" pb={5}>Allocate</Box>
+				<Box w="200px" textAlign="right" pb={5}>
+					Allocate
+				</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal, index) => {
 							return (
 								<SignalItem
 									key={index}
-									value={signal["value"]}
+									value={signal["signal"]["value"]}
 									tvs={calcTVS(
 										Number(signal["lastUpdatedTime"]),
 										currentTime,
