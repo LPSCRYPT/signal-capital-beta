@@ -168,7 +168,7 @@ export const useFriendInfo = (address: string | undefined) => {
 			// let tempArr = dataFriend.owners.map(owner => ({
 			//   id: owner.id,
 			// }));
-			setFriend(dataFriend.userStreams);
+			setFriend(dataFriend.userStreams[0]);
 		}
 	}, [dataFriend]);
 	return friend;
