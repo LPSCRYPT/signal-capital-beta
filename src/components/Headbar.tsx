@@ -122,10 +122,15 @@ const Headbar = () => {
 					<span style={{ color: "#F3BF06" }}>S</span>
 					<span style={{ color: "#FF0000" }}>P</span>
 				</Heading>
-				<Heading size="xs" color="rgba(255,255,255,0.5)">
-					ALPHA
-				</Heading>
-				<Button onClick={() => setticker(!ticker)}>press me</Button>
+				<Box display={"flex"} flexDirection={"column"}>
+					<Heading size="xs" color="rgba(255,255,255,0.5)">
+						Gnosis
+					</Heading>
+					<Heading size="xs" color="rgba(255,255,255,0.5)">
+						ALPHA
+					</Heading>
+				</Box>
+				{/* <Button onClick={() => setticker(!ticker)}>press me</Button> */}
 			</Box>
 			{/* <Box minW="33%">
 				<Text
@@ -147,6 +152,7 @@ const Headbar = () => {
 					variant="ghost"
 					style={{ fontSize: "18px", marginLeft: "5px" }}
 					onClick={toggleColorMode}
+					background={"grey"}
 				>
 					{colorMode === "light" ? " 🌙" : "🌞"}
 				</Button>
@@ -157,13 +163,14 @@ const Headbar = () => {
 						alignItems={"center"}
 						justifyContent={"flex-end"}
 					>
+						<Box marginRight={"3px"}>Points Balance</Box>
 						<Box className="Points" marginRight={2}>
-							{friend.length > 0 ? `${friend[0]["availablePoints"]}` : tempUser}
+							{friend && friend["availablePoints"]
+								? `${friend["availablePoints"]}`
+								: tempUser}
 							<br />
 							<span>
-								<small>
-									/{friend.length > 0 ? friend[0]["totalPoints"] : tempUser}
-								</small>
+								<small>/{friend ? friend["totalPoints"] : tempUser}</small>
 							</span>
 						</Box>
 						<Box>

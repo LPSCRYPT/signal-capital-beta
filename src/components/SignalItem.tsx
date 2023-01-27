@@ -30,6 +30,7 @@ interface SignalInterface {
 	currentTime: number;
 	maxSignals: number;
 	sumSignals: number;
+	totalBalance: string;
 }
 
 const SignalItem: React.FC<SignalInterface> = ({
@@ -39,12 +40,13 @@ const SignalItem: React.FC<SignalInterface> = ({
 	signallers,
 	currentTime,
 	maxSignals,
-	sumSignals
+	sumSignals,
+	totalBalance
 }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 
-	const balanceNumber: number = parseInt(balance.replace(/,/g, ""));
+	const balanceNumber: number = parseInt(totalBalance.replace(/,/g, ""));
 	const relativeColor: number = (balanceNumber / maxSignals) * 100;
 
 	// const found = signallers.find(signaller => {
@@ -88,24 +90,26 @@ const SignalItem: React.FC<SignalInterface> = ({
 	}
 
 	return (
-		<Box display={"flex"} w={'100%'} justifyContent={"space-between"}>
-			<Accordion allowToggle w={'90%'}>
+		<Box display={"flex"} w={"100%"} justifyContent={"space-between"}>
+			<Accordion allowToggle w={"90%"}>
 				<AccordionItem
 					display={"flex"}
 					flexDirection={"column"}
 					borderWidth="0px"
 				>
 					<AccordionButton
-						borderTopWidth="2px"
-						borderTopStyle="solid"
-						borderColor={getRelativeColor()}
-						color={getRelativeColor()}
-						borderLeft='2px'
-						borderRight='2px'
-						outline="none"
+						// borderTopWidth="2px"
+						// borderTopStyle="solid"
+						// borderColor={getRelativeColor()}
+						// color={getRelativeColor()}
+						// borderLeft="2px"
+						// borderRight="2px"
+						// outline="none"
 						_expanded={{
-							borderBottom: "2px"
-							// bg: getRelativeColor(), 
+							border: "1px solid rgb(93, 95, 239)",
+							boxShadow: "rgb(93 95 239 / 75%) 0px 0px 35px"
+							// borderBottom: "2px"
+							// bg: getRelativeColor(),
 							// color: 'white'
 						}}
 					>
@@ -116,10 +120,14 @@ const SignalItem: React.FC<SignalInterface> = ({
 							alignItems={"center"}
 							py={5}
 						>
-							<Box w={"100%"} fontWeight={"900"} textAlign="left">{value}</Box>
+							<Box w={"100%"} fontWeight={"600"} textAlign="left">
+								{value}
+							</Box>
 							<Box alignItems={"center"}>
 								{/* <Box>{tvs}</Box> */}
-								<Box fontFamily="data" ml={"auto"}>{balance}</Box>
+								<Box fontFamily="data" ml={"auto"} color={getRelativeColor()}>
+									{balance}
+								</Box>
 							</Box>
 							<AccordionIcon />
 						</Box>
@@ -129,17 +137,20 @@ const SignalItem: React.FC<SignalInterface> = ({
 								return -1 * Number(e.balance);
 						  }).map((holder) => {
 								return (
-									<AccordionPanel color={getRelativeColor()} 
-									borderColor={getRelativeColor()}
-									borderLeft='2px'
-									borderRight='2px'
-									fontWeight={'100'}>
+									<AccordionPanel
+										// color={getRelativeColor()}
+										// borderColor={getRelativeColor()}
+										// borderLeft="2px"
+										// borderRight="2px"
+										bg={"rgba(153,153,255,0.2)"}
+										fontWeight={"100"}
+									>
 										<Box
 											display={"flex"}
 											w={"100%"}
 											justifyContent={"space-between"}
 											pt={3}
-											borderColor={getRelativeColor()}
+											// borderColor={getRelativeColor()}
 										>
 											<Box
 												display={"flex"}
@@ -176,10 +187,20 @@ const SignalItem: React.FC<SignalInterface> = ({
 				display={"flex"}
 				flexDirection={"row"}
 				justifyContent={"end"}
-				alignItems={'start'}
+				alignItems={"start"}
 				mt={6}
 			>
-				{<Box fontSize="sm" fontFamily="data" mt={2} mr={3} color={found ? 'whiteAlpha.500' : 'whiteAlpha.100'}>{found || '–'}</Box>}
+				{
+					<Box
+						fontSize="sm"
+						fontFamily="data"
+						mt={2}
+						mr={3}
+						color={found ? "whiteAlpha.500" : "whiteAlpha.100"}
+					>
+						{found || "–"}
+					</Box>
+				}
 				<Signaller meme={value} />
 			</Box>
 		</Box>

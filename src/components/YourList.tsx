@@ -209,6 +209,9 @@ const YourList: React.FC<SignalListProps> = ({ currentTime }) => {
 									currentTime={currentTime}
 									sumSignals={sumSignals}
 									maxSignals={maxSignals}
+									totalBalance={Number(
+										signal["signal"]["balance"]
+									).toLocaleString("en-US")}
 								/>
 							);
 					  })

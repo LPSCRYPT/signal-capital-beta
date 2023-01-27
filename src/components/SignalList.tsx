@@ -146,13 +146,14 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 				w={"100%"}
 				flexWrap={"wrap"}
 			>
-				<Box display={'flex'} w={"calc(100% - 200px)"} alignItems={'center'} justifyContent={'space-between'}>
-					<Box>Signal Name</Box>
-					<Box
-						display={"flex"}
-						alignItems={"center"}
-						pb={5}
-					>
+				<Box
+					display={"flex"}
+					w={"calc(100% - 200px)"}
+					alignItems={"center"}
+					justifyContent={"space-between"}
+				>
+					<Box>Signal</Box>
+					<Box display={"flex"} alignItems={"center"} pb={5}>
 						<Box>Current Signal </Box>
 						<Box display={"flex"} flexDirection={"column"} pl={2}>
 							<Button
@@ -184,7 +185,9 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 						</Box>
 					</Box>
 				</Box>
-				<Box w="200px" textAlign="right" pb={5}>Allocate</Box>
+				<Box w="200px" textAlign="right" pb={5}>
+					Allocate
+				</Box>
 
 				{signalsList && signalsList.length > 0
 					? signalsList.map((signal, index) => {
@@ -203,6 +206,9 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 									currentTime={currentTime}
 									sumSignals={sumSignals}
 									maxSignals={maxSignals}
+									totalBalance={Number(signal["balance"]).toLocaleString(
+										"en-US"
+									)}
 								/>
 							);
 					  })

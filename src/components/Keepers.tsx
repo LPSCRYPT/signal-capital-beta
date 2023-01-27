@@ -26,16 +26,22 @@ const Keepers = () => {
 				{friends && friends.length > 0
 					? friends.map((friend) => {
 							return (
-								<AccordionItem py={5}>
+								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton
+											_expanded={{
+												border: "1px solid rgb(93, 95, 239)",
+												boxShadow: "rgb(93 95 239 / 75%) 0px 0px 35px"
+											}}
+										>
 											<Box
 												flex="1"
 												textAlign="left"
 												display={"flex"}
 												justifyContent={"space-between"}
+												margin={"15px"}
 											>
-												<Box fontFamily="body">
+												<Box fontFamily="body" fontWeight={"600"}>
 													<ENSName
 														address={friend["user"]["id"]}
 														withEllipses
@@ -93,7 +99,7 @@ const Keepers = () => {
 													return -1 * Number(e.balance);
 											  }).map((signal) => {
 													return (
-														<AccordionPanel pb={4}>
+														<AccordionPanel pb={4} bg={"rgba(153,153,255,0.2)"}>
 															<Box
 																display={"flex"}
 																flexDirection={"column"}

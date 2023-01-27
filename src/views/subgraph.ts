@@ -130,6 +130,7 @@ export const useFriendInfo = (address: string | undefined) => {
 				signal {
 					id
 					value
+					balance
 				}
 				balance
 				lastUpdatedTime
