@@ -17,7 +17,7 @@ import { ENSName, AddressDisplayEnum } from "react-ens-name";
 const Keepers = () => {
 	const { friends, signals } = useSubgraph();
 	return (
-		<Box w={"100%"}>
+		<Box w={"100%"} maxW="1200px">
 			<Box display={"flex"} w={"100%"} justifyContent={"space-between"} py={3}>
 				<Box pl={4}>Signaler</Box>
 				<Box pr={10}>Allocated</Box>
@@ -35,7 +35,7 @@ const Keepers = () => {
 												display={"flex"}
 												justifyContent={"space-between"}
 											>
-												<Box>
+												<Box fontFamily="body">
 													<ENSName
 														address={friend["user"]["id"]}
 														withEllipses
@@ -111,7 +111,7 @@ const Keepers = () => {
 																			signal.signal.value
 																		}
 																	</Box>
-																	<Box>
+																	<Box fontFamily="data" fontWeight="100">
 																		{
 																			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 																			// @ts-ignore
