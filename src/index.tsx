@@ -11,11 +11,13 @@ import theme from "./theme";
 import { FlashlessScript } from "chakra-ui-flashless";
 
 const subgraphUri =
-	"https://api.thegraph.com/subgraphs/name/lpscrypt/espgoerli";
+	// "https://api.thegraph.com/subgraphs/name/lpscrypt/espgoerli";
+	"https://api.thegraph.com/subgraphs/name/lpscrypt/espgnosis";
 
 const defaultOptions: any = {
 	query: {
 		fetchPolicy: "no-cache"
+		// Access-Control-Allow-Origin: *
 	}
 };
 
@@ -27,7 +29,7 @@ const apolloClient = new ApolloClient({
 
 const wagmiClient = createClient({
 	autoConnect: true,
-	provider: getDefaultProvider("goerli", { pollingInterval: 15000 })
+	provider: getDefaultProvider()
 });
 
 const root = ReactDOM.createRoot(

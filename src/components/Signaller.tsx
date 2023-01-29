@@ -16,7 +16,7 @@ import { useAccount } from "wagmi";
 import "../App.css";
 import { useExecute } from "../contract/calls/routerexecute";
 import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
-import { espgoerli } from "../ref/addresses";
+import { espgnosis } from "../ref/addresses";
 
 interface SignallerInterface {
 	meme: string;
@@ -35,7 +35,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 	const fireSignalExising = useExecute(
 		useBuildDxDSignal(
 			1,
-			espgoerli.toplevelsystem,
+			espgnosis.toplevelsystem,
 			existingSignalAmount,
 			meme,
 			true
@@ -45,7 +45,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 	const fireWithdrawPoints = useExecute(
 		useBuildDxDSignal(
 			1,
-			espgoerli.toplevelsystem,
+			espgnosis.toplevelsystem,
 			withdrawPointsAmount,
 			meme,
 			false

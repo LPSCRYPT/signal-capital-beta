@@ -30,7 +30,7 @@ import "../App.css";
 import { useColorMode } from "@chakra-ui/color-mode";
 // import { useMemberPoints } from "../contract/calls/memberpoints.txt";
 // import DxDMemberPointsRegistry from "../contract/abis/DxDMemberPointsRegistry.json";
-import { espgoerli } from "../ref/addresses";
+import { espgnosis } from "../ref/addresses";
 import { BigNumber, Bytes } from "ethers";
 import { chainId } from "../ref/chain";
 import memberpointsregistry from "../contract/abis/DxDMemberPointsRegistry.json";
@@ -69,10 +69,10 @@ const Headbar = () => {
 		// console.log(net);
 		const data = await readContract({
 			//@ts-ignore
-			address: espgoerli.memberpointsregistry,
+			address: espgnosis.memberpointsregistry,
 			abi: DxDMemberPointsRegistry,
 			functionName: "getUserPoints",
-			chainId: chainId.goerli,
+			chainId: chainId.gnosis,
 			args: [BigNumber.from(1), address]
 		});
 		console.log("data", data);

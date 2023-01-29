@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useContract, useContractWrite, useProvider, useSigner } from "wagmi";
 import routerABI from "../abis/SignalRouterSystem.json";
-import { espgoerli } from "../../ref/addresses";
+import { espgnosis } from "../../ref/addresses";
 import { BigNumber, Bytes } from "ethers";
 import { chainId } from "../../ref/chain";
 
@@ -15,10 +15,10 @@ export const useExecute = (_data: string) => {
 	const { data, isError, isLoading, writeAsync } = useContractWrite({
 		mode: "recklesslyUnprepared",
 		//@ts-ignore
-		address: espgoerli.router ? espgoerli.router : undefined,
+		address: espgnosis.router ? espgnosis.router : undefined,
 		abi: routerABI,
 		functionName: callSignature.execute,
-		chainId: chainId.goerli,
+		chainId: chainId.gnosis,
 		// overrides: { gasLimit: 1e7 },
 		args: args,
 		onError(error) {
