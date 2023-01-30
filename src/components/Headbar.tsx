@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { FC, useEffect, useMemo, useState, useRef } from "react";
 import {
 	useAccount,
 	useConnect,
 	useDisconnect,
 	useEnsName,
 	useContractRead,
-	useProvider
+	useProvider,
+	useSigner
 } from "wagmi";
 import { readContract } from "@wagmi/core";
 import { ethers } from "ethers";
@@ -24,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineDisconnect, AiOutlineApi } from "react-icons/ai";
 // import { useAddAccount } from "../contract/calls/sigcapfunctions.txt";
-import { useFriendInfo } from "../views/subgraph";
+import { useFriendInfo } from "../views/subgraphnew";
 import Logo from "../assets/esp_ico.png";
 import "../App.css";
 import { useColorMode } from "@chakra-ui/color-mode";
@@ -35,12 +36,28 @@ import { BigNumber, Bytes } from "ethers";
 import { chainId } from "../ref/chain";
 import memberpointsregistry from "../contract/abis/DxDMemberPointsRegistry.json";
 import erc20abi from "../contract/abis/erc20abi.json";
+import { useContractLoader } from "eth-hooks";
+import { useLocation, Link } from "react-router-dom";
 const DxDMemberPointsRegistry = require("../contract/abis/DxDMemberPointsRegistry.json");
 
-const Headbar = () => {
+interface HeadbarProps {
+	route: number;
+}
+
+const Headbar: React.FC<HeadbarProps> = ({ route }) => {
+	// const location = useLocation();
 	const { address } = useAccount();
 
-	const friend = useFriendInfo(address);
+	// const [route, setRoute] = useState(0);
+
+	// useEffect(() => {
+	// 	console.log("location ", location);
+	// 	if (location.pathname.length > 1) {
+	// 		setRoute(Number(location.pathname.substring(1)));
+	// 	}
+	// }, [location]);
+
+	const friend = useFriendInfo(route, address);
 
 	const { connect } = useConnect({
 		connector: new InjectedConnector()
@@ -49,9 +66,25 @@ const Headbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 
 	const { data, isError, isLoading } = useEnsName({
-		address: address
+		address: address,
+		chainId: 1
 	});
+	// const provider = useProvider();
 
+	// const ContractLookup = {
+	// 	// Arbitrium Contract's
+	// 	100: {
+	// 		contracts: {
+	// 			MemberPointsRegistry: {
+	// 				address: espgnosis.memberpointsregistry,
+	// 				abi: DxDMemberPointsRegistry
+	// 			}
+	// 		}
+	// 	}
+	// };
+	// const contracts = useContractLoader(signer, {
+	// 	externalContracts: ContractLookup
+	// });
 	// const { data: user } = useContractRead({
 	// 	//@ts-ignore
 	// 	address: espgoerli.memberpointsregistry,
@@ -66,15 +99,16 @@ const Headbar = () => {
 	const readChain = async () => {
 		console.log("before read");
 		// const net = await provider.getNetwork();
-		// console.log(net);
+		// console.log("network log ", net);
 		const data = await readContract({
 			//@ts-ignore
 			address: espgnosis.memberpointsregistry,
 			abi: DxDMemberPointsRegistry,
 			functionName: "getUserPoints",
 			chainId: chainId.gnosis,
-			args: [BigNumber.from(1), address]
+			args: [BigNumber.from(route), address]
 		});
+		// const data = await contracts.MemberPointsRegistry.getUserPoints(1, address);
 		console.log("data", data);
 		console.log("after read");
 		//@ts-ignore
@@ -89,7 +123,7 @@ const Headbar = () => {
 	const renderCheck = useRef<number>(0);
 
 	useEffect(() => {
-		if (address && address.length == 42 && renderCheck.current == 0) {
+		if (address && address.length == 42 && route != 0) {
 			renderCheck.current = 1;
 			const triggerChain = async () => {
 				await readChain();
@@ -97,7 +131,7 @@ const Headbar = () => {
 			triggerChain();
 			console.log("TICKED");
 		}
-	}, []);
+	}, [route]);
 
 	return (
 		<Box
@@ -110,28 +144,30 @@ const Headbar = () => {
 			borderBottom={"1px solid"}
 			borderBottomColor={"whiteAlpha.500"}
 		>
-			<Box
-				minW={["100%", "100%", "33%", null]}
-				display={"flex"}
-				alignItems={"center"}
-			>
-				<Image w={"100px"} src={Logo} />
-				{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
-				<Heading fontSize="48px" fontWeight="100">
-					<span style={{ color: "#68DDFD" }}>E</span>
-					<span style={{ color: "#F3BF06" }}>S</span>
-					<span style={{ color: "#FF0000" }}>P</span>
-				</Heading>
-				<Box display={"flex"} flexDirection={"column"}>
-					<Heading size="xs" color="rgba(255,255,255,0.5)">
-						Gnosis
+			<Link to={"/"}>
+				<Box
+					minW={["100%", "100%", "33%", null]}
+					display={"flex"}
+					alignItems={"center"}
+				>
+					<Image w={"100px"} src={Logo} />
+					{/* <span style={{ fontSize: "32px" }}>📡 </span> */}
+					<Heading fontSize="48px" fontWeight="100">
+						<span style={{ color: "#68DDFD" }}>E</span>
+						<span style={{ color: "#F3BF06" }}>S</span>
+						<span style={{ color: "#FF0000" }}>P</span>
 					</Heading>
-					<Heading size="xs" color="rgba(255,255,255,0.5)">
-						ALPHA
-					</Heading>
+					<Box display={"flex"} flexDirection={"column"}>
+						<Heading size="xs" color="rgba(255,255,255,0.5)">
+							Gnosis
+						</Heading>
+						<Heading size="xs" color="rgba(255,255,255,0.5)">
+							ALPHA
+						</Heading>
+					</Box>
+					{/* <Button onClick={() => setticker(!ticker)}>press me</Button> */}
 				</Box>
-				{/* <Button onClick={() => setticker(!ticker)}>press me</Button> */}
-			</Box>
+			</Link>
 			{/* <Box minW="33%">
 				<Text
 					py={3}
@@ -170,7 +206,12 @@ const Headbar = () => {
 								: tempUser}
 							<br />
 							<span>
-								<small>/{friend ? friend["totalPoints"] : tempUser}</small>
+								<small>
+									/
+									{friend && friend["totalPoints"]
+										? friend["totalPoints"]
+										: tempUser}
+								</small>
 							</span>
 						</Box>
 						<Box>

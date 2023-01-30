@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState, useEffect, useCallback } from "react";
 import { Box, Button, Input } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
@@ -7,8 +7,20 @@ import { useAccount } from "wagmi";
 import { useExecute } from "../contract/calls/routerexecute";
 import { useBuildDxDSignal } from "../contract/calls/buildDxDSignal";
 import { espgnosis } from "../ref/addresses";
+import { useLocation } from "react-router-dom";
 
-const NewSignal = () => {
+interface NewSignalProps {
+	route: number;
+}
+
+const NewSignal: React.FC<NewSignalProps> = ({ route }) => {
+	// const location = useLocation();
+	// const [route, setRoute] = useState(0);
+	// useEffect(() => {
+	// 	if (location.pathname.length > 1) {
+	// 		setRoute(Number(location.pathname.substring(1)));
+	// 	}
+	// }, [location]);
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 	const friend = useFriendInfo(address);
@@ -18,7 +30,7 @@ const NewSignal = () => {
 
 	const fireExecute = useExecute(
 		useBuildDxDSignal(
-			1,
+			route,
 			espgnosis.toplevelsystem,
 			addNewSignalAmount,
 			addNewSignalText,
@@ -48,7 +60,11 @@ const NewSignal = () => {
 				type="number"
 				style={{ border: "1px black solid" }}
 				value={addNewSignalAmount}
-				onChange={(e) => setaddNewSignalAmount(Number(e.target.value))}
+				onChange={(e) =>
+					e.target.value != "."
+						? setaddNewSignalAmount(Number(e.target.value))
+						: null
+				}
 				mb={3}
 			></Input>
 			<Button onClick={() => fireExecute()} border={"1px black solid"}>

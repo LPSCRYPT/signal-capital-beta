@@ -3,12 +3,30 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, localStorageManager } from "@chakra-ui/react";
-import { WagmiConfig, createClient } from "wagmi";
+import {
+	ChakraProvider,
+	localStorageManager,
+	ColorModeScript
+} from "@chakra-ui/react";
+import { WagmiConfig, createClient, Chain, configureChains } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc"; //<<< new RPC
 import { getDefaultProvider } from "ethers";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import theme from "./theme";
+import { gnosis, mainnet } from "@wagmi/core/chains";
 import { FlashlessScript } from "chakra-ui-flashless";
+import { ethers } from "ethers";
+import { BrowserRouter } from "react-router-dom";
+
+const { chains, provider } = configureChains(
+	[mainnet, gnosis], //  <<<<<< Gnosis Chain Addedd
+	[
+		jsonRpcProvider({ rpc: () => ({ http: "https://rpc.ankr.com/gnosis" }) }), //<<<< New RPC Provider
+		publicProvider()
+		//   publicProvider()
+	]
+);
 
 const subgraphUri =
 	// "https://api.thegraph.com/subgraphs/name/lpscrypt/espgoerli";
@@ -29,7 +47,8 @@ const apolloClient = new ApolloClient({
 
 const wagmiClient = createClient({
 	autoConnect: true,
-	provider: getDefaultProvider()
+	// provider: getDefaultProvider(100)
+	provider: provider
 });
 
 const root = ReactDOM.createRoot(
@@ -38,13 +57,16 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		{/* <FlashlessScript theme={theme} /> */}
-		<ApolloProvider client={apolloClient}>
-			<WagmiConfig client={wagmiClient}>
-				<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
-					<App />
-				</ChakraProvider>
-			</WagmiConfig>
-		</ApolloProvider>
+		<BrowserRouter>
+			<ApolloProvider client={apolloClient}>
+				<WagmiConfig client={wagmiClient}>
+					<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
+						<ColorModeScript initialColorMode={"dark"} />
+						<App />
+					</ChakraProvider>
+				</WagmiConfig>
+			</ApolloProvider>
+		</BrowserRouter>
 	</React.StrictMode>
 );
 

@@ -9,7 +9,7 @@ import {
 	TableContainer
 } from "@chakra-ui/react";
 import SignalItem from "../components/SignalItem";
-import { useSubgraph } from "../views/subgraph";
+import { useSubgraph } from "../views/subgraphnew";
 import "../App.css";
 import { calcTVS } from "../lib/calcTVS";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
@@ -25,14 +25,15 @@ enum ButtonPress {
 
 interface SignalListProps {
 	currentTime: number;
+	route: number;
 }
 
 interface Signal {
 	balance: string;
 }
 
-const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
-	const { friends, signals } = useSubgraph();
+const SignalList: React.FC<SignalListProps> = ({ currentTime, route }) => {
+	const { friends, signals } = useSubgraph(route);
 
 	// compose the signals list, with sorting parameters (by age / TVS / current balance)
 
@@ -209,6 +210,7 @@ const SignalList: React.FC<SignalListProps> = ({ currentTime }) => {
 									totalBalance={Number(signal["balance"]).toLocaleString(
 										"en-US"
 									)}
+									route={route}
 								/>
 							);
 					  })

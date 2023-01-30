@@ -11,7 +11,7 @@ import {
 	PopoverCloseButton,
 	Input
 } from "@chakra-ui/react";
-import { useSubgraph } from "../views/subgraph";
+import { useSubgraph } from "../views/subgraphnew";
 import { useAccount } from "wagmi";
 import "../App.css";
 import { useExecute } from "../contract/calls/routerexecute";
@@ -20,10 +20,11 @@ import { espgnosis } from "../ref/addresses";
 
 interface SignallerInterface {
 	meme: string;
+	route: number;
 }
 
-const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
-	const { friends, signals } = useSubgraph();
+const Signaller: React.FC<SignallerInterface> = ({ meme, route }) => {
+	const { friends, signals } = useSubgraph(route);
 	const { address } = useAccount();
 
 	const [existingSignalAmount, setexistingSignalAmount] = useState(0);
@@ -34,7 +35,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 
 	const fireSignalExising = useExecute(
 		useBuildDxDSignal(
-			1,
+			route,
 			espgnosis.toplevelsystem,
 			existingSignalAmount,
 			meme,
@@ -44,7 +45,7 @@ const Signaller: React.FC<SignallerInterface> = ({ meme }) => {
 
 	const fireWithdrawPoints = useExecute(
 		useBuildDxDSignal(
-			1,
+			route,
 			espgnosis.toplevelsystem,
 			withdrawPointsAmount,
 			meme,

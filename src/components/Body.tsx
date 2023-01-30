@@ -1,13 +1,21 @@
-import React from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useFriendInfo } from "../views/subgraph";
 import { useSubgraph } from "../views/subgraph";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useContractRead } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import signalsBg from "../assets/signal_bg_trans.png";
 import NewSignal from "./NewSignal";
+import { espgnosis } from "../ref/addresses";
+import StreamOwnerRegistry from "../contract/abis/StreamOwnerRegistry.json";
+import { chainId } from "../ref/chain";
+import { BigNumber } from "ethers";
 
-const Body = () => {
+interface BodyProps {
+	route: number;
+}
+
+const Body: React.FC<BodyProps> = ({ route }) => {
 	const { friends, signals } = useSubgraph();
 	const { address } = useAccount();
 	console.log({ address });
@@ -25,6 +33,24 @@ const Body = () => {
 		console.log("Disconnecting");
 		disconnect();
 	};
+
+	const { data } = useContractRead({
+		//@ts-ignore
+		address: espgnosis.streamownerregistry,
+		abi: StreamOwnerRegistry,
+		functionName: "viewStreamInfo",
+		chainId: chainId.gnosis,
+		args: [BigNumber.from(route)]
+	});
+
+	const [desc, setDesc] = useState("");
+
+	useEffect(() => {
+		if (data && typeof data == "string") {
+			setDesc(data);
+		}
+	}, [data]);
+
 	return (
 		<Box
 			display={"flex"}
@@ -35,7 +61,7 @@ const Body = () => {
 			w={"100%"}
 			bg={"blackAlpha.100"}
 			bgImage={signalsBg}
-			bgSize={'cover'}
+			bgSize={"cover"}
 		>
 			<Box
 				display={"flex"}
@@ -54,7 +80,7 @@ const Body = () => {
 				) : (
 					<Box>
 						<Heading my={6} fontWeight="900" fontSize={"4xl"}>
-							DXDAO
+							{desc}
 						</Heading>
 						{/* <Text fontSize="xl">
 							Welkommen,{" "}
@@ -89,7 +115,7 @@ const Body = () => {
 					maxWidth={"600px"}
 					alignItems={"end"}
 				>
-					<NewSignal />
+					<NewSignal route={route} />
 				</Box>
 			) : null}
 		</Box>

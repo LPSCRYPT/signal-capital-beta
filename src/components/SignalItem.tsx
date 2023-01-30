@@ -11,7 +11,7 @@ import {
 	Box
 } from "@chakra-ui/react";
 import Signaller from "./Signaller";
-import { useSubgraph } from "../views/subgraph";
+import { useSubgraph } from "../views/subgraphnew";
 import { useAccount, useEnsName } from "wagmi";
 import { ENSName, AddressDisplayEnum } from "react-ens-name";
 import "../App.css";
@@ -31,6 +31,7 @@ interface SignalInterface {
 	maxSignals: number;
 	sumSignals: number;
 	totalBalance: string;
+	route: number;
 }
 
 const SignalItem: React.FC<SignalInterface> = ({
@@ -41,9 +42,10 @@ const SignalItem: React.FC<SignalInterface> = ({
 	currentTime,
 	maxSignals,
 	sumSignals,
-	totalBalance
+	totalBalance,
+	route
 }) => {
-	const { friends, signals } = useSubgraph();
+	const { friends, signals } = useSubgraph(route);
 	const { address } = useAccount();
 
 	const balanceNumber: number = parseInt(totalBalance.replace(/,/g, ""));
@@ -201,7 +203,7 @@ const SignalItem: React.FC<SignalInterface> = ({
 						{found || "–"}
 					</Box>
 				}
-				<Signaller meme={value} />
+				<Signaller meme={value} route={route} />
 			</Box>
 		</Box>
 	);

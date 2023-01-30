@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useState, useEffect } from "react";
 import _ from "lodash";
 
 import {
@@ -10,12 +10,24 @@ import {
 	Box
 } from "@chakra-ui/react";
 import "../App.css";
-import { useSubgraph } from "../views/subgraph";
+import { useSubgraph } from "../views/subgraphnew";
 import { ethers } from "ethers";
 import { ENSName, AddressDisplayEnum } from "react-ens-name";
+import { useLocation } from "react-router-dom";
 
-const Keepers = () => {
-	const { friends, signals } = useSubgraph();
+interface KeepersProps {
+	route: number;
+}
+
+const Keepers: React.FC<KeepersProps> = ({ route }) => {
+	// const location = useLocation();
+	// const [route, setRoute] = useState(0);
+	// useEffect(() => {
+	// 	if (location.pathname.length > 1) {
+	// 		setRoute(Number(location.pathname.substring(1)));
+	// 	}
+	// }, [location]);
+	const { friends, signals } = useSubgraph(route);
 	return (
 		<Box w={"100%"} maxW="1200px">
 			<Box display={"flex"} w={"100%"} justifyContent={"space-between"} py={3}>

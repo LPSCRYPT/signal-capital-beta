@@ -27,11 +27,10 @@ import iconC from "./assets/iconC.png";
 import { useContractRead, useContract } from "wagmi";
 import { readContract } from "@wagmi/core";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import RoutedApp from "./RoutedApp";
-import DefaultIndex from "./DefaultIndex";
+import { useLocation } from "react-router-dom";
 const erc20abi = require("./contract/abis/erc20abi.json");
 
-function App() {
+const RoutedApp = () => {
 	const [shake, setShake] = useState(false);
 
 	// const [counter, setCounter] = useState(0);
@@ -88,12 +87,57 @@ function App() {
 		console.log(currentTime);
 	}, [counter]);
 
-	return (
-		<Routes>
-			<Route path=":id" element={<RoutedApp />} />
-			<Route path="/" element={<DefaultIndex />} />
-		</Routes>
-	);
-}
+	const location = useLocation();
+	const [route, setRoute] = useState(0);
+	useEffect(() => {
+		if (location.pathname.length > 1) {
+			setRoute(Number(location.pathname.substring(1)));
+		}
+	}, [location]);
 
-export default App;
+	return (
+		<Box
+			className="pageWrapper"
+			h={"100vh"}
+			w={"100vw"}
+			display={"flex"}
+			flexDirection={"column"}
+		>
+			<Headbar route={route} />
+			<Body route={route} />
+			<Box flex="row" padding={25} paddingBottom={500}>
+				<Tabs align="center">
+					<TabList>
+						<Tab fontWeight={"700"}>
+							<Image id="iconA" maxW="32px" src={iconA} alt="iconA" mr={3} />{" "}
+							Signals
+						</Tab>
+						<Tab fontWeight={"700"}>
+							<Image id="iconC" maxW="32px" src={iconC} alt="iconC" mr={3} />{" "}
+							Signalers
+						</Tab>
+						<Tab fontWeight={"700"}>
+							<Image id="iconB" maxW="32px" src={iconB} alt="iconB" mr={3} />
+							You
+						</Tab>
+					</TabList>
+					<TabPanels>
+						<TabPanel>
+							<SignalList currentTime={currentTime.current} route={route} />
+						</TabPanel>
+						<TabPanel>
+							<KeeperList route={route} />
+						</TabPanel>
+						<TabPanel>
+							<YourList currentTime={currentTime.current} route={route} />
+						</TabPanel>
+					</TabPanels>
+				</Tabs>
+			</Box>
+			{/* <SubgraphWrapper /> */}
+			{/* <TestingFunctions /> */}
+		</Box>
+	);
+};
+
+export default RoutedApp;

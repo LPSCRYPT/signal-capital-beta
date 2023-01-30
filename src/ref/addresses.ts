@@ -5,7 +5,8 @@ export const espgoerli = {
 	memberpointsregistry: "0x104D7e73ba2CF955A813da67c37f5631aFc89619"
 };
 export const espgnosis = {
-	router: "0x03A4eaC6a39D9ADAe045F23732f39D7791eF25e2",
-	toplevelsystem: "0xfc3DC29E55100d0839429eAF1D48e0C0Da338860",
-	memberpointsregistry: "0x5217eed75D81110E6b2F02D978113Dcf0d8000FD"
+	router: "0x2E37A0CFbe92Cd27372Ac2E2aA60043d7c92Bdbd",
+	toplevelsystem: "0x4D014759620Ba3Fd00BBe852F271e729d0581009",
+	memberpointsregistry: "0x734c0f29B20b63ecE7e0B9e672707e4C5aFD6A82",
+	streamownerregistry: "0x3f15161C446F34E61B6885A781AA75772BF871D4"
 };

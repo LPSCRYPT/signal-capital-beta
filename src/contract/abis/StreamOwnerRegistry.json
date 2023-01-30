@@ -1,0 +1,158 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_router",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_SMIC",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_TLSIC",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_SSIC",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_system",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "_add",
+				"type": "bool"
+			}
+		],
+		"name": "addOrRemoveStreamSystem",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_system",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "_add",
+				"type": "bool"
+			}
+		],
+		"name": "addOrRemoveTopLevelSystem",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_system",
+				"type": "address"
+			}
+		],
+		"name": "mutateMemberRegistrySystem",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address[]",
+				"name": "_users",
+				"type": "address[]"
+			},
+			{
+				"internalType": "string",
+				"name": "_description",
+				"type": "string"
+			}
+		],
+		"name": "streamRegister",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "validOwner",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_stream",
+				"type": "uint256"
+			}
+		],
+		"name": "viewStreamInfo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
