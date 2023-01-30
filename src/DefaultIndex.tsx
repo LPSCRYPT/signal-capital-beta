@@ -15,7 +15,8 @@ import {
 	Stack,
 	Switch,
 	Text,
-	DarkMode
+	DarkMode,
+	useColorMode
 } from "@chakra-ui/react";
 import Headbar from "./components/Headbar";
 import Body from "./components/Body";
@@ -34,6 +35,14 @@ import Git from "./assets/github.png";
 const erc20abi = require("./contract/abis/erc20abi.json");
 
 const DefaultIndex = () => {
+	const { colorMode, toggleColorMode } = useColorMode();
+	useEffect(() => {
+		// hook for enabling default darkmode
+		// chakra ui doesn't seem to be able to support default dark mode via its standard methods
+		if (colorMode == "light") {
+			toggleColorMode();
+		}
+	}, []);
 	return (
 		<DarkMode>
 			<Box
