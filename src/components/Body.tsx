@@ -98,9 +98,9 @@ const Body: React.FC<BodyProps> = ({ route }) => {
 							Allocate your signal points to existing signals or add one of your
 							own.
 						</Text>
-						<Box mt={6}>
+						{/* <Box mt={6}>
 							<Button onClick={handleDisconnect}>Disconnect</Button>
-						</Box>
+						</Box> */}
 						{/* <Text fontSize="xs" mt={6}><pre>TVS (Time Value Signal): weighted measure of signal over time</pre></Text> */}
 					</Box>
 				)}
